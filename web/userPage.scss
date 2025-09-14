@@ -1,0 +1,166 @@
+@import "./colors";
+
+.container{
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.user_content{
+    gap: 16px;
+    flex-direction: column;
+
+    h1{
+        margin-right: 16px;
+    }
+
+    .edit_button{
+        display: block;
+
+        border-radius: 8px;
+        border: none;
+    
+        padding: 12px;
+    
+        color: $gray-400;
+        background: $gray-800;
+        transition: .4s;
+        cursor: pointer;
+        font-weight: 600;
+    
+        &:hover{
+            filter: brightness(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    }
+    .actions_buttons{
+        gap: 16px;
+    }
+
+    .label{
+        text-align: center;
+        h4{
+            color: $gray-400;
+        }
+        p{
+            font-size: 24px;
+            font-weight: 500;
+        }
+    }
+
+
+    .avatar_user_page{
+        position: relative;
+        .avatar_container{
+            width: 264px;
+            height: 264px;
+            background: $purple-normal;
+            overflow: hidden;
+            border-radius: 100%;
+    
+            .edit_icon{
+                display: ab;
+            }
+            
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+        .edit_icon{
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: $gray-700;
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            cursor: pointer;
+            transition: .3s;
+
+            svg{
+                width: 16px;
+                path{
+                    fill: $gray-100;
+                }
+            }
+
+            &:hover{
+                filter: brightness(1.2);
+            }
+        }
+    }
+
+
+}
+
+.modal_edit_user_name{
+    form{
+        flex-direction: column;
+        gap: 16px;
+    }
+    label.new_name_label{
+        span{
+            margin-bottom: 8px;
+            display: block;
+            color: $gray-300;
+        }
+    }
+    .input_style{
+        width: 100%;
+    }
+    .update_button{
+        background: $purple-gradient;
+        color: $gray-100;
+        font-size: 20px;
+    }
+}
+.modal_edit_user_img{
+
+    form{
+        flex-direction: column;
+    }
+    .input_style{
+        width: 100%;
+    }
+    .update_button{
+        background: $purple-gradient;
+        color: $gray-100;
+        font-size: 20px;
+    }
+
+    label.new_name_label{
+        margin-bottom: 16px;
+        span{
+            margin-bottom: 8px;
+            display: block;
+            color: $gray-300;
+        }
+    }
+    .avatar{
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 16px;
+
+        .avatar_img{
+            width: 160px;
+            height: 160px;
+            background: $purple-normal;
+            border-radius: 100%;
+            overflow: hidden;
+            
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+    }
+}
+
+.area_admin_link, .input_style{
+    font-size: 14px;
+    font-weight: 600;
+}

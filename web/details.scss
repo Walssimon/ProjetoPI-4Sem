@@ -1,0 +1,262 @@
+@import "./colors";
+
+* {
+    font-family: "Montserrat", sans-serif;
+}
+
+
+
+#banner_details {
+    min-height: 550px;
+    position: relative;
+    padding: 0 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .gradient {
+        position: absolute;
+        inset: 0;
+        top: 0;
+        left: 0;
+        background: linear-gradient(to right, #0F0C0F 0%, #0f0c0fef 40%, #0f0c0fa2 70%, #0f0c0f3f 100%);
+    }
+
+    .container {
+        margin: 0 auto;
+
+        .content {
+
+            .voltar_btn {
+                display: flex;
+                width: 48px;
+                height: 48px;
+                border-radius: 16px;
+                padding: 0;
+
+                svg {
+                    width: 16px;
+                    fill: $gray-100;
+                }
+            }
+
+            h1 {
+                font-size: 40px;
+                margin-bottom: 28px;
+                margin-top: 40px;
+            }
+
+            .info_details {
+                margin-bottom: 20px;
+                gap: 20px;
+                color: $gray-200;
+
+                .stars-details {
+                    color: yellow;
+
+                    i {
+                        color: yellow;
+                        font-size: 0.7rem;
+                        padding-right: 3px;
+                        vertical-align: middle;
+                        margin-bottom: 3px;
+                    }
+                }
+
+                .censure-details {
+                    width: 28px;
+                    height: 25px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    text-align: center;
+
+                    border-radius: 3px;
+                    background-color: $purple-dark;
+                    margin-top: -3px;
+
+                    font-weight: 600;
+                }
+            }
+
+            p {
+                max-width: 645px;
+                width: 100%;
+                margin-bottom: 40px;
+                color: $gray-200;
+            }
+
+            .buttons_container {
+                gap: 16px;
+
+                .input_style {
+                    color: $gray-200;
+                    background-color: #211C21;
+
+                    i {
+                        margin-right: 8px;
+                        color: $gray-200;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+main {
+    position: relative;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding: 0 40px;
+}
+
+#atores_principais {
+    position: relative;
+    margin: 90px 0;
+    width: 100%;
+    overflow-x: hidden;
+
+    h1 {
+        margin-bottom: 32px;
+        font-size: 32px;
+    }
+
+    .atores_container {
+        position: relative;
+        gap: 20px;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+
+        .ator {
+            display: block;
+            position: relative;
+            min-width: 210px;
+            width: 210px;
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+            border-radius: 8px;
+
+            .details_in_hover {
+                opacity: 0;
+                pointer-events: none;
+                position: absolute;
+                inset: 0;
+                left: 0;
+                top: 0;
+                gap: 8px;
+                background: rgba(0, 0, 0, 0.329);
+                padding: 12px;
+                flex-direction: column;
+                justify-content: flex-end;
+                transition: .4s;
+                z-index: 10;
+            }
+
+            &:hover .details_in_hover {
+                opacity: 1;
+                cursor: pointer;
+                pointer-events: all;
+            }
+        }
+    }
+}
+
+#movie_comments {
+    position: relative;
+    gap: 2%;
+    flex-direction: row;
+    margin: 90px 0;
+
+    .comentarios {
+        max-width: 49%;
+        width: 100%;
+        max-height: 250px;
+
+        .comentarios_container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow-y: scroll;
+
+            .comentario {
+                gap: 18px;
+                flex-direction: column;
+                width: 100%;
+                border-bottom: 1px solid $gray-800;
+                padding: 32px 0;
+                margin-bottom: 8px;
+
+                h3 {
+                    color: $gray-100;
+                }
+
+                p {
+                    color: $gray-200;
+                }
+
+                span {
+                    color: $gray-500;
+                }
+            }
+        }
+    }
+
+    .form_comentarios {
+        max-width: 49%;
+        width: 100%;
+
+        form {
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 16px;
+
+            .select_star {
+                display: flex;
+                align-items: center;
+                justify-items: center;
+                padding: 0;
+                padding-left: 16px;
+                gap: 8px;
+
+                .star_icon {
+                    width: 16px;
+
+                    svg {
+                        width: inherit;
+
+                        path {
+                            fill: $yellow-normal;
+                        }
+                    }
+                }
+
+                select {
+                    background: $gray-800;
+                    border: none;
+                    height: 40px;
+                    outline: none;
+                    color: $gray-100;
+                    border-top-right-radius: 100%;
+                    border-bottom-right-radius: 100%;
+                    width: 56px;
+                }
+            }
+
+            .input_style[type="submit"] {
+                background: $purple-normal;
+                color: white;
+            }
+
+            .textarea_comment {
+                width: 100%;
+                resize: none;
+                height: 200px;
+                border-radius: 8px;
+            }
+        }
+    }
+}

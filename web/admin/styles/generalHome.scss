@@ -1,0 +1,150 @@
+@import "../../colors";
+
+.main_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 80px);
+  margin-left: 80px;
+  min-height: 100vh;
+}
+
+.perfil_user {
+  // background-color: #A411D4;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 32px;
+  border: 1px solid rgba($color: #191919, $alpha: 0.9);
+  padding: 4px;
+}
+
+.perfil_user img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  // margin: 0 auto;
+
+}
+
+.cockpit_filmes_adm {
+  padding-left: 22px;
+  padding-right: 20px;
+  justify-content: space-between;
+  margin: 48px 0;
+  align-items: center;
+
+  .search_input {
+    display: flex;
+    position: relative;
+    align-items: center;
+    border-radius: 999px;
+    border: none;
+    padding: 12px 20px;
+
+    color: $gray-400;
+    background: $gray-800;
+    transition: .4s;
+    cursor: pointer;
+    font-weight: 600;
+
+    input {
+      // color: rgba(255, 255, 255,0.5);
+      color: #8b8a8a;
+      background-color: transparent;
+      border: none;
+
+    }
+
+    &:hover {
+      filter: brightness(1.1);
+    }
+
+    span {
+      // position: absolute;
+
+      margin-right: 20px;
+    }
+  }
+
+
+}
+
+i {
+  color: $gray-100;
+}
+
+.atorModalLeft {
+  width: 800px;
+  max-width: 320px;
+  height: 380px;
+  display: inline-flex;
+  .atorModalRight{
+    margin-bottom: 20px;
+    // text-align: left;
+  }
+
+}
+
+.atorModalLeft .input_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.atorModalLeft .input_div .input_capas {
+  height: 362px;
+  background-color: #171317;
+  border: none;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+.input_capas img {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 10px;
+  
+  border-radius: 8px;
+}
+
+.atorModalLeft .input_div .input_capas .banners {
+  width: 433px;
+
+}
+
+.atorModalLeft .input_div .input_capas>input[type=file] {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+  background-color: #171317;
+  border: none;
+}
+
+.atorModalLeft .input_div .input_capas>input[type=file]:visited {
+  border: 10px solid #8501B0;
+}
+
+#preview {
+  // margin-top: 25px;
+  max-width: 250px;
+  max-height: 330px;
+
+  display: none;
+  /* Escondido inicialmente */
+}
+
+.delete_btn{
+  border: 2px solid #FF2929;
+  color: #FF2929;
+  font-size: 20px;
+  background-color: transparent;
+}

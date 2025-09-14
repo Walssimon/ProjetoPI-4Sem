@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input ao Clicar na Imagem</title>
+  <style>
+    /* Ajuste a imagem conforme o layout desejado */
+    .image-upload img {
+      cursor: pointer;
+      width: 150px; /* Ajuste o tamanho conforme necessário */
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="image-upload">
+  <!-- Imagem que será clicada -->
+  <label for="file-input">
+    <img src="https://via.placeholder.com/150" alt="Clique para escolher um arquivo">
+  </label>
+  <!-- Input de arquivo oculto -->
+  <input id="file-input" type="file" style="display: none;" onchange="handleFileChange(event)">
+</div>
+
+<script>
+  // Função que será chamada ao selecionar um arquivo
+  function handleFileChange(event) {
+    const file = event.target.files[0];
+    if (file) {
+      alert(`Você escolheu o arquivo: ${file.name}`);
+      // Exemplo: Carregar e mostrar a imagem selecionada
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.querySelector('.image-upload img').src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+@import "../../colors";
+
+
+
+.container-menu{
+    background-color: #171317;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0 14px;
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    .buttonsAreaView{
+        // background-color: aqua;
+        height: 30%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        .buttonView{
+            width: 3rem;
+            height: 3rem;
+            border-radius: 3%;
+        }   
+        .buttonView >button{
+            background-color: #211C21;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 5%;
+            color: #E7E7E7;
+            font-size: 1.3rem;
+        }
+        .buttonView>p{
+            visibility: hidden;
+            
+        }
+        .buttonView:hover>p{
+            visibility: visible;
+            text-wrap: nowrap;
+          
+            
+        }
+        .buttonView.active>button{
+            background-color: #A411D4;
+        }
+    }
+}

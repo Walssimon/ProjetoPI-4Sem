@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carregando...</title>
+    <link rel="stylesheet" href="./global.css">
+
+    <style>
+
+        @keyframes loading_animation {
+            from{
+                opacity: 1;
+            }to{
+                opacity: 0.2;
+            }
+        }
+
+        .container{
+            height: 100vh;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .loader{
+            display: flex;
+            width: 100%;
+            max-width: 132px;
+            gap: 16px;
+
+        }
+
+        .loader_circle{
+            width: 30px;
+            height: 30px;
+            background-color: #adabad;
+            border-radius: 100%;
+            transition: all;
+            animation: loading_animation 1s infinite alternate-reverse;
+        }
+
+        .loader_circle:nth-child(2){
+            animation-delay: .3s;
+        }
+        .loader_circle:nth-child(3){
+            animation-delay: .5s;
+        }
+
+        h3{
+            color: #adabad;
+            animation: loading_animation 1s infinite alternate-reverse;
+        }
+    </style>
+</head>
+<body>
+    <div class="container flex-center">
+
+        <div class="loader flex">
+            <span class="loader_circle"></span>
+            <span class="loader_circle"></span>
+            <span class="loader_circle"></span>
+        </div>
+        <h3>Carregando</h3>
+
+    </div>
+</body>
+ <script>
+        // Redireciona para uma nova aba após 2 segundos
+        setTimeout(function() {
+            window.location.replace('admin/index.html');
+        }, 1000); // Tempo em milissegundos (2 segundos)
+    </script>
+</html>

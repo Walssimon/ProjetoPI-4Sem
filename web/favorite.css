@@ -1,0 +1,93 @@
+.container {
+  inset: 0;
+  min-height: 500px;
+}
+.container .cockpit_favorite {
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  margin: 80px 0;
+}
+.container .cockpit_favorite .content {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.container .cockpit_favorite .content .voltar_btn {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  padding: 0;
+}
+.container .cockpit_favorite .content .voltar_btn svg {
+  width: 16px;
+  fill: #E7E7E7;
+}
+.container .cockpit_favorite .avatar_image {
+  width: 56px;
+  height: 56px;
+  right: 0;
+  top: 0;
+  background: linear-gradient(to right, #C648EF, #8501B0);
+  border-radius: 100%;
+  aspect-ratio: 1/1;
+  transition: 0.4s;
+}
+.container .cockpit_favorite .avatar_image:hover {
+  filter: brightness(1.1);
+}
+
+#filmes_container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  place-items: center;
+}
+#filmes_container .filme_content {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  overflow: hidden;
+  border-radius: 8px;
+  min-height: 178px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+#filmes_container .filme_content .btn_favoritar_filme {
+  position: absolute;
+  background: #171317;
+  right: 12px;
+  top: 12px;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border-radius: 100%;
+  cursor: pointer;
+  transition: 0.4s;
+}
+#filmes_container .filme_content .btn_favoritar_filme:hover {
+  filter: brightness(1.1);
+}
+#filmes_container .filme_content img {
+  position: absolute;
+  min-width: 273px;
+}
+
+@media screen and (max-width: 1000px) {
+  #filmes_container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  #filmes_container .filme_content {
+    width: 100%;
+    max-width: 280px;
+    overflow: hidden;
+    border-radius: 8px;
+    min-height: 178px;
+    margin-bottom: 12px;
+  }
+}

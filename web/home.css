@@ -1,0 +1,190 @@
+#Destaques {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 512px;
+  margin-top: -6px;
+}
+#Destaques a {
+  position: absolute;
+}
+#Destaques .container {
+  position: relative;
+  height: 600px;
+  width: 100%;
+  max-width: 1600px;
+  margin-top: 0;
+}
+#Destaques .container .avatar_image {
+  width: 72px;
+  height: 72px;
+  top: 32px;
+  right: 56px;
+  margin: 0;
+  background: linear-gradient(to right, #C648EF, #8501B0);
+  border-radius: 100%;
+  aspect-ratio: 1/1;
+  transition: 0.4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 9;
+}
+#Destaques .container .avatar_image:hover {
+  filter: brightness(1.1);
+}
+#Destaques .container .avatar_image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#Destaques .container .container_carrossel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#Destaques .container .container_carrossel .carousel {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  height: 100%;
+}
+#Destaques .container .container_carrossel .carousel img {
+  min-width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#Destaques .container .container_carrossel .arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: #E7E7E7;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#Destaques .container .container_carrossel .arrow:hover {
+  background: linear-gradient(to right, #C648EF, #8501B0);
+}
+#Destaques .container .container_carrossel .arrow.arrow-left {
+  left: 10px;
+}
+#Destaques .container .container_carrossel .arrow.arrow-right {
+  right: 10px;
+}
+
+.cockpit_filmes {
+  justify-content: space-between;
+  margin: 48px 0;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.cockpit_filmes .cockpit_item {
+  gap: 16px;
+}
+.cockpit_filmes .cockpit_item span {
+  color: #665E66;
+}
+
+#filmes_container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  place-items: center;
+}
+#filmes_container .filme_content {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  overflow: hidden;
+  border-radius: 8px;
+  min-height: 178px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+#filmes_container .filme_content .btn_favoritar_filme {
+  position: absolute;
+  background: #171317;
+  right: 12px;
+  top: 12px;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.4s;
+}
+#filmes_container .filme_content .btn_favoritar_filme:hover {
+  filter: brightness(1.1);
+}
+#filmes_container .filme_content img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (max-width: 1000px) {
+  #filmes_container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  #filmes_container .filme_content {
+    width: 100%;
+    max-width: 280px;
+    min-height: 178px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  #filmes_container .filme_content img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  /* Ajustes para telas menores que 768px */
+  /* Ajustes para telas muito pequenas (por exemplo, celulares) */
+}
+@media screen and (max-width: 1000px) and (max-width: 768px) {
+  #filmes_container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 1000px) and (max-width: 480px) {
+  #filmes_container {
+    grid-template-columns: 1fr;
+  }
+  .filme_content {
+    max-width: 100%;
+    margin-bottom: 16px;
+  }
+}
+.filters_button {
+  transition: 0.3s;
+  border: none;
+}
+.filters_button :active {
+  background: #A411D4;
+  color: #0F0C0F;
+}
