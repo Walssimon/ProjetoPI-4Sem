@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Wed Sep 03 21:52:11 BRT 2025
+jsonassert-1.5.3-sources.jar>central=
+jsonassert-1.5.3.jar>central=
+jsonassert-1.5.3.pom>central=

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <packaging>jar</packaging>
+    <groupId>org.webjars.bower</groupId>
+    <artifactId>open-iconic</artifactId>
+    <version>1.1.1</version>
+    <name>open-iconic</name>
+    <description>WebJar for open-iconic</description>
+    <url>http://webjars.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <scm>
+        <url>https://github.com/iconic/open-iconic</url>
+        <connection>git://github.com/iconic/open-iconic.git</connection>
+        <developerConnection>git://github.com/iconic/open-iconic.git</developerConnection>
+        <tag>v1.1.1</tag>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>webjars</id>
+            <url>http://webjars.org</url>
+        </developer>
+    </developers>
+
+    <licenses>
+        
+        <license>
+            <name>MIT</name>
+            <url>https://spdx.org/licenses/MIT#licenseText</url>
+            <distribution>repo</distribution>
+        </license>
+        
+        <license>
+            <name>OFL-1.1</name>
+            <url>https://spdx.org/licenses/OFL-1.1#licenseText</url>
+            <distribution>repo</distribution>
+        </license>
+        
+    </licenses>
+
+    <dependencies>
+        
+    </dependencies>
+
+</project>
