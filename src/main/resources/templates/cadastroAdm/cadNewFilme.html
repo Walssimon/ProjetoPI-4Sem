@@ -40,7 +40,7 @@
         </div>
 
         <!-- campos do formulario -->
-        <form class="div_security_area">
+        <form id="formUpload" class="div_security_area" action="/cadastroAdm/upload" method="post" enctype="multipart/form-data">
             <!-- banners -->
             <div class="inputs_area">
                 <div class="input_div">
@@ -48,7 +48,7 @@
                     <label class="input_capas">
                         <img src="" alt="Clique para selecionar uma imagem" id="imagePreview" class="img_preview">
                         <!-- Campo de input de arquivo escondido -->
-                        <input type="file" class="principal" id="file-input"  accept="image/*" onchange="handleFileChange(event, 'imagePreview')">
+                        <input type="file" id="file-input" name="imagem" accept="image/*">
                     </label>
                     <!-- <label class="input_capas"> <input type="file" accept="image/*" class="principal"></label> -->
                 </div>
@@ -239,8 +239,32 @@
 
 
     <!-- fim do modal -->
-    <script src="./../scriptGlobal.js"></script>
+<!--    <script src="./../scriptGlobal.js"></script>-->
     <script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
+    <script>
+
+        const form = document.getElementById('formUpload');
+        const fileInput = document.getElementById('file-input');
+
+     fileInput.addEventListener('change', async () => {
+         const formData = new FormData(form);
+
+         try {
+             const response = await fetch(form.action, {
+                 method: 'POST',
+                 body: formData
+             })
+
+             if (response.ok) {
+                 console.log('Imagem enviada com sucesso!');
+             } else {
+                 console.error('Erro ao enviar imagem');
+             }
+         } catch (err) {
+             console.error('Erro na requisição:', err);
+         }
+     })
+    </script>
 
 </body>
 
