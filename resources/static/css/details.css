@@ -1,0 +1,218 @@
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+#banner_details {
+  min-height: 550px;
+  position: relative;
+  padding: 0 40px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#banner_details .gradient {
+  position: absolute;
+  inset: 0;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right, #0F0C0F 0%, rgba(15, 12, 15, 0.937254902) 40%, rgba(15, 12, 15, 0.6352941176) 70%, rgba(15, 12, 15, 0.2470588235) 100%);
+}
+#banner_details .container {
+  margin: 0 auto;
+}
+#banner_details .container .content .voltar_btn {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  padding: 0;
+}
+#banner_details .container .content .voltar_btn svg {
+  width: 16px;
+  fill: #E7E7E7;
+}
+#banner_details .container .content h1 {
+  font-size: 40px;
+  margin-bottom: 28px;
+  margin-top: 40px;
+}
+#banner_details .container .content .info_details {
+  margin-bottom: 20px;
+  gap: 20px;
+  color: #ADA8AD;
+}
+#banner_details .container .content .info_details .stars-details {
+  color: yellow;
+}
+#banner_details .container .content .info_details .stars-details i {
+  color: yellow;
+  font-size: 0.7rem;
+  padding-right: 3px;
+  vertical-align: middle;
+  margin-bottom: 3px;
+}
+#banner_details .container .content .info_details .censure-details {
+  width: 28px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 3px;
+  background-color: #8501B0;
+  margin-top: -3px;
+  font-weight: 600;
+}
+#banner_details .container .content p {
+  max-width: 645px;
+  width: 100%;
+  margin-bottom: 40px;
+  color: #ADA8AD;
+}
+#banner_details .container .content .buttons_container {
+  gap: 16px;
+}
+#banner_details .container .content .buttons_container .input_style {
+  color: #ADA8AD;
+  background-color: #211C21;
+}
+#banner_details .container .content .buttons_container .input_style i {
+  margin-right: 8px;
+  color: #ADA8AD;
+}
+
+main {
+  position: relative;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  padding: 0 40px;
+}
+
+#atores_principais {
+  position: relative;
+  margin: 90px 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+#atores_principais h1 {
+  margin-bottom: 32px;
+  font-size: 32px;
+}
+#atores_principais .atores_container {
+  position: relative;
+  gap: 20px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+#atores_principais .atores_container .ator {
+  display: block;
+  position: relative;
+  min-width: 210px;
+  width: 210px;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border-radius: 8px;
+}
+#atores_principais .atores_container .ator .details_in_hover {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  left: 0;
+  top: 0;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.329);
+  padding: 12px;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: 0.4s;
+  z-index: 10;
+}
+#atores_principais .atores_container .ator:hover .details_in_hover {
+  opacity: 1;
+  cursor: pointer;
+  pointer-events: all;
+}
+
+#movie_comments {
+  position: relative;
+  gap: 2%;
+  flex-direction: row;
+  margin: 90px 0;
+}
+#movie_comments .comentarios {
+  max-width: 49%;
+  width: 100%;
+  max-height: 250px;
+}
+#movie_comments .comentarios .comentarios_container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+#movie_comments .comentarios .comentarios_container .comentario {
+  gap: 18px;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid #171317;
+  padding: 32px 0;
+  margin-bottom: 8px;
+}
+#movie_comments .comentarios .comentarios_container .comentario h3 {
+  color: #E7E7E7;
+}
+#movie_comments .comentarios .comentarios_container .comentario p {
+  color: #ADA8AD;
+}
+#movie_comments .comentarios .comentarios_container .comentario span {
+  color: #3B333B;
+}
+#movie_comments .form_comentarios {
+  max-width: 49%;
+  width: 100%;
+}
+#movie_comments .form_comentarios form {
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+}
+#movie_comments .form_comentarios form .select_star {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  padding: 0;
+  padding-left: 16px;
+  gap: 8px;
+}
+#movie_comments .form_comentarios form .select_star .star_icon {
+  width: 16px;
+}
+#movie_comments .form_comentarios form .select_star .star_icon svg {
+  width: inherit;
+}
+#movie_comments .form_comentarios form .select_star .star_icon svg path {
+  fill: #E4C516;
+}
+#movie_comments .form_comentarios form .select_star select {
+  background: #171317;
+  border: none;
+  height: 40px;
+  outline: none;
+  color: #E7E7E7;
+  border-top-right-radius: 100%;
+  border-bottom-right-radius: 100%;
+  width: 56px;
+}
+#movie_comments .form_comentarios form .input_style[type=submit] {
+  background: #A411D4;
+  color: white;
+}
+#movie_comments .form_comentarios form .textarea_comment {
+  width: 100%;
+  resize: none;
+  height: 200px;
+  border-radius: 8px;
+}/*# sourceMappingURL=details.css.map */

@@ -1,0 +1,20 @@
+.footer{
+    justify-content: center;
+    .footer_container_area.with_delete_button {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    
+        .others{
+            display: flex;
+            max-width: fit-content;
+            justify-content: space-between;
+            align-items: center;
+            gap: 32px;
+
+            button{
+                margin: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titulo do filme - Feedback Cinema</title>
+    <link rel="stylesheet" href="../../static/css/global.css" />
+    <link rel="stylesheet" href="../../static/css/home.css" />
+    <link rel="stylesheet" href="../../static/css/details.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100,200,300,400,500,600,700,800,900;1,100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="big_container flex-center" id="banner_details" style="background-image: url(./imgs/destaque_foto.png);">
+        <div class="gradient"></div>
+        <div class="container">
+            <div class="content">
+                <a href="../" class="voltar_btn input_style flex-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+                </a>
+                <h1>Nome do filme</h1>
+                <div class="info_details flex">
+                    <span>Documentario</span>
+                    <span class="stars-details"><i class="fa-solid fa-star"></i>4.5</span>
+                    <span>2016</span>
+                    <span ><div class="censure-details">12</div></span>
+                    <span>2h40</span>
+                </div>
+                <p>O filme destaca momentos decisivos na vida de Steve Jobs, desde o lançamento do primeiro Macintosh, em 1984, e a criação da NeXT Inc, até a introdução revolucionária do iMac. Fatos da vida pessoal de Jobs também são revelados, especialmente o conturbado relacionamento com sua primeira filha Lisa.</p>
+                <div class="buttons_container flex">
+                    <!-- <i class="fa-solid fa-bookmark"></i> esse é pra quando tiver clicado pra ser favorito -->
+                    <button class="favoritar input_style"><i class="fa-regular fa-bookmark"></i>Favoritar</button>
+                    <a href="#comentar_no_filme" class="comentar input_style">Comentar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="big_container flex-center">
+        <div class="container ">
+
+            <section id="atores_principais">
+                <h1>Atores Principais</h1>
+                <div class="atores_container flex">
+                    <div class="ator">
+                        <img src="./imgs/foto34.png" alt="Foto do ator principal do filme">
+                        <div class="details_in_hover flex">
+                            <span>Steve jobs</span>
+                            <h3>Michael Fassbender</h3>
+                        </div>
+                    </div>
+                    <div class="ator">
+                        <img src="./imgs/foto34.png" alt="Foto do ator principal do filme">
+                        <div class="details_in_hover flex">
+                            <span>Steve jobs</span>
+                            <h3>Michael Fassbender</h3>
+                        </div>
+                    </div>
+                    <div class="ator">
+                        <img src="./imgs/foto34.png" alt="Foto do ator principal do filme">
+                        <div class="details_in_hover flex">
+                            <span>Steve jobs</span>
+                            <h3>Michael Fassbender</h3>
+                        </div>
+                    </div>
+                    <div class="ator">
+                        <img src="./imgs/foto34.png" alt="Foto do ator principal do filme">
+                        <div class="details_in_hover flex">
+                            <span>Steve jobs</span>
+                            <h3>Michael Fassbender</h3>
+                        </div>
+                    </div>
+                    <div class="ator">
+                        <img src="./imgs/foto34.png" alt="Foto do ator principal do filme">
+                        <div class="details_in_hover flex">
+                            <span>Steve jobs</span>
+                            <h3>Michael Fassbender</h3>
+                        </div>
+                    </div>
+                    <div class="ator">
+                        <img src="./imgs/foto34.png" alt="Foto do ator principal do filme">
+                        <div class="details_in_hover flex">
+                            <span>Steve jobs</span>
+                            <h3>Michael Fassbender</h3>
+                        </div>
+                    </div>
+                    <div class="ator">
+                        <img src="./imgs/foto34.png" alt="Foto do ator principal do filme">
+                        <div class="details_in_hover flex">
+                            <span>Steve jobs</span>
+                            <h3>Michael Fassbender</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="movie_comments" class="flex">
+                <div class="comentarios">
+                    <h1>Comentários</h1>
+                    <div class="comentarios_container">
+                        <div class="comentario flex">
+                            <h3>Roberta Renata</h3>
+                            <p>Filme muito bom, indico! </p>
+                            <span>1 dia atrás</span>
+                        </div>
+                        <div class="comentario flex">
+                            <h3>Roberta Renata</h3>
+                            <p>Filme muito bom, indico! </p>
+                            <span>1 dia atrás</span>
+                        </div>
+                        <div class="comentario flex">
+                            <h3>Roberta Renata</h3>
+                            <p>Filme muito bom, indico! </p>
+                            <span>1 dia atrás</span>
+                        </div>
+                        <div class="comentario flex">
+                            <h3>Roberta Renata</h3>
+                            <p>Filme muito bom, indico! </p>
+                            <span>1 dia atrás</span>
+                        </div>
+                        <div class="comentario flex">
+                            <h3>Roberta Renata</h3>
+                            <p>Filme muito bom, indico! </p>
+                            <span>1 dia atrás</span>
+                        </div>
+                        <div class="comentario flex">
+                            <h3>Roberta Renata</h3>
+                            <p>Filme muito bom, indico! </p>
+                            <span>1 dia atrás</span>
+                        </div>
+                        <div class="comentario flex">
+                            <h3>Roberta Renata</h3>
+                            <p>Filme muito bom, indico! </p>
+                            <span>1 dia atrás</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form_comentarios" id="comentar_no_filme">
+                    <form class="flex">
+                        <textarea class="input_style textarea_comment" placeholder="Digite seu comentário"></textarea>
+                        <div class="flex-between w-full">
+                            <label class="select_star input_style flex">
+                                <div class="star_icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>
+                                </div>
+                                <select name="" id="" class="border">    
+                                    <option value="0">0</option> 
+                                    <option value="0">1</option> 
+                                    <option value="0">2</option> 
+                                    <option value="0">3</option> 
+                                    <option value="0">4</option> 
+                                    <option value="0">5</option> 
+                                </select>
+                            </label>
+                            
+                            <input class="input_style" type="submit" value="Enviar">
+                        </div>
+                    </form>
+                </div>
+            </section>
+            
+        </div>
+    </main>
+    <script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,841 @@
+@import "../../colors";
+
+.div_security_area {
+    height: fit-content;
+}
+
+#container_G_Film {
+    min-height: 100vh;
+}
+
+.cockpit_filmes_form {
+    flex: 1;
+    justify-content: space-between;
+    margin: 48px 0;
+    align-items: center;
+
+    .btn_return {
+        background-color: #171317;
+        border: none;
+        width: 42px;
+        height: 42px;
+        border-radius: 16px;
+        margin-bottom: 32px;
+        color: #878387;
+        font-size: 1.1rem;
+
+    }
+}
+
+.inputs_area {
+
+    width: 100%;
+    display: flex;
+    gap: 24px;
+
+    .input_div {
+        display: flex;
+        flex-direction: column;
+        max-width: 400px;
+
+        .input_capas {
+            position: relative;
+            height: 100%;
+            width: 400px;
+            background-color: #171317;
+            margin-top: 16px;
+            aspect-ratio: 16 / 9;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+        
+            .img_preview {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; 
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        
+            input[type="file"] {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                cursor: pointer;
+            }
+        }        
+    }
+
+}
+
+.inputs_area.linear {
+    display: flex;
+    flex-direction: column;
+    margin: 48px 0;
+    height: fit-content;
+
+    .div_list_inputs {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 40px;
+        gap: 24px;
+
+        .input_div_grid {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 32px;
+
+            input,
+            textarea,
+            button,
+            select {
+                margin-top: 16px;
+                height: 48px;
+                width: 264px;
+                color: #878387;
+                padding: 16px;
+                cursor: pointer;
+                background-color: #171317;
+                border: none;
+                border-radius: 8px;
+            }
+
+            button {
+                font-size: 20px;
+                font-weight: 500;
+                padding-top: 12px;
+            }
+
+            button:active {
+                background-color: rgba(23, 19, 23, 0.3);
+            }
+
+            .descr_input {
+                width: 550px;
+                height: 200px;
+                resize: none;
+            }
+
+
+        }
+
+        .input_div_grid.desc_area {
+            width: 100%;
+            max-height: 450px;
+        }
+
+        .container_actores_list {
+            position: relative;
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            margin-top: 48px;
+            gap: 16px;
+        }
+
+        .actors_div_film {
+            width: 210px;
+            height: 280px;
+            background-color: $gray-800;
+            border-radius: 8px;
+        }
+
+        .actors_div_film:hover .box_color_bg {
+            visibility: visible;
+            background-color: #171317;
+            opacity: 0.6;
+            width: 100%;
+            height: 100%;
+        }
+
+        .container_names_actors {
+            width: 100%;
+            height: 30%;
+
+            padding: 10px;
+            margin-top: -95px;
+            opacity: 1;
+        }
+
+        .title_persona_name {
+            font-size: 16px;
+        }
+
+        .title_actor_name {
+            font-size: 20px;
+        }
+
+        .container_inputs_edit_actor {
+            width: 560px;
+            height: 348px;
+            // background-color: #8501B0;
+            display: flex;
+            // justify-content: space-between;
+            align-items: center;
+            // flex-direction: row;
+
+            .div_picture_actor_input {
+                display: flex;
+                flex-direction: column;                
+
+                .input_capas_picture {
+                    height: 348px;
+                    background-color: #171317;
+                    border: none;
+                    width: 260px;
+
+                    border-radius: 8px;
+
+                    .actor_picture {
+                        width: 184px;
+                    }
+                }
+            }
+            .input_capas_picture>input[type="file"] {
+                width: 100%;
+                max-height: 348px;
+                opacity: 0;
+                cursor: pointer;
+                background-color: #171317;
+                border: none;
+    
+    
+            }
+    
+            .input_capas_picture>input[type="file"]:focus-within {
+                border: 10px solid #8501B0;
+            }
+           .div_input_infos_actor{
+            height: 280px;
+            width: 360px;
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: -65px;
+           
+           }
+        }
+       
+
+    }
+
+}
+
+.div_list_inputs.actors {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    gap: 24px;
+
+    .add_atores{
+        display: flex;
+        flex-direction: column;
+        
+        button:active {
+            filter: brightness(0.9);
+        }
+    
+        button {
+            transition: .3s;
+            margin-top: 16px;
+            width: 264px;
+            color: #878387;
+            padding: 16px;
+            cursor: pointer;
+            background-color: #171317;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 20px;
+        }
+
+    }
+
+    .container_actores_list {
+        position: relative;
+        min-width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+
+    .actors_div_film {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        width: 210px;
+        height: 280px;
+        background-color: $gray-800;
+        border-radius: 8px;
+        overflow: hidden;
+        img{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            filter: brightness(0.8);
+        }
+        .content{
+            position: absolute;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+        }
+
+        &::after{
+            content: '';
+            display: block;
+            opacity: 0;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.4));
+            z-index: 5;
+            transition: .2s;
+        }
+
+        &:hover::after{
+            opacity: 1;
+        }
+    }
+
+    .title_persona_name {
+        font-size: 16px;
+    }
+
+    .title_actor_name {
+        font-size: 20px;
+    }
+
+    .container_inputs_edit_actor {
+        width: 560px;
+        height: 348px;
+        // background-color: #8501B0;
+        display: flex;
+        // justify-content: space-between;
+        align-items: center;
+        // flex-direction: row;
+
+        .div_picture_actor_input {
+            display: flex;
+            flex-direction: column;
+            // margin-right: 34px;
+            
+
+            .input_capas_picture {
+                height: 348px;
+                background-color: #171317;
+                border: none;
+                width: 260px;
+
+                border-radius: 8px;
+
+                .actor_picture {
+                    width: 184px;
+                }
+            }
+        }
+        .input_capas_picture>input[type="file"] {
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            cursor: pointer;
+            background-color: #171317;
+            border: none;
+
+
+        }
+
+        .input_capas_picture>input[type="file"]:focus-within {
+            border: 10px solid #8501B0;
+        }
+       .div_input_infos_actor{
+        height: 280px;
+        width: 360px;
+        margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: -65px;
+       
+       }
+    }
+   
+
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    margin: 40px 0;
+    
+    .footer_container_area {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+
+        button {
+            width: 200px;
+            padding: 16px 0;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: .3s;
+            &:hover{
+                filter: brightness(1.3);
+            }
+        }
+
+        .cancel_btn {
+            background-color: transparent;
+            border: 1px solid #878387;
+            color: #878387;
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .delet_btn {
+            background-color: transparent;
+            border: 1px solid #FF2929;
+            color: #FF2929;
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .add_btn {
+            background-color: #8501B0;
+            border: none;
+            color: #E7E7E7;
+            font-size: 22px;
+            text-align: center;
+            margin-bottom: 8px;
+
+       
+    }
+}
+
+.cancel_btn {
+    background-color: transparent;
+    border: 1px solid #878387;
+    color: #878387;
+    font-size: 22px;
+    text-align: center;
+}
+
+.delet_btn {
+    background-color: transparent;
+    border: 1px solid #FF2929;
+    color: #FF2929;
+    font-size: 22px;
+    text-align: center;
+}
+
+.add_btn {
+    background-color: #8501B0 !important;
+    border: none;
+    color: #E7E7E7 !important;
+    font-size: 22px;
+    text-align: center;
+
+    i {
+        font-size: 16px;
+        margin-right: 6px;
+        margin-bottom: 8px;
+    }
+}
+
+label {
+    font-size: 20px;
+    color: #878387;
+}
+
+.input_div_grid_ava {
+    min-width: 264px;
+    min-height: 88px;
+    display: flex;
+    flex-direction: column;
+    .label_ava{
+        margin-bottom: -10px;
+    }
+
+    input,
+    textarea,
+    button {
+        margin-top: 10px;
+        height: 48px;
+        width: 204px;
+        color: #878387;
+        padding: 16px;
+        cursor: pointer;
+        background-color: #171317;
+        border: none;
+        border-radius: 8px;
+
+
+    }
+
+    button {
+        font-size: 20px;
+        font-weight: 500;
+        padding-top: 12px;
+    }
+
+    button:active {
+        background-color: rgba(23, 19, 23, 0.3);
+    }
+
+    .remove_btn{
+        background: #FF2929 !important;
+        width: 180px !important;
+        color: #E7E7E7 !important;
+    }
+
+}
+
+}
+
+.atorModalLeft {
+    width: 800px;
+    max-width: 320px;
+    height: 380px;
+    display: inline-flex;
+    .atorModalRight{
+      margin-bottom: 20px;
+    }
+  }
+
+  .container_actores_list {
+    width: 100%;
+    max-width: 1080px;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 28px;
+    gap: 16px;
+    .btn_favoritar_filmes {
+        position: absolute;  
+        top: 5px; 
+        left: 5px; 
+        background-color: #ff2929af;  
+        border: none; width: 30px;
+       height: 30px;
+       border-radius: 50%;
+        cursor: pointer;  
+        z-index: 100;  
+      }
+      
+      .btn_favoritar_filmes i {
+        font-size: 14px; /* Ajusta o tamanho do ícone */
+        color: #E7E7E7;
+      }
+}
+
+.actors_div_film {
+    width: 210px;
+    height: 280px;
+    margin-bottom: 30px;
+    background-color: $gray-800;
+    border-radius: 8px;
+}
+  
+  .atorModalLeft .input_div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+  .atorModalLeft .input_div .input_capas {
+    height: 362px;
+    background-color: #171317;
+    border: none;
+    margin-top: 10px;
+    border-radius: 8px;
+  }
+  
+  .input_capas img {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 10px;
+    
+    border-radius: 8px;
+  }
+  
+  .atorModalLeft .input_div .input_capas .banners {
+    width: 433px;
+  
+  }
+  
+  .atorModalLeft .input_div .input_capas>input[type=file] {
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+    background-color: #171317;
+    border: none;
+  }
+  
+  .atorModalLeft .input_div .input_capas>input[type=file]:visited {
+    border: 10px solid #8501B0;
+  }
+  
+  #preview {
+    // margin-top: 25px;
+    max-width: 250px;
+    max-height: 330px;
+  
+    display: none;
+    /* Escondido inicialmente */
+  }
+
+
+
+//   ---------------------------------------------------
+
+.modal_add_ator {
+    width: 950px;
+
+    .modal_content {
+        form {
+            width: 100%;
+
+            .nome_ficticio_label {
+                min-width: 100%;
+                width: 100%;
+                span {
+                    width: 100%;
+                }
+                input {
+                    width: 100%;
+                    margin-top: 8px;
+                }
+            }
+
+            .search {
+                margin-top: 24px;
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            .container_actores_list {
+                position: relative;
+                min-width: 100%;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .actors_div_film {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                width: 210px;
+                height: 280px;
+                background-color: $gray-800;
+                border-radius: 8px;
+                overflow: hidden;
+                transition: border 0.3s ease;
+
+                input[type='radio'] {
+                    display: none;
+                }
+
+                .title_persona_name, .title_actor_name{
+                    font-size: 16px;
+                    color: white;
+                }
+
+                .label_input_radio {
+                    position: absolute;
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    height: 100%;
+                    cursor: pointer;
+                    border: 3px solid transparent;
+
+                    img {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 8px;
+                        filter: brightness(0.8);
+                    }
+
+                    .content {
+                        position: absolute;
+                        padding: 16px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-end;
+                        width: 100%;
+                        height: 100%;
+                        z-index: 10;
+                    }
+                    
+                    &::after {
+                        content: '';
+                        display: block;
+                        opacity: 0;
+                        inset: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(transparent, rgba(0, 0, 0, 0.4));
+                        z-index: 9;
+                        transition: 0.2s;
+                    }
+    
+                    &:hover::after {
+                        opacity: 1;
+                    }
+                }
+
+
+                /* Estilo para a borda roxa quando o rádio está selecionado */
+                input[type="radio"]:checked + label {
+                    border: 3px solid purple;
+                }
+            }
+            .submit{
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                .add_btn {
+                    padding: 16px 24px;
+                    background-color: #8501B0;
+                    border: none;
+                    color: #E7E7E7;
+                    font-size: 16px;
+                    text-align: center;
+                    border-radius: 9999px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+        
+                    i {
+                        font-size: 16px;
+                        margin-right: 8px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// TOP AREA
+.container_topArea{
+    aspect-ratio: 16/9;
+    margin-top: 30px;
+    // display: flex;
+    height: 480px;
+    width: 100%;
+   
+    .inputs_areas {
+
+        width: 100%;
+        display: flex;
+        gap: 24px;
+        flex-direction: row;
+
+        .area_input{
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            
+        }
+        .input_div_grid{
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            
+            input,
+            .button
+             {
+                margin-top: 13px;
+                height: 48px;
+                width: 264px;
+                color: #878387;
+                padding: 16px;
+                cursor: pointer;
+                background-color: #171317;
+                border: none;
+                border-radius: 8px;
+                
+            }
+        }
+        .input_div {
+            display: flex;
+            max-width: 400px;
+            .input_capas {
+                height: 409px;
+                background-color: #171317;
+                border: none;
+                margin-top: 16px;
+                aspect-ratio: 16 / 9;
+                border-radius: 8px;
+                overflow: hidden;
+                
+                .cad_actors{
+                    width: 472px;
+                    aspect-ratio: 16 / 9;
+                }
+            }
+    
+            .input_capas>input[type="file"] {
+                height: 100%;
+                width: 100%;
+                opacity: 0;
+                cursor: pointer;
+                background-color: #171317;
+                border: none;
+    
+    
+            }
+    
+            .input_capas>input[type="file"]:focus-within {
+                border: 10px solid #8501B0;
+            }
+        }
+    
+    }
+}
+// .btn_favoritar_filmes {
+//     position: absolute; /* Posiciona o botão em relação ao contêiner pai */
+//     top: 5px; /* Alinha ao topo */
+//     right: 5px; /* Alinha à direita */
+//     background-color: #fff; /* Fundo branco para contraste */
+//     border: none; /* Remove bordas */
+//     color: #555; /* Cor do ícone/texto */
+//     padding: 5px 8px; /* Tamanho ajustável */
+//     border-radius: 50%; /* Deixa o botão arredondado */
+//     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adiciona sombra para destaque */
+//     cursor: pointer; /* Mostra um cursor clicável */
+//     z-index: 10; /* Garante que o botão fique sobre os outros elementos */
+//     transition: background-color 0.3s ease, color 0.3s ease; /* Animações suaves */
+//   }
+  
+//   .btn_favoritar_filmes i {
+//     font-size: 14px; /* Ajusta o tamanho do ícone */
+//   }
