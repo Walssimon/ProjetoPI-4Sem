@@ -2,21 +2,21 @@ package com.curso.boot.catalogoFilmes.domain;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 @Entity
 @Table(name = "TB_FILME")
 public class Filme extends AbstractEntity<Long> {
 
-    @Column(name = "NM_FILME", nullable = false, unique = true, length = 200)
+
+    @Column(name = "NM_FILME", nullable = false,  length = 200)
     private String nomeFilme;
 
-    @Column(name = "DS_SINOPSE", nullable = false, unique = true, length = 500)
+    @Column(name = "DS_SINOPSE", nullable = false,length = 500)
     private String descricao;
 
     @Column(name = "HR_DURACAO", nullable = false)
-    private LocalTime duracao;
+    private int duracao;
 
     @Column(name = "DT_LANCAMENTO", nullable = false)
     private LocalDate dataLancamento;
@@ -24,7 +24,7 @@ public class Filme extends AbstractEntity<Long> {
     @Column(name = "VL_AVALIACAO")
     private Double avaliacao;
 
-    @Column(name = "NR_CLASSIFICACAO_INDICATIVA")
+    @Column(name = "NR_CLASSIFICACAO_INDICATIVA", length = 3)
     private Integer classificacaoIndicativa;
 
     // Relacionamento com TB_FILME_ATOR
@@ -42,8 +42,8 @@ public class Filme extends AbstractEntity<Long> {
     public String getDescricao() { return descricao; }
     public void setDescricao(String descricao) { this.descricao = descricao; }
 
-    public LocalTime getDuracao() { return duracao; }
-    public void setDuracao(LocalTime duracao) { this.duracao = duracao; }
+    public int getDuracao() { return duracao; }
+    public void setDuracao(int duracao) { this.duracao = duracao; }
 
     public LocalDate getDataLancamento() { return dataLancamento; }
     public void setDataLancamento(LocalDate dataLancamento) { this.dataLancamento = dataLancamento; }
