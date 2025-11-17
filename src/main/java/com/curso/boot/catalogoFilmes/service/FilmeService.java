@@ -1,6 +1,8 @@
 package com.curso.boot.catalogoFilmes.service;
 
 import com.curso.boot.catalogoFilmes.domain.Filme;
+import com.curso.boot.catalogoFilmes.domain.Imagem;
+
 import java.util.List;
 
 public interface FilmeService {
@@ -13,4 +15,6 @@ public interface FilmeService {
     Filme findById(Long id);
 
     List<Filme> findAll();
+
+
 }

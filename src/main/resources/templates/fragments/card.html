@@ -1,15 +1,21 @@
+<div th:fragment="card(card)" class="filme_content flex-center" xmlns:th="http://www.w3.org/1999/xhtml">
 
-<div th:fragment="card(card)" xmlns:th="http://www.w3.org/1999/xhtml">
-  <div th:id="'filme-' + ${card.id}" class="filme_content flex-center">
     <a th:href="@{/filme/detalhes/{id}(id=${card.id})}">
-      <img th:src="${card.image}" th:alt="${card.nomeFilme}" class="filme-poster"/>
+        <img th:src="'data:image/png;base64,' + ${card.imagemBase64}" th:alt="${card.nomeFilme}"/>
+
     </a>
-    <p th:text="${card.nomeFilme}" class="filme-nome"></p>
+    <p th:text="${card.nomeFilme}"></p>
+
     <button class="btn_favoritar_filme flex-center">
-      <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M13.7965 2.05694C13.4616..." stroke="#A411D4" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+        <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+            <path id="Vector"
+                  d="M13.7965 2.05694C13.4616..."
+                  stroke="#A411D4" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
     </button>
-  </div>
 </div>
+</div>
+<script src="scriptGlobal.js"></script>
+<script src="carrossel.js"></script>

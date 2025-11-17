@@ -2,6 +2,7 @@ package com.curso.boot.catalogoFilmes.domain;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.Base64;
 import java.util.List;
 
 @Entity
@@ -34,6 +35,28 @@ public class Filme extends AbstractEntity<Long> {
     // Relacionamento com TB_GENERO_FILME
     @OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<GeneroFilme> generos;
+
+    @Lob
+    @Column(length = 16777215) // tamanho para armazenar blob médio (16MB)
+    private byte[] dados;
+
+    @Transient
+    public String getImagemBase64() {
+        try {
+            return java.util.Base64.getEncoder().encodeToString(this.dados);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
+    public byte[] getDados() {
+        return dados;
+    }
+
+    public void setDados(byte[] dados) {
+        this.dados = dados;
+    }
 
     // Getters e Setters
     public String getNomeFilme() { return nomeFilme; }

@@ -19,7 +19,7 @@ public class FilmeController {
     @GetMapping("/home")
     public String home(Model model) {
         List<Filme> filmes = filmeService.findAll();
-        model.addAttribute("filmes", filmes);
+        model.addAttribute("filmes", filmeService.findAll());
         return "filme/home"; // Nome do template Thymeleaf
     }
 
