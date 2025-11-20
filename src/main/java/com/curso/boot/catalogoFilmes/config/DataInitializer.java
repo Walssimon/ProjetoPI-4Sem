@@ -17,6 +17,9 @@ import java.sql.DatabaseMetaData;
 import java.sql.Statement;
 
 import java.time.LocalDate;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.Statement;
 
 
 @Configuration
@@ -27,8 +30,20 @@ public class DataInitializer {
 
     @Bean
     @Transactional
-    CommandLineRunner initDatabase(FilmeDaoImpl filmeDao) {
+    CommandLineRunner initDatabase(FilmeDaoImpl filmeDao, DataSource dataSource) {
         return args -> {
+
+            try (Connection conn = dataSource.getConnection();
+                 Statement stmt = conn.createStatement()) {
+
+                // Aumenta o limite para 64 MB (bom para imagens grandes)
+                stmt.execute("SET GLOBAL max_allowed_packet = 64 * 1024 * 1024");
+
+                System.out.println("max_allowed_packet configurado para 64MB automaticamente.");
+            } catch (Exception e) {
+                // Caso o MySQL não permita (host remoto/shared hosting)
+                System.err.println("Não foi possível configurar max_allowed_packet automaticamente: "
+                        + e.getMessage());}
 
 
             // Evita duplicar dados a cada start
@@ -48,7 +63,7 @@ public class DataInitializer {
                 filmeDao.save(filme);
                 System.out.println("🎬 Filme inicial criado no banco!");
                 Filme f2 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/2.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/2.png"));
                 f2.setNomeFilme("Matrix Ressurection");
                 f2.setDescricao("Se o Sr. Anderson, conhecido como Neo, aprendeu alguma coisa é que a escolha, mesmo sendo uma ilusão, é a única maneira de sair - ou entrar - da Matrix.");
                 f2.setDuracao(138);
@@ -59,7 +74,7 @@ public class DataInitializer {
                 filmeDao.save(f2);
 
                 Filme f3 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/3.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/3.png"));
                 f3.setNomeFilme("Avatar");
                 f3.setDescricao("Um fuzileiro se envolve com um povo alienígena.");
                 f3.setDuracao(162);
@@ -71,7 +86,7 @@ public class DataInitializer {
 
 
                 Filme f4 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/4.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/4.png"));
                 f4.setNomeFilme("Interestelar");
                 f4.setDescricao("Um grupo de astronautas viaja por um buraco de minhoca em busca de um novo lar para a humanidade.");
                 f4.setDuracao(169);
@@ -83,7 +98,7 @@ public class DataInitializer {
 
 
                 Filme f5 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/5.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/5.png"));
                 f5.setNomeFilme("Batman: O Cavaleiro das Trevas");
                 f5.setDescricao("Batman enfrenta o psicopata Coringa em uma batalha pelo caos em Gotham.");
                 f5.setDuracao(152);
@@ -95,7 +110,7 @@ public class DataInitializer {
 
 // 3
                 Filme f6 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/6.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/6.png"));
                 f6.setNomeFilme("A Origem");
                 f6.setDescricao("Um ladrão invade sonhos para roubar segredos corporativos.");
                 f6.setDuracao(148);
@@ -107,7 +122,7 @@ public class DataInitializer {
 
 // 4
                 Filme f7 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/7.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/7.png"));
                 f7.setNomeFilme("Matrix");
                 f7.setDescricao("Um hacker descobre que a realidade é uma simulação e luta pela liberdade humana.");
                 f7.setDuracao(136);
@@ -119,7 +134,7 @@ public class DataInitializer {
 
 // 5
                 Filme f8 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/8.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/8.png"));
                 f8.setNomeFilme("Vingadores: Guerra Infinita");
                 f8.setDescricao("Heróis se unem para impedir Thanos de destruir metade do universo.");
                 f8.setDuracao(149);
@@ -131,7 +146,7 @@ public class DataInitializer {
 
 // 6
                 Filme f9 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/9.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/9.png"));
                 f9.setNomeFilme("Vingadores: Ultimato");
                 f9.setDescricao("Os Vingadores tentam reverter o estalo de Thanos em uma última batalha.");
                 f9.setDuracao(181);
@@ -143,7 +158,7 @@ public class DataInitializer {
 
 // 7
                 Filme f10 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/10.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/10.png"));
                 f10.setNomeFilme("Pantera Negra");
                 f10.setDescricao("T'Challa retorna a Wakanda para assumir o trono e enfrenta um poderoso inimigo.");
                 f10.setDuracao(134);
@@ -155,7 +170,7 @@ public class DataInitializer {
 
 // 8
                 Filme f11 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/11.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/11.png"));
                 f11.setNomeFilme("O Rei Leão");
                 f11.setDescricao("Um jovem leão precisa assumir seu lugar como rei após a morte do pai.");
                 f11.setDuracao(88);
@@ -167,7 +182,7 @@ public class DataInitializer {
 
 // 9
                 Filme f12 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/12.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/12.png"));
                 f12.setNomeFilme("Toy Story");
                 f12.setDescricao("Brinquedos ganham vida quando os humanos não estão olhando.");
                 f12.setDuracao(81);
@@ -179,7 +194,7 @@ public class DataInitializer {
 
 // 10
                 Filme f13 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/13.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/13.png"));
                 f13.setNomeFilme("Homem-Aranha 2");
                 f13.setDescricao("Peter Parker enfrenta novos desafios enquanto luta contra o Dr. Octopus.");
                 f13.setDuracao(127);
@@ -191,7 +206,7 @@ public class DataInitializer {
 
 // 11
                 Filme f14 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/14.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/14.png"));
                 f14.setNomeFilme("Divertida Mente");
                 f14.setDescricao("As emoções de uma garota precisam guiá-la em uma mudança de vida.");
                 f14.setDuracao(95);
@@ -203,7 +218,7 @@ public class DataInitializer {
 
 // 12
                 Filme f15 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/15.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/15.png"));
                 f15.setNomeFilme("Shrek");
                 f15.setDescricao("Um ogro precisa resgatar uma princesa para recuperar seu pântano.");
                 f15.setDuracao(90);
@@ -215,7 +230,7 @@ public class DataInitializer {
 
 // 13
                 Filme f16 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/16.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/16.png"));
                 f16.setNomeFilme("Os Incríveis");
                 f16.setDescricao("Uma família de super-heróis precisa voltar à ativa para salvar o mundo.");
                 f16.setDuracao(115);
@@ -227,7 +242,7 @@ public class DataInitializer {
 
 // 14
                 Filme f17 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/17.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/17.png"));
                 f17.setNomeFilme("Procurando Nemo");
                 f17.setDescricao("Um pai percorre o oceano para resgatar seu filho perdido.");
                 f17.setDuracao(100);
@@ -239,7 +254,7 @@ public class DataInitializer {
 
 // 15
                 Filme f18 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/18.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/18.png"));
                 f18.setNomeFilme("Gladiador");
                 f18.setDescricao("Um general romano busca vingança contra o imperador corrupto.");
                 f18.setDuracao(155);
@@ -251,7 +266,7 @@ public class DataInitializer {
 
 // 16
                 Filme f19 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/19.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/19.png"));
                 f19.setNomeFilme("O Lobo de Wall Street");
                 f19.setDescricao("A ascensão e queda do corretor Jordan Belfort.");
                 f19.setDuracao(180);
@@ -263,7 +278,7 @@ public class DataInitializer {
 
 // 17
                 Filme f20 = new Filme();
-                //img = Files.readAllBytes(Paths.get("src/main/resources/static/image/20.png"));
+                img = Files.readAllBytes(Paths.get("src/main/resources/static/image/20.png"));
                 f20.setNomeFilme("Clube da Luta");
                 f20.setDescricao("Um homem insatisfeito cria um clube secreto de luta clandestina.");
                 f20.setDuracao(139);
