@@ -40,6 +40,10 @@ public class Filme extends AbstractEntity<Long> {
     @Column(length = 16777215) // tamanho para armazenar blob médio (16MB)
     private byte[] dados;
 
+    @Lob
+    @Column(length = 16777215) // tamanho para armazenar blob médio (16MB)
+    private byte[] dadosBanner;
+
     @Transient
     public String getImagemBase64() {
         try {
@@ -56,6 +60,14 @@ public class Filme extends AbstractEntity<Long> {
 
     public void setDados(byte[] dados) {
         this.dados = dados;
+    }
+
+    public byte[] getDadosBanner() {
+        return dadosBanner;
+    }
+
+    public void setDadosBanner(byte[] dadosBanner) {
+        this.dadosBanner = dadosBanner;
     }
 
     // Getters e Setters

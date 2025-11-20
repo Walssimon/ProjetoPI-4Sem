@@ -108,6 +108,7 @@
   place-items: center;
 
 }#filmes_container .filme_content {
+ border-radius: 3%;
    width: 280px;
    max-width: 280px;
    min-height: 178px;
