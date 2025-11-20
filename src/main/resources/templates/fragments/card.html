@@ -6,7 +6,11 @@
     </a>
     <p th:text="${card.nomeFilme}"></p>
 
-    <button class="btn_favoritar_filme flex-center">
+    <button 
+        class="btn_favoritar_filme flex-center"
+        th:data-filme-id="${card.id}"
+        th:data-usuario-id="${usuarioId}"
+        onclick="toggleFavoritoCard(this, event)">
         <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
              xmlns="http://www.w3.org/2000/svg">
             <path id="Vector"
@@ -21,5 +25,3 @@
     </div>
 </div>
 </div>
-<script src="scriptGlobal.js"></script>
-<script src="carrossel.js"></script>

@@ -15,4 +15,10 @@ public interface FavoritoService {
     Favorito findById(Long id);
 
     List<Favorito> findAll();
+    
+    // Novos métodos
+    void favoritarFilme(Long usuarioId, Long filmeId);
+    void removerFavorito(Long usuarioId, Long filmeId);
+    List<Favorito> buscarFavoritosPorUsuario(Long usuarioId);
+    boolean isFavoritado(Long usuarioId, Long filmeId);
 }

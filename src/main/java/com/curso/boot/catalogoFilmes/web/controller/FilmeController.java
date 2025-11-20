@@ -1,6 +1,7 @@
 package com.curso.boot.catalogoFilmes.web.controller;
 import com.curso.boot.catalogoFilmes.domain.Filme;
 import com.curso.boot.catalogoFilmes.service.FilmeService;
+import com.curso.boot.catalogoFilmes.service.FavoritoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,9 @@ public class FilmeController {
 
     @Autowired
     private FilmeService filmeService;
+    
+    @Autowired
+    private FavoritoService favoritoService;
 
     @GetMapping("/home")
     public String home(Model model) {
@@ -27,6 +31,15 @@ public class FilmeController {
     public String detalhesFilme(@PathVariable Long id, Model model) {
         Filme filme = filmeService.findById(id);
         model.addAttribute("filme", filme);
+        
+        // TODO: Obter ID do usuário logado da sessão
+        Long usuarioId = 1L; // Substituir por lógica de sessão
+        
+        // Verificar se o filme está favoritado
+        boolean isFavoritado = favoritoService.isFavoritado(usuarioId, id);
+        model.addAttribute("isFavoritado", isFavoritado);
+        model.addAttribute("usuarioId", usuarioId);
+        
         return "filme/details";
     }
 

@@ -17,6 +17,10 @@ public class HomeController {
 
             // Busca todos os filmes
             model.addAttribute("filmes", filmeService.findAll());
+            
+            // TODO: Obter ID do usuário logado da sessão
+            Long usuarioId = 1L; // Substituir por lógica de sessão
+            model.addAttribute("usuarioId", usuarioId);
 
             // Abre home.html
             return "home";
