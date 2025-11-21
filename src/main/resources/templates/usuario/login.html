@@ -38,7 +38,7 @@
             <div class="titulo"> <!-- TITULO -->
                 <h2>Entrar</h2>
             </div>
-            <form action="login" method="get" enctype="multipart/form-data" name="formlogin" class="form_container">
+            <form action="/usuario/login" method="post" enctype="multipart/form-data" name="formlogin" class="form_container">
                 <input type="hidden" id="idOper" name="oper">
                 <label class="input_style input_style_icon"> <!-- LABEL REFERENTE AO EMAIL -->
                     <div class="input_icon  flex-center">
@@ -73,7 +73,7 @@
                          -->
                 <hr class="linhaLogin">
                 <ul class="fazerCadastro">
-                    <p>Não tem login? <a class="Cadastrar" href="registro" onclick="document.getElementById('idOper').value='acessar';
+                    <p>Não possuí conta? <a class="Cadastrar" href="registro" onclick="document.getElementById('idOper').value='acessar';
                                 submit();window.location.assign('registro');">Cadastre-se</a></p>
                 </ul>
                 </td>

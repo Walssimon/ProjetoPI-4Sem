@@ -34,7 +34,7 @@
                 <h2>Cadastrar</h2>
             </div>
 
-            <form action="registro.html" name=formreg method="get" class="form_container gap">
+            <form action="/usuario/registro" method="post" class="form_container gap">
 
                 <label>
                     <input class="input_style" type="hidden" name=oper id="idoper">
@@ -50,7 +50,7 @@
                                 stroke="#665E66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
-                    <input class="input_test" type="text" name=nome placeholder="Nome" required>
+                    <input class="input_test" type="text" name="nome" placeholder="Nome" required>
                 </label>
                 <label class="input_style input_style_icon"> <!-- LABEL REFERENTE AO EMAIL-->
                     <div class="input_icon  flex-center">
@@ -72,7 +72,7 @@
                                 stroke="#665E66" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
-                    <input class="input_style" type="password" name=senha placeholder="Senha" required>
+                    <input class="input_style" type="password" name="senha" placeholder="Senha" required>
                 </label>
                 <label class="input_style input_style_icon"> <!-- LABEL REFERENTE AO "REPITA SUA SENHA"-->
                     <div class="input_icon  flex-center">
@@ -85,7 +85,7 @@
                                 stroke="#665E66" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
-                    <input class="input_style" type="password" name=rpsenha placeholder="Repita sua senha" required>
+                    <input class="input_style" type="password" name="rpsenha" placeholder="Repita sua senha" required>
                 </label>
 
                 <input class="input_style botaoLogin" type="submit" value="Enviar" onclick="formreg.oper.value = '1';">
@@ -95,7 +95,7 @@
                 <!--<input class="input_style" type="submit" value="Enviar" name="Enviar"
                     onclick="formreg.oper.value = '1';"> -->
                 <ul class="fazerCadastro">
-                    <p>Já tem login? <a class="Cadastrar" href="login">Entrar</a></p>
+                    <p>Já tem conta? <a class="Cadastrar" href="login">Entrar</a></p>
                 </ul>
 
             </form>
