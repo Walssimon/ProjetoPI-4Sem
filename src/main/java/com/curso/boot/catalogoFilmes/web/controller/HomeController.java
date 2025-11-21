@@ -14,10 +14,8 @@ public class HomeController {
 
         @GetMapping({"/", "/home"})
         public String home(Model model) {
-
             // Busca todos os filmes
             model.addAttribute("filmes", filmeService.findAll());
-
             // Abre home.html
             return "home";
         }

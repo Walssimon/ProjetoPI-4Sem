@@ -9,162 +9,99 @@
     <link rel="stylesheet" href="./../../css/menu.css">
     <link rel="stylesheet" href="./../../css/generalHome.css">
     <link rel="stylesheet" href="./../../css/formsNewFilm.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+          integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100,200,300,400,500,600,700,800,900;1,100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100,200,300,400,500,600,700,800,900;1,100,200,300,400,500,600,700,800,900&display=swap"
+          rel="stylesheet">
 </head>
 <body class="body">
-    <nav class="container-menu">
-        <div class="buttonsAreaView">
-            <div class="buttonView active"><button><a href="cadNewFilme"><i class="fa-solid fa-circle-plus"></i></a></button><p>Adicionar Filme</p></div>
-            <div class="buttonView"><button><a href="addActorPage"><i class="fa-solid fa-user-plus"></i></a></button><p>Adicionar Atores</p></div>
-            <div class="buttonView"><button><a href=""><i class="fa-solid fa-right-from-bracket"></i></a></button><p>Logout</p></div>
-            
-        </div>
-    </nav>
-    <main class="main_page">
-        <div class="container">
+<nav class="container-menu">
+    <div class="buttonsAreaView">
+        <div class="buttonView active">
+            <button><a href="cadNewFilme"><i class="fa-solid fa-circle-plus"></i></a></button>
+            <p>Adicionar Filme</p></div>
+        <div class="buttonView">
+            <button><a href="addActorPage"><i class="fa-solid fa-user-plus"></i></a></button>
+            <p>Adicionar Atores</p></div>
+        <div class="buttonView">
+            <button><a href=""><i class="fa-solid fa-right-from-bracket"></i></a></button>
+            <p>Logout</p></div>
 
-            <!-- MENU DE FILTROS DO FILME -->
-            <div class="cockpit_filmes_adm flex">
-                
-                    <h1>Catálogo</h1>
-                
-                <div class="cockpit_item_adm flex-center">
-                    <label class="search_input">
+    </div>
+</nav>
+<main class="main_page">
+    <div class="container">
 
-                        <span><i class="fa-solid fa-magnifying-glass"></i></span>  
-                        <input type="text" placeholder="Pesquisar" >
-                    </label>
-                    
-                        <a href="../usuario/userPage"><div class="perfil_user"><img src="../Assets/SenacBusterLogo.svg" alt=""></div></a>
-                    
-                </div>
-                
+        <!-- MENU DE FILTROS DO FILME -->
+        <div class="cockpit_filmes_adm flex">
+
+            <h1>Catálogo</h1>
+
+            <div class="cockpit_item_adm flex-center">
+                <label class="search_input">
+
+                    <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" placeholder="Pesquisar">
+                </label>
+
+                <a href="../usuario/userPage">
+                    <div class="perfil_user"><img src="../Assets/SenacBusterLogo.svg" alt=""></div>
+                </a>
+
             </div>
 
-            <section id="filmes_container">
-                <div class="filme_content flex-center">
-                    <img src="../imgs/bg_filme.png" alt="Nome do filme">
-                    <button class="btn_favoritar_filme flex-center">
-                        <a href="editFilme">
-
-                            <i class="fa-solid fa-pen"></i>                           
-                        </a>
-                    </button>
-                </div>
-                <div class="filme_content flex-center">
-                    <img src="../imgs/bg_filme.png" alt="Nome do filme">
-                    <button class="btn_favoritar_filme flex-center">
-                        <a href="editFilme">
-
-                            <i class="fa-solid fa-pen"></i>                           
-                        </a>
-                    </button>
-                </div>
-                <div class="filme_content flex-center">
-                    <img src="../imgs/bg_filme.png" alt="Nome do filme">
-                    <button class="btn_favoritar_filme flex-center">
-                        <a href="editFilme">
-
-                            <i class="fa-solid fa-pen"></i>                           
-                        </a>
-                    </button>
-                </div>
-                <div class="filme_content flex-center">
-                    <img src="../imgs/bg_filme.png" alt="Nome do filme">
-                    <button class="btn_favoritar_filme flex-center">
-                        <a href="editFilme.html">
-
-                            <i class="fa-solid fa-pen"></i>                           
-                        </a>
-                    </button>
-                </div>
-                <div class="filme_content flex-center">
-                    <img src="../imgs/bg_filme.png" alt="Nome do filme">
-                    <button class="btn_favoritar_filme flex-center">
-                        <a href="editFilme.html">
-
-                            <i class="fa-solid fa-pen"></i>                           
-                        </a>
-                    </button>
-                </div>
-                <div class="filme_content flex-center">
-                    <img src="../imgs/bg_filme.png" alt="Nome do filme">
-                    <button class="btn_favoritar_filme flex-center">
-                        <a href="editFilme.html">
-
-                            <i class="fa-solid fa-pen"></i>                           
-                        </a>
-                    </button>
-                </div>
-                <div class="filme_content flex-center">
-                    <img src="../imgs/bg_filme.png" alt="Nome do filme">
-                    <button class="btn_favoritar_filme flex-center">
-                        <a href="editFilme.html">
-
-                            <i class="fa-solid fa-pen"></i>                           
-                        </a>
-                    </button>
-                </div>
-                <div class="filme_content flex-center">
-                    <img src="../imgs/bg_filme.png" alt="Nome do filme">
-                    <button class="btn_favoritar_filme flex-center">
-                        <a href="editFilme.html">
-
-                            <i class="fa-solid fa-pen"></i>                           
-                        </a>
-                    </button>
-                </div>
-            </section>
-
         </div>
-    </main>
-    <div class="modal modal_add_ator hidden">
-        <div class="modal_header">
-            <p>Adicionar ator</p>
-            <button class="close" data-modal-close>X</button>
-        </div>
-        <div class="modal_content">
-            <form class="flex">  
-                            <div class="atorModalLeft">
-                                
-                                    
-                                    <div class="input_div">
-                                        <img id="preview" alt="Pré-visualização da Imagem">
-                                        <label class="input_capas"> <input type="file" class=" banners" id="fileInput" accept="image/*"></label>
-                                    </div>
-                               
-                            </div>
-                            <div class="atorModalRight">
-                                <div  class="atorModalLabel">
-                                <label>
-                                    <p>Nome:</p>
-                                <input class="input_style" type="text" id="nome" name="nome">
-                                </label>
-                                </div>
-                                <div class="atorModalLabel">
-                                <label class="atorModalLabel">
-                                    <p>Nome fictício:</p>
-                                <input class="input_style" type="text" id="nome-ficticio" name="nome-ficticio">
-                                </div>
-                                
-                            </label>
-                            </div>
-                        </div>
-            </form>
-        </div>
+
+        <section th:replace="~{cadastroAdm/layoutAdm :: layout}"></section>
+
     </div>
-    
-    <div id="modal_blur" class="hidden">
+</main>
+<div class="modal modal_add_ator hidden">
+    <div class="modal_header">
+        <p>Adicionar ator</p>
+        <button class="close" data-modal-close>X</button>
     </div>
-    
-    
-    <!-- fim do modal -->
-        <script src="/Projeto Catalogo Filmes/web/scriptGlobal.js"></script>
+    <div class="modal_content">
+        <form class="flex">
+            <div class="atorModalLeft">
 
-    <script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
+
+                <div class="input_div">
+                    <img id="preview" alt="Pré-visualização da Imagem">
+                    <label class="input_capas"> <input type="file" class=" banners" id="fileInput"
+                                                       accept="image/*"></label>
+                </div>
+
+            </div>
+            <div class="atorModalRight">
+                <div class="atorModalLabel">
+                    <label>
+                        <p>Nome:</p>
+                        <input class="input_style" type="text" id="nome" name="nome">
+                    </label>
+                </div>
+                <div class="atorModalLabel">
+                    <label class="atorModalLabel">
+                        <p>Nome fictício:</p>
+                        <input class="input_style" type="text" id="nome-ficticio" name="nome-ficticio">
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="modal_blur" class="hidden">
+</div>
+
+
+<!-- fim do modal -->
+<script src="/Projeto Catalogo Filmes/web/scriptGlobal.js"></script>
+
+<script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
