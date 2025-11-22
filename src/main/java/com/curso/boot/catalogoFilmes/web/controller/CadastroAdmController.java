@@ -12,6 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.ui.Model;
+
+import java.util.List;
 
 import java.util.List;
 
@@ -21,6 +24,8 @@ public class CadastroAdmController {
 
     @Autowired
     private GerarImagemService gerarImagem;
+    @Autowired
+    private FilmeService filmeService;
 
     @Autowired
     private AtorDaoImpl atorDao;
