@@ -23,10 +23,13 @@ public class Comentario extends AbstractEntity<Long> {
 
     public Filme getFilme() { return filme; }
     public void setFilme(Filme filme) { this.filme = filme; }
+
     public Usuario getUsuario() { return usuario; }
     public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+
     public String getTexto() { return texto; }
     public void setTexto(String texto) { this.texto = texto; }
+
     public LocalDate getDataComentario() { return dataComentario; }
     public void setDataComentario(LocalDate dataComentario) { this.dataComentario = dataComentario; }
 }

@@ -16,29 +16,25 @@ public class FilmeAtorServiceImpl implements FilmeAtorService {
     private FilmeAtorDao dao;
 
     @Override
-    public void save(FilmeAtor filmeAtor) {
-        dao.save(filmeAtor);
-    }
+    public void save(FilmeAtor filmeAtor) { dao.save(filmeAtor); }
 
     @Override
-    public void update(FilmeAtor filmeAtor) {
-        dao.update(filmeAtor);
-    }
+    public void update(FilmeAtor filmeAtor) { dao.update(filmeAtor); }
 
     @Override
-    public void delete(Long id) {
-        dao.delete(id);
-    }
+    public void delete(Long id) { dao.delete(id); }
 
     @Override
     @Transactional(readOnly = true)
-    public FilmeAtor findById(Long id) {
-        return dao.findById(id);
-    }
+    public FilmeAtor findById(Long id) { return dao.findById(id); }
 
     @Override
     @Transactional(readOnly = true)
-    public List<FilmeAtor> findAll() {
-        return dao.findAll();
+    public List<FilmeAtor> findAll() { return dao.findAll(); }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<FilmeAtor> findByFilmeId(Long filmeId) {
+        return dao.findByFilmeId(filmeId);
     }
 }
