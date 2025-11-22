@@ -9,126 +9,122 @@
     <link rel="stylesheet" href="./../../css/menu.css">
     <link rel="stylesheet" href="./../../css/formsNewFilm.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+          integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100,200,300,400,500,600,700,800,900;1,100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100,200,300,400,500,600,700,800,900;1,100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 </head>
 
 <body class="body">
-    <nav class="container-menu">
-        <div class="buttonsAreaView">
-            <div class="buttonView active"><button><a href="cadNewFilme"><i
-                            class="fa-solid fa-circle-plus"></i></a></button>
-                <p>Adicionar Filme</p>
-            </div>
-            <div class="buttonView"><button><a href="addActorPage"><i class="fa-solid fa-user-plus"></i></a></button>
-                <p>Adicionar Atores</p>
-            </div>
-            <div class="buttonView"><button><a href=""><i class="fa-solid fa-right-from-bracket"></i></a></button>
-                <p>Logout</p>
-            </div>
-
+<nav class="container-menu">
+    <div class="buttonsAreaView">
+        <div class="buttonView active"><button><a href="cadNewFilme"><i
+                class="fa-solid fa-circle-plus"></i></a></button>
+            <p>Adicionar Filme</p>
         </div>
-    </nav>
-    <main class="container">
-        <section class="container_topArea ">
-            <button class="btn_return"><a href="index"><i class="fa-solid fa-arrow-left"></i></a></button>
-            <h1>Cadastro de Atores</h1>
-            <form method="post" action="../CadAtor" name="formAtor" enctype="multipart/form-data" onsubmit="formreg.oper.value = '1'">
-                <div class="container_inputs_areas">
-                    <div class="inputs_areas">
-                        <div class="input_div">
-                            
-                            <label class="input_capas " >
-                                <img src="" alt="Clique para selecionar uma imagem" id="imagePreview6" class="img_preview" >
-                                <!-- Campo de input de arquivo escondido -->
-                                <input type="file" class="cad_actors" id="file-input6"  accept="image/*" 
-                                       onchange="handleFileChange(event, 'imagePreview6')" name="atorCapa">
-                            </label>
-                           
+        <div class="buttonView"><button><a href="addActorPage"><i class="fa-solid fa-user-plus"></i></a></button>
+            <p>Adicionar Atores</p>
+        </div>
+        <div class="buttonView"><button><a href=""><i class="fa-solid fa-right-from-bracket"></i></a></button>
+            <p>Logout</p>
+        </div>
+
+    </div>
+</nav>
+<main class="container">
+    <section class="container_topArea ">
+        <button class="btn_return"><a href="index"><i class="fa-solid fa-arrow-left"></i></a></button>
+        <h1>Cadastro de Atores</h1>
+
+        <form method="post"
+              action="/cadastroAdm/addActor"
+              name="formAtor"
+              enctype="multipart/form-data">
+
+            <div class="container_inputs_areas">
+                <div class="inputs_areas">
+                    <div class="input_div">
+
+
+
+                    </div>
+
+                    <div class="area_input ">
+                        <div class="input_div_grid ">
+                            <label>Nome</label>
+                            <label class="input_capas" > <input type="text" class="principal" name="nomeAtor"></label>
                         </div>
-                    
-                        <div class="area_input ">
-                            <div class="input_div_grid ">
-                                <label>Nome</label>
-                                <label class="input_capas" > <input type="text" class="principal" name="nome"></label>
-                            </div>
-                            <div class="input_div_grid ">
-                                <label>Idade</label>
-                                <label class="input_capas"> <input type="text" class="principal" name="idade"></label>
-                            </div>
-                            
-                            <div class="input_div_grid">
-    
-                                <button class="add_btn button" type="submit">
-                                    
-                                    Adicionar
-                                </button>
-                            </div>
+                        <div class="input_div_grid ">
+                            <label>Idade</label>
+                            <label class="input_capas"> <input type="date" class="principal" name="dataNascimento"></label>
+                        </div>
+                        <div class="input_div_grid">
+
+                            <button class="add_btn button" type="submit">
+                                Adicionar
+                            </button>
                         </div>
                     </div>
                 </div>
+            </div>
 
-            </form>
-            <div class="div_list_inputs actors">
+        </form>
+        <div class="div_list_inputs actors">
 
-                <!-- ABRIR MODAL PARA SELECIONAR ATORES -->
-                <div class="add_atores">
-                    <label>Atores Cadastrados</label>
-                   
+            <div class="add_atores">
+                <label>Atores Cadastrados</label>
+
+            </div>
+
+            <div class="container_actores_list">
+                <div class="actors_div_film">
+                    <img src="./../../../5teste.jpg" alt="Foto do ator">
+                    <div class="content">
+                        <p class="title_persona_name location">Nome do Personagem</p>
+                        <p class="title_actor_name location">Nome do Ator</p>
+                    </div>
                 </div>
-
-                <!-- LISTAGEM DE ATORES -->
-                <div class="container_actores_list">
-                    <div class="actors_div_film">
-                        <img src="./../../../5teste.jpg" alt="Foto do ator">
-                        <div class="content">
-                            <p class="title_persona_name location">Nome do Personagem</p>
-                            <p class="title_actor_name location">Nome do Ator</p>
-                        </div>
-                    </div>                                                                              
-                    <div class="actors_div_film">
-                        <img src="./../../../5teste.jpg" alt="Foto do ator">
-                        <div class="content">
-                            <p class="title_persona_name location">Nome do Personagem</p>
-                            <p class="title_actor_name location">Nome do Ator</p>
-                        </div>
-                    </div>                                                                              
-                    <div class="actors_div_film">
-                        <img src="./../../../5teste.jpg" alt="Foto do ator">
-                        <div class="content">
-                            <p class="title_persona_name location">Nome do Personagem</p>
-                            <p class="title_actor_name location">Nome do Ator</p>
-                        </div>
-                    </div>                                                                              
-                    <div class="actors_div_film">
-                        <img src="./../../../5teste.jpg" alt="Foto do ator">
-                        <div class="content">
-                            <p class="title_persona_name location">Nome do Personagem</p>
-                            <p class="title_actor_name location">Nome do Ator</p>
-                        </div>
-                    </div>                                                                              
-                    <div class="actors_div_film">
-                        <img src="./../../../5teste.jpg" alt="Foto do ator">
-                        <div class="content">
-                            <p class="title_persona_name location">Nome do Personagem</p>
-                            <p class="title_actor_name location">Nome do Ator</p>
-                        </div>
-                    </div>                                                                              
-                    <div class="actors_div_film">
-                        <img src="./../../../5teste.jpg" alt="Foto do ator">
-                        <div class="content">
-                            <p class="title_persona_name location">Nome do Personagem</p>
-                            <p class="title_actor_name location">Nome do Ator</p>
-                        </div>
-                    </div>                                                                              
+                <div class="actors_div_film">
+                    <img src="./../../../5teste.jpg" alt="Foto do ator">
+                    <div class="content">
+                        <p class="title_persona_name location">Nome do Personagem</p>
+                        <p class="title_actor_name location">Nome do Ator</p>
+                    </div>
+                </div>
+                <div class="actors_div_film">
+                    <img src="./../../../5teste.jpg" alt="Foto do ator">
+                    <div class="content">
+                        <p class="title_persona_name location">Nome do Personagem</p>
+                        <p class="title_actor_name location">Nome do Ator</p>
+                    </div>
+                </div>
+                <div class="actors_div_film">
+                    <img src="./../../../5teste.jpg" alt="Foto do ator">
+                    <div class="content">
+                        <p class="title_persona_name location">Nome do Personagem</p>
+                        <p class="title_actor_name location">Nome do Ator</p>
+                    </div>
+                </div>
+                <div class="actors_div_film">
+                    <img src="./../../../5teste.jpg" alt="Foto do ator">
+                    <div class="content">
+                        <p class="title_persona_name location">Nome do Personagem</p>
+                        <p class="title_actor_name location">Nome do Ator</p>
+                    </div>
+                </div>
+                <div class="actors_div_film">
+                    <img src="./../../../5teste.jpg" alt="Foto do ator">
+                    <div class="content">
+                        <p class="title_persona_name location">Nome do Personagem</p>
+                        <p class="title_actor_name location">Nome do Ator</p>
+                    </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
 </body>
 <script src="./../scriptGlobal.js"></script>
 <script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
