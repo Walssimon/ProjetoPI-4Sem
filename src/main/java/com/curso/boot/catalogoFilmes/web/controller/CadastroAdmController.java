@@ -87,5 +87,6 @@ public class CadastroAdmController {
         filmeAtorDao.save(filmeAtor);
 
         return "redirect:/cadastroAdm/cadNewFilme";
+
     }
 }
