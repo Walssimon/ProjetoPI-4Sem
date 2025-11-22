@@ -4,8 +4,11 @@ import com.curso.boot.catalogoFilmes.dao.UsuarioDaoImpl;
 import com.curso.boot.catalogoFilmes.domain.Usuario;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 @Controller
 @RequestMapping("/usuario")
@@ -33,10 +36,24 @@ public class UsuarioController {
     public String Registrar(){
         return "usuario/registro";
     }
+
     @PostMapping("/registro")
-    public String RegistrarUser(@ModelAttribute Usuario usuario, @RequestParam("rpsenha") String repetirSenha){
-        usuarioDao.save(usuario);
-        return "redirect:/usuario/login";
+    public String RegistrarUser(@ModelAttribute Usuario usuario, RedirectAttributes ra){
+        try {
+            usuarioDao.save(usuario);
+            ra.addFlashAttribute("msgSucesso", "Usuário registrado com sucesso!");
+            return "redirect:/usuario/login";
+
+        } catch (DataIntegrityViolationException dive) {
+            // Erro comum: chave única, email duplicado, etc.
+            ra.addFlashAttribute("msgErro", "Já existe um usuário com esse email.");
+            return "redirect:/usuario/registro";
+
+        } catch (Exception e) {
+            // Qualquer outro erro do banco
+            ra.addFlashAttribute("msgErro", "Erro ao registrar usuário. Tente novamente.");
+            return "redirect:/usuario/registro";
+        }
     }
 
     @PostMapping("/login")
@@ -50,13 +67,15 @@ public class UsuarioController {
 
         if (usuario != null) {
             session.setAttribute("usuarioLogado", usuario);
-//            Usuario usuarioteste = (Usuario) session.getAttribute("usuarioLogado");
-//            String nome = usuarioteste.getNome();
-//
-//            System.out.println("Nome do usuário logado: " + nome);
             return "redirect:/home";
         }
 
+        return "redirect:/usuario/login";
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
         return "redirect:/usuario/login";
     }
 }
