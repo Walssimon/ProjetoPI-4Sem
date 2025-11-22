@@ -1,0 +1,15 @@
+<div th:fragment="card(card)" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="filme_content flex-center">
+        <a th:href="@{/cadastroAdm/editFilme/{id}(id=${card.id})}">
+            <img th:src="'data:image/png;base64,' + ${card.imagemBase64}" th:alt="${card.nomeFilme}"/>
+        </a>
+        <p th:text="${card.nomeFilme}"></p>
+        <button class="btn_favoritar_filme flex-center">
+            <a th:href="@{/cadastroAdm/editFilme/{id}(id=${card.id})}">
+                <i class="fa-solid fa-pen"></i>
+            </a>
+        </button>
+    </div>
+</div>
+<script src="scriptGlobal.js"></script>
+<script src="carrossel.js"></script>

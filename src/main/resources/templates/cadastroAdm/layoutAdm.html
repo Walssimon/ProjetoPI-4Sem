@@ -10,9 +10,11 @@
 <section id="filmes_container" th:fragment="layout" xmlns:th="http://www.w3.org/1999/xhtml">
     <div th:each="filme : ${filmes}">
         <div class="filme_content flex-center">
-            <div th:replace="fragments/card :: card(${filme})"></div>
+          <div th:replace="~{fragments/cardAdm :: card(${filme})}"></div>
+        </div>
         </div>
     </div>
+
 </section>
 <script src="scriptGlobal.js"></script>
 <script src="carrossel.js"></script>
