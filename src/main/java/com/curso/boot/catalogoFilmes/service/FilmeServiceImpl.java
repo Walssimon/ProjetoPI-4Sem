@@ -46,4 +46,13 @@ public class FilmeServiceImpl implements FilmeService {
         return dao.findAll();
     }
 
+    @Override
+    public void salvar(Filme filme) {
+        if (filme.getId() == null) {
+            dao.save(filme);
+        } else {
+            dao.update(filme);
+        }
+    }
+
 }

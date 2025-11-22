@@ -10,6 +10,8 @@ public interface FilmeService {
 
     void update(Filme filme);
 
+    void salvar(Filme filme);
+
     void delete(Long id);
 
     Filme findById(Long id);
