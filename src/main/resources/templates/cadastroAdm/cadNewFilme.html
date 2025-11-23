@@ -15,256 +15,256 @@
 </head>
 
 <body class="body">
-    <nav class="container-menu">
-        <div class="buttonsAreaView">
-            <div class="buttonView active"><button><a href="cadNewFilme"><i
-                            class="fa-solid fa-circle-plus"></i></a></button>
-                <p>Adicionar Filme</p>
-            </div>
-            <div class="buttonView"><button><a href="addActorPage"><i class="fa-solid fa-user-plus"></i></a></button>
-                <p>Adicionar Atores</p>
-            </div>
-            <div class="buttonView"><button><a href=""><i class="fa-solid fa-right-from-bracket"></i></a></button>
-                <p>Logout</p>
-            </div>
-
+<nav class="container-menu">
+    <div class="buttonsAreaView">
+        <div class="buttonView active"><button><a href="cadNewFilme"><i
+                class="fa-solid fa-circle-plus"></i></a></button>
+            <p>Adicionar Filme</p>
         </div>
-    </nav>
-    <main class="container">
-        <!-- titulo do formulario -->
-        <div class="cockpit_filmes_form">
-            <div class="cockpit_item_adm ">
-                <button class="btn_return"><a href="index"><i class="fa-solid fa-arrow-left"></i></a></button>
-                <h1>Capas & Banners</h1>
-            </div>
+        <div class="buttonView"><button><a href="addActorPage"><i class="fa-solid fa-user-plus"></i></a></button>
+            <p>Adicionar Atores</p>
+        </div>
+        <div class="buttonView"><button><a href=""><i class="fa-solid fa-right-from-bracket"></i></a></button>
+            <p>Logout</p>
         </div>
 
-        <!-- campos do formulario -->
-        <form id="formUpload" class="div_security_area" action="/cadastroAdm/upload" method="post" enctype="multipart/form-data">
-            <!-- banners -->
-            <div class="inputs_area">
-                <div class="input_div">
-                    <label>Capa principal</label>
-                    <label class="input_capas">
-                        <img src="" alt="Clique para selecionar uma imagem" id="imagePreview" class="img_preview">
-                        <!-- Campo de input de arquivo escondido -->
-                        <input type="file" id="file-input" name="imagem" accept="image/*">
-                    </label>
-                    <!-- <label class="input_capas"> <input type="file" accept="image/*" class="principal"></label> -->
-                </div>
-                <div class="input_div">
-                    <label>Banner principal</label>
-                    <label class="input_capas">
-                        <img src="" alt="Clique para selecionar uma imagem" id="imagePreview2" class="img_preview">
-                        <!-- Campo de input de arquivo escondido -->
-                        <input type="file" class="banners" id="file-input2"  accept="image/*" onchange="handleFileChange(event, 'imagePreview2')">
-                    </label>
+    </div>
+</nav>
+<main class="container">
+    <!-- titulo do formulario -->
+    <div class="cockpit_filmes_form">
+        <div class="cockpit_item_adm ">
+            <button class="btn_return"><a href="index"><i class="fa-solid fa-arrow-left"></i></a></button>
+            <h1>Capas & Banners</h1>
+        </div>
+    </div>
 
-                </div>
+    <!-- campos do formulario -->
+    <form id="formUpload" class="div_security_area" action="/cadastroAdm/upload" method="post" enctype="multipart/form-data">
+        <!-- banners -->
+        <div class="inputs_area">
+            <div class="input_div">
+                <label>Capa principal</label>
+                <label class="input_capas">
+                    <img src="" alt="Clique para selecionar uma imagem" id="imagePreview" class="img_preview">
+                    <!-- Campo de input de arquivo escondido -->
+                    <input type="file" id="file-input" name="imagem" accept="image/*">
+                </label>
+                <!-- <label class="input_capas"> <input type="file" accept="image/*" class="principal"></label> -->
             </div>
+            <div class="input_div">
+                <label>Banner principal</label>
+                <label class="input_capas">
+                    <img src="" alt="Clique para selecionar uma imagem" id="imagePreview2" class="img_preview">
+                    <!-- Campo de input de arquivo escondido -->
+                    <input type="file" class="banners" id="file-input2"  accept="image/*" onchange="handleFileChange(event, 'imagePreview2')">
+                </label>
 
-            <!-- campos -->
-            <div class="inputs_area linear">
-                <h1> Informações</h1>
-                <div class="div_list_inputs">
-                    <div class="input_div_grid">
-                        <label>Nome</label>
-                        <label class="input_capas"> <input type="text" class="principal"></label>
-                    </div>
-                    <div class="input_div_grid">
-                        <label>Categoria</label>
-                        <label class="input_capas">
-                            <select id="cate" name="categoria" class="principal">
-                                <option value="acao">Ação</option>
-                                <option value="aventura">Aventura</option>
-                                <option value="comedia">Comédia</option>
-                                <option value="drama">Drama</option>
-                                <option value="terror">Terror</option>
-                                <option value="ficcao-cientifica">Ficção Científica</option>
-                                <option value="romance">Romance</option>
-                                <option value="fantasia">Fantasia</option>
-                                <option value="suspense">Suspense</option>
-                                <option value="misterio">Mistério</option>
-                                <option value="animacao">Animação</option>
-                                <option value="documentario">Documentário</option>
-                                <option value="musical">Musical</option>
-                                <option value="historico">Histórico</option>
-                                <option value="familia">Família</option>
-                            </select>                                
-                        </label>
-                    </div>
-                    <div class="input_div_grid">
-                        <label>Ano de Lançamento</label>
-                        <label class="input_capas"> <input type="date" class="principal"></label>
-                    </div>
-                    <div class="input_div_grid">
-                        <label>Avaliações</label>
-                        <label class="input_capas"> <input type="text" class="principal"></label>
-                    </div>
-                    <div class="input_div_grid">
-                        <label>Tempo de duração <span style="font-size: 0.7rem;color: #cccccc65;">(exemplo: 120
+            </div>
+        </div>
+
+        <!-- campos -->
+        <div class="inputs_area linear">
+            <h1> Informações</h1>
+            <div class="div_list_inputs">
+                <div class="input_div_grid">
+                    <label>Nome</label>
+                    <label class="input_capas"> <input type="text" class="principal"></label>
+                </div>
+                <div class="input_div_grid">
+                    <label>Categoria</label>
+                    <label class="input_capas">
+                        <select id="cate" name="categoria" class="principal">
+                            <option value="acao">Ação</option>
+                            <option value="aventura">Aventura</option>
+                            <option value="comedia">Comédia</option>
+                            <option value="drama">Drama</option>
+                            <option value="terror">Terror</option>
+                            <option value="ficcao-cientifica">Ficção Científica</option>
+                            <option value="romance">Romance</option>
+                            <option value="fantasia">Fantasia</option>
+                            <option value="suspense">Suspense</option>
+                            <option value="misterio">Mistério</option>
+                            <option value="animacao">Animação</option>
+                            <option value="documentario">Documentário</option>
+                            <option value="musical">Musical</option>
+                            <option value="historico">Histórico</option>
+                            <option value="familia">Família</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="input_div_grid">
+                    <label>Ano de Lançamento</label>
+                    <label class="input_capas"> <input type="date" class="principal"></label>
+                </div>
+                <div class="input_div_grid">
+                    <label>Avaliações</label>
+                    <label class="input_capas"> <input type="text" class="principal"></label>
+                </div>
+                <div class="input_div_grid">
+                    <label>Tempo de duração <span style="font-size: 0.7rem;color: #cccccc65;">(exemplo: 120
                                 min)</span></label>
-                        <label class="input_capas"> <input type="text" class="principal"></label>
-                    </div>
-                    <div class="input_div_grid">
-                        <label>Restrição de idade</label>
-                        <label class="input_capas">
-                            <select id="rest" class="principal">
-                                <option value="livre">Livre</option>
-                                <option value="12">+12</option>
-                                <option value="14">+14</option>
-                                <option value="16">+16</option>
-                                <option value="18">+18</option>
-                            </select>
-                        </label>
-                        
-                    </div>
-                    <div class="input_div_grid desc_area">
-                        <label>Descrição</label>
-                        <label class="input_capas"> <textarea class="descr_input" ></textarea></label>
+                    <label class="input_capas"> <input type="text" class="principal"></label>
+                </div>
+                <div class="input_div_grid">
+                    <label>Restrição de idade</label>
+                    <label class="input_capas">
+                        <select id="rest" class="principal">
+                            <option value="livre">Livre</option>
+                            <option value="12">+12</option>
+                            <option value="14">+14</option>
+                            <option value="16">+16</option>
+                            <option value="18">+18</option>
+                        </select>
+                    </label>
+
+                </div>
+                <div class="input_div_grid desc_area">
+                    <label>Descrição</label>
+                    <label class="input_capas"> <textarea class="descr_input" ></textarea></label>
+                </div>
+            </div>
+        </div>
+
+        <!-- atores -->
+        <div class="div_list_inputs actors">
+
+            <!-- ABRIR MODAL PARA SELECIONAR ATORES -->
+            <div class="add_atores">
+                <label>Atores Principais</label>
+                <button type="button" onclick="openCloseModal('.modal_add_ator')">Adicionar Ator</button>
+            </div>
+
+            <!-- LISTAGEM DE ATORES -->
+            <div class="container_actores_list">
+                <div class="actors_div_film">
+                    <img src="./../../../5teste.jpg" alt="Foto do ator">
+                    <div class="content">
+                        <p class="title_persona_name location">Nome do Personagem</p>
+                        <p class="title_actor_name location">Nome do Ator</p>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- atores -->
-            <div class="div_list_inputs actors">
+        <div class="footer">
+            <div class="footer_container_area">
+                <button class="cancel_btn" type="reset">
+                    Cancelar
+                </button>
 
-                <!-- ABRIR MODAL PARA SELECIONAR ATORES -->
-                <div class="add_atores">
-                    <label>Atores Principais</label>
-                    <button type="button" onclick="openCloseModal('.modal_add_ator')">Adicionar Ator</button>
+                <button class="add_btn" type="submit">
+                    <i class="fa-solid fa-plus"></i>
+                    Adicionar
+                </button>
+            </div>
+        </div>
+    </form>
+
+</main>
+
+<div class="modal modal_add_ator hidden">
+    <div class="modal_header">
+        <p>Adicionar ator</p>
+        <button class="close" data-modal-close>X</button>
+    </div>
+    <div class="modal_content">
+        <form>
+            <label class="nome_ficticio_label">
+                <span>Nome fictício</span>
+                <input type="text" class="input_style" id="nome_ficticio" name="nome_ficticio" placeholder="Nome do personagem">
+            </label>
+            <div class="search">
+                <div class="action">
+                    <input type="text" class="input_style" placeholder="Filtrar por nome">
                 </div>
-
-                <!-- LISTAGEM DE ATORES -->
-                <div class="container_actores_list">
-                    <div class="actors_div_film">
+            </div>
+            <div class="container_actores_list">
+                <!-- Listagem dos atores -->
+                <div class="actors_div_film">
+                    <input type="radio" id="ator_1" name="selected_actor" value="ator_1" required>
+                    <label class="label_input_radio" for="ator_1">
                         <img src="./../../../5teste.jpg" alt="Foto do ator">
                         <div class="content">
                             <p class="title_persona_name location">Nome do Personagem</p>
                             <p class="title_actor_name location">Nome do Ator</p>
                         </div>
-                    </div>                                                                              
+                    </label>
+                </div>
+                <div class="actors_div_film">
+                    <input type="radio" id="ator_2" name="selected_actor" value="ator_2" required>
+                    <label class="label_input_radio" for="ator_2">
+                        <img src="./../../../5teste.jpg" alt="Foto do ator">
+                        <div class="content">
+                            <p class="title_persona_name location">Nome do Personagem</p>
+                            <p class="title_actor_name location">Nome do Ator</p>
+                        </div>
+                    </label>
+                </div>
+                <div class="actors_div_film">
+                    <input type="radio" id="ator_3" name="selected_actor" value="ator_3" required>
+                    <label class="label_input_radio" for="ator_3">
+                        <img src="./../../../5teste.jpg" alt="Foto do ator">
+                        <div class="content">
+                            <p class="title_persona_name location">Nome do Personagem</p>
+                            <p class="title_actor_name location">Nome do Ator</p>
+                        </div>
+                    </label>
+                </div>
+                <div class="actors_div_film">
+                    <input type="radio" id="ator_4" name="selected_actor" value="ator_4" required>
+                    <label class="label_input_radio" for="ator_4">
+                        <img src="./../../../5teste.jpg" alt="Foto do ator">
+                        <div class="content">
+                            <p class="title_persona_name location">Nome do Personagem</p>
+                            <p class="title_actor_name location">Nome do Ator</p>
+                        </div>
+                    </label>
                 </div>
             </div>
 
-            <div class="footer">
-                <div class="footer_container_area">
-                    <button class="cancel_btn" type="reset">
-                        Cancelar
-                    </button>
-        
-                    <button class="add_btn" type="submit">
-                        <i class="fa-solid fa-plus"></i>
-                        Adicionar
-                    </button>
-                </div>                
+            <div class="submit">
+                <button class="add_btn" type="submit">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                    Adicionar
+                </button>
             </div>
-        </form>    
-    
-    </main>
-
-    <div class="modal modal_add_ator hidden">
-        <div class="modal_header">
-            <p>Adicionar ator</p>
-            <button class="close" data-modal-close>X</button>
-        </div>
-        <div class="modal_content">
-            <form>
-                <label class="nome_ficticio_label">
-                    <span>Nome fictício</span>
-                    <input type="text" class="input_style" id="nome_ficticio" name="nome_ficticio" placeholder="Nome do personagem">
-                </label>
-                <div class="search">
-                    <div class="action">
-                        <input type="text" class="input_style" placeholder="Filtrar por nome">
-                    </div>
-                </div>
-                <div class="container_actores_list">
-                    <!-- Listagem dos atores -->
-                    <div class="actors_div_film">
-                        <input type="radio" id="ator_1" name="selected_actor" value="ator_1" required>
-                        <label class="label_input_radio" for="ator_1">
-                            <img src="./../../../5teste.jpg" alt="Foto do ator">
-                            <div class="content">
-                                <p class="title_persona_name location">Nome do Personagem</p>
-                                <p class="title_actor_name location">Nome do Ator</p>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="actors_div_film">
-                        <input type="radio" id="ator_2" name="selected_actor" value="ator_2" required>
-                        <label class="label_input_radio" for="ator_2">
-                            <img src="./../../../5teste.jpg" alt="Foto do ator">
-                            <div class="content">
-                                <p class="title_persona_name location">Nome do Personagem</p>
-                                <p class="title_actor_name location">Nome do Ator</p>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="actors_div_film">
-                        <input type="radio" id="ator_3" name="selected_actor" value="ator_3" required>
-                        <label class="label_input_radio" for="ator_3">
-                            <img src="./../../../5teste.jpg" alt="Foto do ator">
-                            <div class="content">
-                                <p class="title_persona_name location">Nome do Personagem</p>
-                                <p class="title_actor_name location">Nome do Ator</p>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="actors_div_film">
-                        <input type="radio" id="ator_4" name="selected_actor" value="ator_4" required>
-                        <label class="label_input_radio" for="ator_4">
-                            <img src="./../../../5teste.jpg" alt="Foto do ator">
-                            <div class="content">
-                                <p class="title_persona_name location">Nome do Personagem</p>
-                                <p class="title_actor_name location">Nome do Ator</p>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="submit">
-                    <button class="add_btn" type="submit">
-                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
-                        Adicionar
-                    </button>
-                </div>
-            </form>
-        </div>
+        </form>
     </div>
-    
-
-    <div id="modal_blur" class="hidden">
-    </div>
+</div>
 
 
-    <!-- fim do modal -->
+<div id="modal_blur" class="hidden">
+</div>
+
+
+<!-- fim do modal -->
 <!--    <script src="./../scriptGlobal.js"></script>-->
-    <script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
-    <script>
+<script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
+<script>
 
-        const form = document.getElementById('formUpload');
-        const fileInput = document.getElementById('file-input');
+    const form = document.getElementById('formUpload');
+    const fileInput = document.getElementById('file-input');
 
-     fileInput.addEventListener('change', async () => {
-         const formData = new FormData(form);
+ fileInput.addEventListener('change', async () => {
+     const formData = new FormData(form);
 
-         try {
-             const response = await fetch(form.action, {
-                 method: 'POST',
-                 body: formData
-             })
+     try {
+         const response = await fetch(form.action, {
+             method: 'POST',
+             body: formData
+         })
 
-             if (response.ok) {
-                 console.log('Imagem enviada com sucesso!');
-             } else {
-                 console.error('Erro ao enviar imagem');
-             }
-         } catch (err) {
-             console.error('Erro na requisição:', err);
+         if (response.ok) {
+             console.log('Imagem enviada com sucesso!');
+         } else {
+             console.error('Erro ao enviar imagem');
          }
-     })
-    </script>
+     } catch (err) {
+         console.error('Erro na requisição:', err);
+     }
+ })
+</script>
 
 </body>
 

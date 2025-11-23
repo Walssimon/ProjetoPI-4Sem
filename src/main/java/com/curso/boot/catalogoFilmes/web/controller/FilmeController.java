@@ -8,6 +8,7 @@ import com.curso.boot.catalogoFilmes.service.AvaliacaoService;
 import com.curso.boot.catalogoFilmes.service.ComentarioService;
 import com.curso.boot.catalogoFilmes.service.FilmeAtorService;
 import com.curso.boot.catalogoFilmes.service.FilmeService;
+import com.curso.boot.catalogoFilmes.service.FavoritoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,9 @@ public class FilmeController {
 
     @Autowired
     private FilmeService filmeService;
+    
+    @Autowired
+    private FavoritoService favoritoService;
 
     @Autowired
     private ComentarioService comentarioService;

@@ -13,4 +13,9 @@ public interface FavoritoDao {
     Favorito findById(Long id);
 
     List<Favorito> findAll();
+    
+    // Novos métodos
+    Favorito findByUsuarioAndFilme(Long usuarioId, Long filmeId);
+    List<Favorito> findByUsuarioId(Long usuarioId);
+    boolean existsByUsuarioAndFilme(Long usuarioId, Long filmeId);
 }
