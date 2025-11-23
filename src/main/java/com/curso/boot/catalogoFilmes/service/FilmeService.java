@@ -6,6 +6,7 @@ import com.curso.boot.catalogoFilmes.domain.Imagem;
 import java.util.List;
 
 public interface FilmeService {
+
     void save(Filme filme);
 
     void update(Filme filme);

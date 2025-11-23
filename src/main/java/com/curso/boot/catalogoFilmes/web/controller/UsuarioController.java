@@ -1,7 +1,10 @@
 package com.curso.boot.catalogoFilmes.web.controller;
 
+import com.curso.boot.catalogoFilmes.dao.UsuarioDaoImpl;
 import com.curso.boot.catalogoFilmes.domain.Favorito;
+import com.curso.boot.catalogoFilmes.domain.Usuario;
 import com.curso.boot.catalogoFilmes.service.FavoritoService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,9 @@ import java.util.List;
 public class UsuarioController {
 
     @Autowired
+    private UsuarioDaoImpl usuarioDao;
+
+    @Autowired
     private FavoritoService favoritoService;
 
     @GetMapping("/userPage")
@@ -22,12 +28,20 @@ public class UsuarioController {
         return "usuario/userPage";
     }
 
+
     @GetMapping("/favorite")
-    public String FavoritePage(Model model) {
-        // TODO: Obter ID do usuário logado da sessão
-        // Por enquanto, usar um ID fixo para testes (ex: 1L)
-        Long usuarioId = 1L; // Substituir por lógica de sessão
-        
+    public String FavoritePage(Model model,  HttpSession session) {
+
+
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+
+        // Se não estiver logado, redireciona
+        if (usuarioLogado == null) {
+            return "redirect:/usuario/login";
+        }
+
+        Long usuarioId = usuarioLogado.getId();
+
         List<Favorito> favoritos = favoritoService.buscarFavoritosPorUsuario(usuarioId);
         model.addAttribute("favoritos", favoritos);
         
@@ -39,9 +53,36 @@ public class UsuarioController {
         return "usuario/login";
     }
 
+    @PostMapping("/registro")
+    public String RegistrarUser(@ModelAttribute Usuario usuario, @RequestParam("rpsenha") String repetirSenha){
+        usuarioDao.save(usuario);
+        return "redirect:/usuario/login";
+    }
     @GetMapping("/registro")
-    public String Registrar(){
+    public String mostrarRegistro() {
         return "usuario/registro";
+    }
+
+
+    @PostMapping("/login")
+    public String login(
+            @RequestParam String email,
+            @RequestParam String senha,
+            HttpSession session
+    ) {
+
+        Usuario usuario = usuarioDao.findByEmailAndSenha(email, senha);
+
+        if (usuario != null) {
+            session.setAttribute("usuarioLogado", usuario);
+//            Usuario usuarioteste = (Usuario) session.getAttribute("usuarioLogado");
+//            String nome = usuarioteste.getNome();
+//
+//            System.out.println("Nome do usuário logado: " + nome);
+            return "redirect:/home";
+        }
+
+        return "redirect:/usuario/login";
     }
     
     // Endpoint para adicionar favorito (AJAX)
