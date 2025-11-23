@@ -25,7 +25,10 @@ import java.time.LocalDate;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.List;
 
+import com.curso.boot.catalogoFilmes.dao.UsuarioDao; // Importar o DAO
+import com.curso.boot.catalogoFilmes.domain.Usuario; // Importar a entidade Usuario
 
 @Configuration
 public class DataInitializer {
@@ -35,7 +38,7 @@ public class DataInitializer {
 
     @Bean
     @Transactional
-    CommandLineRunner initDatabase(FilmeDaoImpl filmeDao, GeneroDao generoDao, GeneroFilmeDao generoFilmeDao, DataSource dataSource) {
+    CommandLineRunner initDatabase(FilmeDaoImpl filmeDao, GeneroDao generoDao, GeneroFilmeDao generoFilmeDao, DataSource dataSource,UsuarioDao usuarioDao) {
         return args -> {
 
             try (Connection conn = dataSource.getConnection();
@@ -49,6 +52,8 @@ public class DataInitializer {
                 // Caso o MySQL não permita (host remoto/shared hosting)
                 System.err.println("Não foi possível configurar max_allowed_packet automaticamente: "
                         + e.getMessage());}
+
+            criarUsuarioAdmin(usuarioDao);
 
             //Criar gêneros apenas se não existirem
             if (generoDao.findAll().isEmpty()) {
@@ -475,5 +480,25 @@ public class DataInitializer {
         };
     }
 
+    private void criarUsuarioAdmin(UsuarioDao usuarioDao) {
+
+        Usuario adminExistente = usuarioDao.findByEmailAndSenha("admin", "admin");
+
+        List<Usuario> todosUsuarios = usuarioDao.findAll();
+        boolean adminJaExiste = todosUsuarios.stream()
+                .anyMatch(u -> "admin".equals(u.getEmail()));
+
+
+        if (!adminJaExiste) {
+            Usuario admin = new Usuario();
+            admin.setNome("Administrador");
+            admin.setEmail("admin");
+            admin.setSenha("admin");
+            usuarioDao.save(admin);
+            System.out.println("👤 Usuário administrador (admin/admin) criado com sucesso.");
+        } else {
+            System.out.println("👤 Usuário administrador já existe.");
+        }
+    }
 
 }

@@ -28,13 +28,18 @@
                 <h4>Email:</h4>
                 <p th:if="${session.usuarioLogado != null}"  th:text="${session.usuarioLogado.getEmail()}"></p>
             </div>
+
             <div class="flex-center actions_buttons">
                 <button class="input_style" onclick="window.location.href='../'">Voltar para home</button>
                 <form th:action="@{/usuario/logout}" method="post">
                     <button class="input_style">Logout</button>
                 </form>
-                <!-- colocar validacao (if user=admin)  mostra botao-->
-                <a href="../cadastroAdm/index" class="input_style area_admin_link"  th:if="${session.usuarioLogado != null and session.usuarioLogado.getNome() == 'ADMIN'}">Area do administrador</a>
+
+                <a href="../cadastroAdm/index"
+                   class="input_style area_admin_link"
+                   th:if="${session.usuarioLogado != null and session.usuarioLogado.getEmail() == 'admin'}">
+                    Área do administrador
+                </a>
             </div>
 
         </div>
