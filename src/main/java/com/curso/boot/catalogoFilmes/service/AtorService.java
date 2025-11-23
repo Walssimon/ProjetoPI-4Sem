@@ -16,4 +16,5 @@ public interface AtorService {
 
     List<Ator> findAll();
 
+    Ator findByNomeAtor(String nomeAtor);
 }

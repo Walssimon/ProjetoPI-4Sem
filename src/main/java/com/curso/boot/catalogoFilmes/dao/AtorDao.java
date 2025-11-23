@@ -13,4 +13,6 @@ public interface AtorDao {
     Ator findById(Long id);
 
     List<Ator> findAll();
+
+    Ator findByNomeAtor(String nomeAtor);
 }
