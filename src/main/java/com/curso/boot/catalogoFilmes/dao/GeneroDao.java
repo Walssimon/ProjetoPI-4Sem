@@ -13,4 +13,6 @@ public interface GeneroDao {
     Genero findById(Long id);
 
     List<Genero> findAll();
+
+    Genero findByNome(String genero);
 }
