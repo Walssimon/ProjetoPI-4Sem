@@ -54,6 +54,15 @@ public class Filme extends AbstractEntity<Long> {
         }
     }
 
+    @Transient
+    public String getImagemBanner64() {
+        try {
+            return java.util.Base64.getEncoder().encodeToString(this.dadosBanner);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 
     public byte[] getDados() {
         return dados;
@@ -93,6 +102,6 @@ public class Filme extends AbstractEntity<Long> {
     public List<FilmeAtor> getAtores() { return atores; }
     public void setAtores(List<FilmeAtor> atores) { this.atores = atores; }
 
-    public List<GeneroFilme> getGeneros() { return generos; }
+    public List<GeneroFilme> getGeneros() {return generos; }
     public void setGeneros(List<GeneroFilme> generos) { this.generos = generos; }
 }
