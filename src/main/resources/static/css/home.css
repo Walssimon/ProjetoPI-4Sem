@@ -45,16 +45,19 @@
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: hidden; /* Correto: Esconde o excesso */
 }
+
 #Destaques .container .container_carrossel .carousel {
   display: flex;
   transition: transform 0.4s ease-in-out;
   height: 100%;
 }
 #Destaques .container .container_carrossel .carousel img {
-  min-width: 100%;
+  min-width: 100%; /* Correto, garante que cada imagem ocupe o espaço */
   height: 100%;
+  /* Usar flex-shrink: 0 é bom, mas o min-width já resolve */
+  flex-shrink: 0; /* Adicionar explicitamente para garantir que não encolha */
   -o-object-fit: cover;
      object-fit: cover;
 }

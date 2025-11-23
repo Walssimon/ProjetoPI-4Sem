@@ -13,4 +13,6 @@ public interface GeneroFilmeDao {
     GeneroFilme findById(Long id);
 
     List<GeneroFilme> findAll();
+
+    List<GeneroFilme> findByGeneroId(Long generoId);
 }
