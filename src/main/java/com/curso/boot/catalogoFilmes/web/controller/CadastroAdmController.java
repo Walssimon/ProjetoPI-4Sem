@@ -7,6 +7,7 @@ import com.curso.boot.catalogoFilmes.domain.Filme;
 import com.curso.boot.catalogoFilmes.service.GeneroFilmeService;
 import com.curso.boot.catalogoFilmes.service.GeneroService;
 import com.curso.boot.catalogoFilmes.service.GerarImagemService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -35,23 +36,51 @@ public class CadastroAdmController {
 
 
     @GetMapping("/index")
-    public String HomepageAdm(Model model){
+    public String HomepageAdm(  Model model,
+                                HttpSession session) {
+
+        // Verifica login
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null) {
+            return "redirect:/usuario/login";
+        }
         model.addAttribute("filmes", filmeService.findAll());
         return "cadastroAdm/index";}
 
     @GetMapping("/addActorPage")
-    public String AddActorPage(){
+    public String AddActorPage(Model model,
+                                 HttpSession session) {
+
+        // Verifica login
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null) {
+            return "redirect:/usuario/login";
+        }
         return "cadastroAdm/AddActorPage";
     }
 
     @GetMapping("/cadNewFilme")
-    public String CadNewFilme(Model model){
+    public String CadNewFilme(Model model,
+                              HttpSession session) {
+
+        // Verifica login
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null) {
+            return "redirect:/usuario/login";
+        }
         model.addAttribute("generos", generoService.findAll());
         return "cadastroAdm/cadNewFilme";
     }
 
     @GetMapping("/editFilme/{id}")
-    public String EditFilme(@PathVariable Long id, Model model){
+    public String EditFilme(@PathVariable Long id,   Model model,
+                            HttpSession session) {
+
+        // Verifica login
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null) {
+            return "redirect:/usuario/login";
+        }
         Filme filme = filmeService.findById(id);
         model.addAttribute("filme", filme);
 
@@ -130,7 +159,14 @@ public class CadastroAdmController {
     }
 
     @PostMapping("/addActor")
-    public String addActor(@ModelAttribute Ator ator) {
+    public String addActor(@ModelAttribute Ator ator,  Model model,
+                           HttpSession session) {
+
+        // Verifica login
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null) {
+            return "redirect:/usuario/login";
+        }
         atorDao.save(ator);
         return "redirect:/cadastroAdm/addActorPage";
     }

@@ -1,14 +1,29 @@
 package com.curso.boot.catalogoFilmes.dao;
 
 import com.curso.boot.catalogoFilmes.domain.Favorito;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public class FavoritoDaoImpl extends AbstractDao<Favorito, Long> implements FavoritoDao {
-    
+
+    @PersistenceContext
+    private EntityManager em;
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Long> buscarIdsFavoritos(Long usuarioId) {
+        String jpql = "SELECT f.filme.id FROM Favorito f WHERE f.usuario.id = :usuarioId";
+
+        return em.createQuery(jpql)
+                .setParameter("usuarioId", usuarioId)
+                .getResultList();
+    }
     @Override
     public Favorito findByUsuarioAndFilme(Long usuarioId, Long filmeId) {
         String jpql = "SELECT f FROM Favorito f WHERE f.usuario.id = :usuarioId AND f.filme.id = :filmeId";

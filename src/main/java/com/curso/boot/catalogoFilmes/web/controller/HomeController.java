@@ -4,12 +4,14 @@ import com.curso.boot.catalogoFilmes.dao.GeneroDao;
 import com.curso.boot.catalogoFilmes.dao.GeneroFilmeDao;
 import com.curso.boot.catalogoFilmes.domain.Filme;
 import com.curso.boot.catalogoFilmes.domain.Usuario;
+import com.curso.boot.catalogoFilmes.service.FavoritoService;
 import com.curso.boot.catalogoFilmes.service.FilmeService;
 import com.curso.boot.catalogoFilmes.strategy.BuscarPorGeneroStrategy;
 import com.curso.boot.catalogoFilmes.strategy.FilmeSearchContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.stereotype.Controller;
 import jakarta.servlet.http.HttpSession;
@@ -31,6 +33,9 @@ public class HomeController {
     @Autowired
     private GeneroFilmeDao generoFilmeDao;
 
+    @Autowired
+    private FavoritoService favoritoService;
+
     @GetMapping({"/", "/home"})
     public String home(
             @RequestParam(required = false) String genero,
@@ -45,6 +50,9 @@ public class HomeController {
 
         Long usuarioId = usuarioLogado.getId();
         model.addAttribute("usuarioId", usuarioId);
+        List<Long> favoritosIds = favoritoService.buscarIdsFavoritos(usuarioId);
+        model.addAttribute("favoritosIds", favoritosIds);
+
 
         // Lógica para obter filmes de destaque para o carrossel
         // Exemplo: pegar os 5 primeiros filmes
@@ -74,4 +82,24 @@ public class HomeController {
 
         return "home";
     }
+
+    @GetMapping("/toggle-favorito/{filmeId}")
+    public String toggleFavorito(
+            @PathVariable Long filmeId,
+            HttpSession session) {
+
+        Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+        Long usuarioId = usuario.getId();
+
+
+        if (favoritoService.isFavoritado(usuarioId, filmeId)) {
+            favoritoService.removerFavorito(usuarioId, filmeId);
+        } else {
+            favoritoService.favoritarFilme(usuarioId, filmeId);
+        }
+
+        return "redirect:/home"; // volta pro home
+    }
+
+
 }

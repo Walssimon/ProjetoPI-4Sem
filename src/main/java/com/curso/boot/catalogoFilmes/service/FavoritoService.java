@@ -17,6 +17,8 @@ public interface FavoritoService {
     List<Favorito> findAll();
     
     // Novos métodos
+    public List<Long> buscarIdsFavoritos(Long usuarioId);
+
     void favoritarFilme(Long usuarioId, Long filmeId);
     void removerFavorito(Long usuarioId, Long filmeId);
     List<Favorito> buscarFavoritosPorUsuario(Long usuarioId);

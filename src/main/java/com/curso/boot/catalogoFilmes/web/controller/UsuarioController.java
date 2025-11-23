@@ -56,6 +56,16 @@ public class UsuarioController {
         return "usuario/registro";
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); // Finaliza a sessão
+        return "redirect:/usuario/login"; // Volta para o login
+    }
+    @PostMapping("/logout")
+    public String logoutForm(HttpSession session) {
+        session.invalidate(); // Finaliza a sessão
+        return "redirect:/usuario/login"; // Volta para o login
+    }
 
     @PostMapping("/login")
     public String login(
@@ -115,5 +125,7 @@ public class UsuarioController {
         boolean favoritado = favoritoService.isFavoritado(usuarioId, filmeId);
         return ResponseEntity.ok(favoritado);
     }
+
+
 }
 

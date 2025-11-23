@@ -13,7 +13,8 @@ public interface FavoritoDao {
     Favorito findById(Long id);
 
     List<Favorito> findAll();
-    
+
+    List<Long> buscarIdsFavoritos(Long usuarioId);
     // Novos métodos
     Favorito findByUsuarioAndFilme(Long usuarioId, Long filmeId);
     List<Favorito> findByUsuarioId(Long usuarioId);

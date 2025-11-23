@@ -100,6 +100,15 @@
 .cockpit_filmes .cockpit_item span {
   color: #665E66;
 }
+.icon-heart.filled {
+ display: none;
+ }
+.btn_favoritar_filme.favorito-active .filled
+{ display: inline;
+}
+.btn_favoritar_filme.favorito-active .empty {
+ display: none;
+ }
 
 #filmes_container {
   display: grid;

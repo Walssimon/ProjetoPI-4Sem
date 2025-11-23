@@ -49,23 +49,25 @@ public class FavoritoServiceImpl implements FavoritoService {
     public List<Favorito> findAll() {
         return dao.findAll();
     }
-    
+
+    @Override
+    public List<Long> buscarIdsFavoritos(Long usuarioId) {
+        return dao.buscarIdsFavoritos(usuarioId);
+    }
+
     @Override
     public void favoritarFilme(Long usuarioId, Long filmeId) {
-        // Verificar se já está favoritado
         if (dao.existsByUsuarioAndFilme(usuarioId, filmeId)) {
             throw new RuntimeException("Filme já está nos favoritos");
         }
-        
-        // Buscar usuário e filme
+
         Usuario usuario = usuarioService.findById(usuarioId);
         Filme filme = filmeService.findById(filmeId);
         
         if (usuario == null || filme == null) {
             throw new RuntimeException("Usuário ou filme não encontrado");
         }
-        
-        // Criar novo favorito
+
         Favorito favorito = new Favorito();
         favorito.setUsuario(usuario);
         favorito.setFilme(filme);
