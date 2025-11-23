@@ -82,6 +82,7 @@ public class DataInitializer {
                 generoDao.save(musical);
                 generoDao.save(historico);
                 generoDao.save(familia);
+
             }
 
             // Evita duplicar dados a cada start
