@@ -31,20 +31,13 @@ public class UsuarioController {
 
     @GetMapping("/favorite")
     public String FavoritePage(Model model,  HttpSession session) {
-
-
         Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
-
-        // Se não estiver logado, redireciona
         if (usuarioLogado == null) {
             return "redirect:/usuario/login";
         }
-
         Long usuarioId = usuarioLogado.getId();
-
         List<Favorito> favoritos = favoritoService.buscarFavoritosPorUsuario(usuarioId);
         model.addAttribute("favoritos", favoritos);
-        
         return "usuario/favorite";
     }
 

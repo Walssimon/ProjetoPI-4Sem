@@ -52,21 +52,21 @@ public class DataInitializer {
 
             //Criar gêneros apenas se não existirem
             if (generoDao.findAll().isEmpty()) {
-                Genero acao = new Genero(); acao.setNomeGenero("Ação");
+                Genero acao = new Genero(); acao.setNomeGenero("Acao");
                 Genero aventura = new Genero(); aventura.setNomeGenero("Aventura");
-                Genero comedia = new Genero(); comedia.setNomeGenero("Comédia");
+                Genero comedia = new Genero(); comedia.setNomeGenero("Comedia");
                 Genero drama = new Genero(); drama.setNomeGenero("Drama");
                 Genero terror = new Genero(); terror.setNomeGenero("Terror");
-                Genero ficcao = new Genero(); ficcao.setNomeGenero("Ficção Científica");
+                Genero ficcao = new Genero(); ficcao.setNomeGenero("Ficcao Cientifica");
                 Genero romance = new Genero(); romance.setNomeGenero("Romance");
                 Genero fantasia = new Genero(); fantasia.setNomeGenero("Fantasia");
                 Genero suspense = new Genero(); suspense.setNomeGenero("Suspense");
-                Genero misterio = new Genero(); misterio.setNomeGenero("Mistério");
-                Genero animacao = new Genero(); animacao.setNomeGenero("Animação");
-                Genero documentario = new Genero(); documentario.setNomeGenero("Documentário");
+                Genero misterio = new Genero(); misterio.setNomeGenero("Misterio");
+                Genero animacao = new Genero(); animacao.setNomeGenero("Animacao");
+                Genero documentario = new Genero(); documentario.setNomeGenero("Documentario");
                 Genero musical = new Genero(); musical.setNomeGenero("Musical");
-                Genero historico = new Genero(); historico.setNomeGenero("Histórico");
-                Genero familia = new Genero(); familia.setNomeGenero("Família");
+                Genero historico = new Genero(); historico.setNomeGenero("Historico");
+                Genero familia = new Genero(); familia.setNomeGenero("Familia");
 
                 generoDao.save(acao);
                 generoDao.save(aventura);
@@ -122,7 +122,7 @@ public class DataInitializer {
                 f2.setDados(img);
                 f2.setDadosBanner(imgBanner);
                 filmeDao.save(f2);
-                Genero genero2 = generoDao.findByNome("Ficção Científica");
+                Genero genero2 = generoDao.findByNome("Ficcao Cientifica");
                 GeneroFilme gf2 = new GeneroFilme();
                 gf2.setFilme(f2);
                 gf2.setGenero(genero2);
@@ -140,7 +140,7 @@ public class DataInitializer {
                 f3.setDados(img);
                 f3.setDadosBanner(imgBanner);
                 filmeDao.save(f3);
-                Genero genero3 = generoDao.findByNome("Ação");
+                Genero genero3 = generoDao.findByNome("Acao");
                 GeneroFilme gf3 = new GeneroFilme();
                 gf3.setFilme(f3);
                 gf3.setGenero(genero3);
@@ -159,7 +159,7 @@ public class DataInitializer {
                 f4.setDados(img);
                 f4.setDadosBanner(imgBanner);
                 filmeDao.save(f4);
-                Genero genero4 = generoDao.findByNome("Ficção Científica");
+                Genero genero4 = generoDao.findByNome("Ficcao Cientifica");
                 GeneroFilme gf4 = new GeneroFilme();
                 gf4.setFilme(f4);
                 gf4.setGenero(genero4);
@@ -178,7 +178,7 @@ public class DataInitializer {
                 f5.setDados(img);
                 f5.setDadosBanner(imgBanner);
                 filmeDao.save(f5);
-                Genero genero5 = generoDao.findByNome("Ação");
+                Genero genero5 = generoDao.findByNome("Acao");
                 GeneroFilme gf5 = new GeneroFilme();
                 gf5.setFilme(f5);
                 gf5.setGenero(genero5);
@@ -197,7 +197,7 @@ public class DataInitializer {
                 f6.setDados(img);
                 f6.setDadosBanner(imgBanner);
                 filmeDao.save(f6);
-                Genero genero6 = generoDao.findByNome("Ficção Científica");
+                Genero genero6 = generoDao.findByNome("Ficcao Cientifica");
                 GeneroFilme gf6 = new GeneroFilme();
                 gf6.setFilme(f6);
                 gf6.setGenero(genero6);
@@ -216,7 +216,7 @@ public class DataInitializer {
                 f7.setDados(img);
                 f7.setDadosBanner(imgBanner);
                 filmeDao.save(f7);
-                Genero genero7 = generoDao.findByNome("Ficção Científica");
+                Genero genero7 = generoDao.findByNome("Ficcao Cientifica");
                 GeneroFilme gf7 = new GeneroFilme();
                 gf7.setFilme(f7);
                 gf7.setGenero(genero7);
@@ -235,7 +235,7 @@ public class DataInitializer {
                 f8.setDados(img);
                 f8.setDadosBanner(imgBanner);
                 filmeDao.save(f8);
-                Genero genero8 = generoDao.findByNome("Ação");
+                Genero genero8 = generoDao.findByNome("Acao");
                 GeneroFilme gf8 = new GeneroFilme();
                 gf8.setFilme(f8);
                 gf8.setGenero(genero8);
@@ -254,7 +254,7 @@ public class DataInitializer {
                 f9.setDados(img);
                 f9.setDadosBanner(imgBanner);
                 filmeDao.save(f9);
-                Genero genero9 = generoDao.findByNome("Ação");
+                Genero genero9 = generoDao.findByNome("Acao");
                 GeneroFilme gf9 = new GeneroFilme();
                 gf9.setFilme(f9);
                 gf9.setGenero(genero9);
@@ -273,7 +273,7 @@ public class DataInitializer {
                 f10.setDados(img);
                 f10.setDadosBanner(imgBanner);
                 filmeDao.save(f10);
-                Genero genero10 = generoDao.findByNome("Ação");
+                Genero genero10 = generoDao.findByNome("Acao");
                 GeneroFilme gf10 = new GeneroFilme();
                 gf10.setFilme(f10);
                 gf10.setGenero(genero10);
@@ -292,7 +292,7 @@ public class DataInitializer {
                 f11.setDados(img);
                 f11.setDadosBanner(imgBanner);
                 filmeDao.save(f11);
-                Genero genero11 = generoDao.findByNome("Animação");
+                Genero genero11 = generoDao.findByNome("Animacao");
                 GeneroFilme gf11 = new GeneroFilme();
                 gf11.setFilme(f11);
                 gf11.setGenero(genero11);
@@ -311,7 +311,7 @@ public class DataInitializer {
                 f12.setDados(img);
                 f12.setDadosBanner(imgBanner);
                 filmeDao.save(f12);
-                Genero genero12 = generoDao.findByNome("Animação");
+                Genero genero12 = generoDao.findByNome("Animacao");
                 GeneroFilme gf12 = new GeneroFilme();
                 gf12.setFilme(f12);
                 gf12.setGenero(genero12);
@@ -330,7 +330,7 @@ public class DataInitializer {
                 f13.setDados(img);
                 f13.setDadosBanner(imgBanner);
                 filmeDao.save(f13);
-                Genero genero13 = generoDao.findByNome("Ação");
+                Genero genero13 = generoDao.findByNome("Acao");
                 GeneroFilme gf13 = new GeneroFilme();
                 gf13.setFilme(f13);
                 gf13.setGenero(genero13);
@@ -349,7 +349,7 @@ public class DataInitializer {
                 f14.setDados(img);
                 f14.setDadosBanner(imgBanner);
                 filmeDao.save(f14);
-                Genero genero14 = generoDao.findByNome("Animação");
+                Genero genero14 = generoDao.findByNome("Animacao");
                 GeneroFilme gf14 = new GeneroFilme();
                 gf14.setFilme(f14);
                 gf14.setGenero(genero14);
@@ -368,7 +368,7 @@ public class DataInitializer {
                 f15.setDados(img);
                 f15.setDadosBanner(imgBanner);
                 filmeDao.save(f15);
-                Genero genero15 = generoDao.findByNome("Animação");
+                Genero genero15 = generoDao.findByNome("Animacao");
                 GeneroFilme gf15 = new GeneroFilme();
                 gf15.setFilme(f15);
                 gf15.setGenero(genero15);
@@ -387,7 +387,7 @@ public class DataInitializer {
                 f16.setDados(img);
                 f16.setDadosBanner(imgBanner);
                 filmeDao.save(f16);
-                Genero genero16 = generoDao.findByNome("Animação");
+                Genero genero16 = generoDao.findByNome("Animacao");
                 GeneroFilme gf16 = new GeneroFilme();
                 gf16.setFilme(f16);
                 gf16.setGenero(genero16);
@@ -406,7 +406,7 @@ public class DataInitializer {
                 f17.setDados(img);
                 f17.setDadosBanner(imgBanner);
                 filmeDao.save(f17);
-                Genero genero17 = generoDao.findByNome("Animação");
+                Genero genero17 = generoDao.findByNome("Animacao");
                 GeneroFilme gf17 = new GeneroFilme();
                 gf17.setFilme(f17);
                 gf17.setGenero(genero17);
@@ -425,7 +425,7 @@ public class DataInitializer {
                 f18.setDados(img);
                 f18.setDadosBanner(imgBanner);
                 filmeDao.save(f18);
-                Genero genero18 = generoDao.findByNome("Ação");
+                Genero genero18 = generoDao.findByNome("Acao");
                 GeneroFilme gf18 = new GeneroFilme();
                 gf18.setFilme(f18);
                 gf18.setGenero(genero18);
@@ -444,7 +444,7 @@ public class DataInitializer {
                 f19.setDados(img);
                 f19.setDadosBanner(imgBanner);
                 filmeDao.save(f19);
-                Genero genero19 = generoDao.findByNome("Comédia");
+                Genero genero19 = generoDao.findByNome("Comedia");
                 GeneroFilme gf19 = new GeneroFilme();
                 gf19.setFilme(f19);
                 gf19.setGenero(genero19);
@@ -463,7 +463,7 @@ public class DataInitializer {
                 f20.setDados(img);
                 f20.setDadosBanner(imgBanner);
                 filmeDao.save(f20);
-                Genero genero20 = generoDao.findByNome("Ação");
+                Genero genero20 = generoDao.findByNome("Acao");
                 GeneroFilme gf20 = new GeneroFilme();
                 gf20.setFilme(f20);
                 gf20.setGenero(genero20);

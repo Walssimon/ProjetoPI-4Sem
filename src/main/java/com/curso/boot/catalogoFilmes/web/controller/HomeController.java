@@ -13,15 +13,19 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class HomeController {
 
-        @Autowired
-        private FilmeService filmeService;
+    @Autowired
+    private FilmeService filmeService;
 
-        @GetMapping({"/", "/home"})
-        public String home(Model model) {
-
-            // Busca todos os filmes
-            model.addAttribute("filmes", filmeService.findAll());
-            // Abre home.html
-            return "home";
+    @GetMapping({"/", "/home"})
+    public String home(Model model, HttpSession session) {
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if ( usuarioLogado == null) {
+            return "redirect:/usuario/login";
         }
+        Long usuarioId = usuarioLogado != null ? usuarioLogado.getId() : null;
+        model.addAttribute("usuarioId", usuarioId);
+        model.addAttribute("filmes", filmeService.findAll());
+        // Abre home.html
+        return "home";
+    }
 }
