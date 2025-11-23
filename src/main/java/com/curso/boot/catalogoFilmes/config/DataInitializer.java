@@ -1,12 +1,7 @@
 package com.curso.boot.catalogoFilmes.config;
 
-import com.curso.boot.catalogoFilmes.dao.FilmeDaoImpl;
-import com.curso.boot.catalogoFilmes.dao.GeneroDao;
-import com.curso.boot.catalogoFilmes.dao.GeneroFilmeDao;
-import com.curso.boot.catalogoFilmes.domain.Filme;
-import com.curso.boot.catalogoFilmes.dao.FilmeDao;
-import com.curso.boot.catalogoFilmes.domain.Genero;
-import com.curso.boot.catalogoFilmes.domain.GeneroFilme;
+import com.curso.boot.catalogoFilmes.dao.*;
+import com.curso.boot.catalogoFilmes.domain.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -27,8 +22,15 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.util.List;
 
-import com.curso.boot.catalogoFilmes.dao.UsuarioDao; // Importar o DAO
-import com.curso.boot.catalogoFilmes.domain.Usuario; // Importar a entidade Usuario
+import com.curso.boot.catalogoFilmes.dao.AtorDao;
+import com.curso.boot.catalogoFilmes.dao.FilmeAtorDao;
+import com.curso.boot.catalogoFilmes.domain.Ator;
+import com.curso.boot.catalogoFilmes.domain.FilmeAtor;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.Map;
 
 @Configuration
 public class DataInitializer {
@@ -38,7 +40,10 @@ public class DataInitializer {
 
     @Bean
     @Transactional
-    CommandLineRunner initDatabase(FilmeDaoImpl filmeDao, GeneroDao generoDao, GeneroFilmeDao generoFilmeDao, DataSource dataSource,UsuarioDao usuarioDao) {
+    CommandLineRunner initDatabase(FilmeDaoImpl filmeDao, GeneroDao generoDao, GeneroFilmeDao generoFilmeDao,
+                                   DataSource dataSource,UsuarioDao usuarioDao,
+                                   AtorDao atorDao,
+                                   FilmeAtorDao filmeAtorDao) {
         return args -> {
 
             try (Connection conn = dataSource.getConnection();
@@ -91,12 +96,33 @@ public class DataInitializer {
 
             }
 
+
+
             // Evita duplicar dados a cada start
             if (filmeDao.findAll().isEmpty()) {
 
 
                 byte[] img = Files.readAllBytes(Paths.get("src/main/resources/static/image/1.png"));
                 byte[] imgBanner = Files.readAllBytes(Paths.get("src/main/resources/static/image/1b.png"));
+
+                // 1. CADASTRO DOS ATORES (TB_ATOR)
+                System.out.println("🎭 Cadastrando atores iniciais...");
+                Ator viggo = createAndSaveAtor("Viggo Mortensen", 1958, atorDao);
+                Ator zoe = createAndSaveAtor("Zoe Saldana", 1978, atorDao);
+                Ator christian = createAndSaveAtor("Christian Bale", 1974, atorDao);
+                Ator rdj = createAndSaveAtor("Robert Downey Jr.", 1965, atorDao);
+                Ator russell = createAndSaveAtor("Russell Crowe", 1964, atorDao);
+                Ator keanu = createAndSaveAtor("Keanu Reeves", 1964, atorDao);
+                Ator leo = createAndSaveAtor("Leonardo DiCaprio", 1974, atorDao);
+                Ator matthew = createAndSaveAtor("Matthew McConaughey", 1969, atorDao);
+                Ator tom = createAndSaveAtor("Tom Hanks", 1956, atorDao); // Exemplo para Toy Story
+
+                // Outros atores necessários
+                Ator hugh = createAndSaveAtor("Hugh Jackman", 1968, atorDao);
+                Ator tobey = createAndSaveAtor("Tobey Maguire", 1975, atorDao);
+                Ator amy = createAndSaveAtor("Amy Poehler", 1971, atorDao);
+
+                System.out.println("🎭 Atores cadastrados.");
 
                 Filme filme = new Filme();
                 filme.setNomeFilme("O Senhor dos Anéis: A Sociedade do Anel");
@@ -474,6 +500,49 @@ public class DataInitializer {
                 gf20.setGenero(genero20);
                 generoFilmeDao.save(gf20);
 
+                // F1: O Senhor dos Anéis
+                createFilmeAtor(filme, viggo, "Aragorn", filmeAtorDao);
+
+                // F2: Matrix Ressurection
+                createFilmeAtor(f2, keanu, "Neo", filmeAtorDao);
+
+                // F3: Avatar
+                createFilmeAtor(f3, zoe, "Neytiri", filmeAtorDao);
+
+                // F4: Interestelar
+                createFilmeAtor(f4, matthew, "Cooper", filmeAtorDao);
+
+                // F5: Batman: O Cavaleiro das Trevas
+                createFilmeAtor(f5, christian, "Bruce Wayne/Batman", filmeAtorDao);
+
+                // F6: A Origem
+                createFilmeAtor(f6, leo, "Cobb", filmeAtorDao);
+
+                // F7: Matrix
+                createFilmeAtor(f7, keanu, "Neo", filmeAtorDao);
+
+                // F8: Vingadores: Guerra Infinita
+                createFilmeAtor(f8, rdj, "Tony Stark/Homem de Ferro", filmeAtorDao);
+                createFilmeAtor(f8, christian, "Bruce Banner", filmeAtorDao); // Christian Bale é Banner no MCU
+
+                // F9: Vingadores: Ultimato
+                createFilmeAtor(f9, rdj, "Tony Stark/Homem de Ferro", filmeAtorDao);
+
+                // F10: Pantera Negra
+                createFilmeAtor(f10, zoe, "Shuri (Exemplo, Zoe Saldana é Gamora)", filmeAtorDao);
+
+                // F13: Homem-Aranha 2
+                createFilmeAtor(f13, tobey, "Peter Parker/Homem-Aranha", filmeAtorDao);
+
+                // F14: Divertida Mente
+                createFilmeAtor(f14, amy, "Alegria (Voz)", filmeAtorDao);
+
+                // F18: Gladiador
+                createFilmeAtor(f18, russell, "Maximus", filmeAtorDao);
+
+                // F19: O Lobo de Wall Street
+                createFilmeAtor(f19, leo, "Jordan Belfort", filmeAtorDao);
+
             } else {
                 System.out.println("📀 Banco já possui filmes, nenhum registro criado.");
             }
@@ -499,6 +568,26 @@ public class DataInitializer {
         } else {
             System.out.println("👤 Usuário administrador já existe.");
         }
+
+
     }
+// --- Novos Métodos Auxiliares ---
+
+    private Ator createAndSaveAtor(String nome, int anoNascimento, AtorDao atorDao) {
+        Ator ator = new Ator();
+        ator.setNomeAtor(nome);
+        ator.setDataNascimento(LocalDate.of(anoNascimento, 1, 1));
+        atorDao.save(ator);
+        return ator;
+    }
+
+    private void createFilmeAtor(Filme filme, Ator ator, String papel, FilmeAtorDao filmeAtorDao) {
+        FilmeAtor fa = new FilmeAtor();
+        fa.setFilme(filme);
+        fa.setAtor(ator);
+        fa.setPapel(papel);
+        filmeAtorDao.save(fa);
+    }
+
 
 }

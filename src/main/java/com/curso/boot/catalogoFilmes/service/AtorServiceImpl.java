@@ -41,4 +41,9 @@ public class AtorServiceImpl implements AtorService {
     public List<Ator> findAll() {
         return dao.findAll();
     }
+
+    @Override
+    public Ator findByNomeAtor(String nomeAtor) {
+        return dao.findByNomeAtor(nomeAtor);
+    }
 }
