@@ -41,4 +41,10 @@ public class ComentarioServiceImpl implements ComentarioService {
     public List<Comentario> findAll() {
         return dao.findAll();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Comentario> findByFilmeId(Long filmeId) {
+        return dao.findByFilmeId(filmeId);
+    }
 }

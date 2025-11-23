@@ -13,4 +13,6 @@ public interface UsuarioDao {
     Usuario findById(Long id);
 
     List<Usuario> findAll();
+
+    Usuario findByEmailAndSenha(String email, String senha);
 }

@@ -19,7 +19,7 @@
 <header class="big_container flex-center" id="Destaques">
     <div class="container">
         <a href="./usuario/userPage" class="avatar_image flex-center">
-            <img src="./image/fotoUser2.png" alt="Avatar"/>
+            <img src="./image/fotoUser2.png" alt="Avatar" th:if="${session.usuarioLogado != null}"/>
         </a>
         <div class="container_carrossel">
             <div class="carousel">
@@ -66,6 +66,47 @@
     </div>
 </main>
 
+<script>
+function toggleFavoritoCard(button, event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const filmeId = button.getAttribute('data-filme-id');
+    const usuarioId = button.getAttribute('data-usuario-id');
+    
+    // Verificar estado atual (pode adicionar lógica para verificar se já está favoritado)
+    const isFavoritado = button.classList.contains('favoritado');
+    const url = isFavoritado 
+        ? '/usuario/remover-favorito' 
+        : '/usuario/favoritar';
+    
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `filmeId=${filmeId}&usuarioId=${usuarioId}`
+    })
+    .then(response => response.text())
+    .then(data => {
+        if (data.includes('adicionado') || data.includes('removido')) {
+            button.classList.toggle('favoritado');
+            const svg = button.querySelector('svg path');
+            if (button.classList.contains('favoritado')) {
+                svg.setAttribute('fill', '#A411D4');
+            } else {
+                svg.setAttribute('fill', 'none');
+            }
+        } else {
+            alert('Erro ao favoritar filme');
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        alert('Erro ao processar requisição');
+    });
+}
+</script>
 <script src="scriptGlobal.js"></script>
 <script src="carrossel.js"></script>
 </body>

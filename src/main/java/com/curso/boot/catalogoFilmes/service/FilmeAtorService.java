@@ -16,4 +16,7 @@ public interface FilmeAtorService {
     FilmeAtor findById(Long id);
 
     List<FilmeAtor> findAll();
+
+    List<FilmeAtor> findByFilmeId(Long filmeId);
+
 }

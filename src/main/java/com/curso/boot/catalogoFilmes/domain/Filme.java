@@ -36,6 +36,7 @@ public class Filme extends AbstractEntity<Long> {
     @OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<GeneroFilme> generos;
 
+
     @Lob
     @Column(length = 16777215) // tamanho para armazenar blob médio (16MB)
     private byte[] dados;

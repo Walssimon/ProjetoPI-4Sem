@@ -1,4 +1,7 @@
+
 package com.curso.boot.catalogoFilmes.web.controller;
+import com.curso.boot.catalogoFilmes.dao.AtorDaoImpl;
+import com.curso.boot.catalogoFilmes.domain.Ator;
 import com.curso.boot.catalogoFilmes.domain.Filme;
 import com.curso.boot.catalogoFilmes.domain.GeneroFilme;
 import com.curso.boot.catalogoFilmes.service.FilmeService;
@@ -21,6 +24,9 @@ public class CadastroAdmController {
     private GerarImagemService gerarImagem;
     @Autowired
     private FilmeService filmeService;
+
+    @Autowired
+    private AtorDaoImpl atorDao;
 
 
     @GetMapping("/index")
@@ -115,6 +121,12 @@ public class CadastroAdmController {
     public String uploadImagem(@RequestParam("imagem") MultipartFile imagem) throws Exception {
         gerarImagem.salvarImagem(imagem);
         return "redirect:/cadastroAdm/index";
+    }
+
+    @PostMapping("/addActor")
+    public String addActor(@ModelAttribute Ator ator) {
+        atorDao.save(ator);
+        return "redirect:/cadastroAdm/addActorPage";
     }
 
 }

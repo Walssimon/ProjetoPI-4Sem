@@ -21,18 +21,20 @@
                 </span>
             </div>
             <div class="flex">
-                <h1>Nome do usuário</h1> 
+                <h1 th:if="${session.usuarioLogado != null}"  th:text="${session.usuarioLogado.getNome()}"></h1>
                 <button class="edit_button" id="edit_user_info_button" onclick="openCloseModal('.modal_edit_user_name')">edit</button>
             </div>
             <div class="label">
                 <h4>Email:</h4>
-                <p>emailuser@gmail.com</p>
+                <p th:if="${session.usuarioLogado != null}"  th:text="${session.usuarioLogado.getEmail()}"></p>
             </div>
             <div class="flex-center actions_buttons">
                 <button class="input_style" onclick="window.location.href='../'">Voltar para home</button>
-                <button class="input_style">Logout</button>
+                <form th:action="@{/usuario/logout}" method="post">
+                    <button class="input_style">Logout</button>
+                </form>
                 <!-- colocar validacao (if user=admin)  mostra botao-->
-                <a href="../cadastroAdm/index" class="input_style area_admin_link">Area do administrador</a>
+                <a href="../cadastroAdm/index" class="input_style area_admin_link"  th:if="${session.usuarioLogado != null and session.usuarioLogado.getNome() == 'ADMIN'}">Area do administrador</a>
             </div>
 
         </div>
