@@ -8,7 +8,7 @@ import java.util.List;
 public class Usuario extends AbstractEntity<Long> {
 
     @Column(name = "NM_USUARIO", length = 200, nullable = false)
-    private String nome;
+private String nome;
 
     @Column(name = "DS_EMAIL", length = 200, nullable = false, unique = true)
     private String email;

@@ -1,9 +1,15 @@
 package com.curso.boot.catalogoFilmes.config;
 
 import com.curso.boot.catalogoFilmes.dao.FilmeDaoImpl;
+import com.curso.boot.catalogoFilmes.dao.UsuarioDao;
+import com.curso.boot.catalogoFilmes.dao.UsuarioDaoImpl;
 import com.curso.boot.catalogoFilmes.domain.Filme;
 import com.curso.boot.catalogoFilmes.dao.FilmeDao;
+import com.curso.boot.catalogoFilmes.domain.Usuario;
+import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -334,4 +340,6 @@ public class DataInitializer {
             }
         };
     }
+
+
 }
