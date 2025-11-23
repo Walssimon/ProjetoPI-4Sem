@@ -115,20 +115,20 @@
                             </div>
 
                             <p th:text="${c.texto}">Comentário aqui...</p>
+                            <!--
+                                    <div class="rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span th:text="${avaliacoesPorComentario[c.id] != null ?
+                                        'Nota: ' + avaliacoesPorComentario[c.id].nota :
+                                        'Sem nota'}"></span>
+                                    </div>-->
+                                </div>
+                            </th:block>
 
-                            <div class="rating">
-                                <i class="fa-solid fa-star"></i>
-                                <span th:text="${avaliacoesPorComentario[c.id] != null ?
-                                'Nota: ' + avaliacoesPorComentario[c.id].nota :
-                                'Sem nota'}"></span>
-                            </div>
                         </div>
-                    </th:block>
+                    </div>
 
-                </div>
-            </div>
-
-            <!-- FORMULÁRIO DE COMENTÁRIO -->
+                    <!-- FORMULÁRIO DE COMENTÁRIO -->
             <div class="form_comentarios" id="comentar_no_filme">
                 <form class="flex"
                       th:action="@{/comentario/salvar/{id}(id=${filme.id})}"
@@ -141,29 +141,29 @@
 
                     <div class="flex-between w-full">
 
-                        <label class="select_star input_style flex">
-                            <div class="star_icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                    <path
-                                            d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3
-                                51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329
-                                113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5
-                                128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329
-                                542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7
-                                L381.2 150.3 316.9 18z"/>
-                                </svg>
-                            </div>
+                        <!--        <label class="select_star input_style flex">
+                                    <div class="star_icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                            <path
+                                                    d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3
+                                        51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329
+                                        113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5
+                                        128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329
+                                        542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7
+                                        L381.2 150.3 316.9 18z"/>
+                                        </svg>
+                                    </div>
 
-                            <!-- AQUI ESTÁ O NOME DO CAMPO PARA ENVIAR A NOTA -->
-                            <select name="nota" class="border">
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </label>
+                                     AQUI ESTÁ O NOME DO CAMPO PARA ENVIAR A NOTA
+                                    <select name="nota" class="border">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </label>-->
 
                         <input class="input_style" type="submit" value="Enviar">
                     </div>
