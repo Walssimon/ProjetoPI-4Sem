@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = false)
+@Transactional
 public class AvaliacaoServiceImpl implements AvaliacaoService {
 
     @Autowired
@@ -40,5 +40,21 @@ public class AvaliacaoServiceImpl implements AvaliacaoService {
     @Transactional(readOnly = true)
     public List<Avaliacao> findAll() {
         return dao.findAll();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Avaliacao> findByFilmeId(Long filmeId) {
+        return dao.findByFilmeId(filmeId);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Avaliacao findByFilmeIdAndUsuarioId(Long filmeId, Long usuarioId) {
+        return dao.findByFilmeIdAndUsuarioId(filmeId, usuarioId);
+    }
+    @Override
+    public Avaliacao findByComentarioId(Long comentarioId) {
+        return dao.findByComentarioId(comentarioId);
     }
 }

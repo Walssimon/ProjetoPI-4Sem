@@ -1,6 +1,8 @@
 package com.curso.boot.catalogoFilmes.dao;
 
+
 import com.curso.boot.catalogoFilmes.domain.Avaliacao;
+
 import java.util.List;
 
 public interface AvaliacaoDao {
@@ -13,4 +15,10 @@ public interface AvaliacaoDao {
     Avaliacao findById(Long id);
 
     List<Avaliacao> findAll();
+
+    Avaliacao findByComentarioId(Long comentarioId);
+
+    Avaliacao findByFilmeIdAndUsuarioId(Long filmeId, Long usuarioId);
+
+    List<Avaliacao> findByFilmeId(Long filmeId);
 }
