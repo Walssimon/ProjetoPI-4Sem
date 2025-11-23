@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = false)
@@ -40,5 +41,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Transactional(readOnly = true)
     public List<Usuario> findAll() {
         return dao.findAll();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Usuario findByEmailAndSenha(String email, String senha) {
+        return dao.findByEmailAndSenha(email, senha);
     }
 }

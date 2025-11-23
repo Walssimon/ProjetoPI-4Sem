@@ -1,10 +1,14 @@
 package com.curso.boot.catalogoFilmes.web.controller;
 
+import com.curso.boot.catalogoFilmes.domain.Usuario;
 import com.curso.boot.catalogoFilmes.service.FilmeService;
+import com.fasterxml.jackson.databind.DatabindContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
+import jakarta.servlet.http.HttpSession;
+
 
 @Controller
 public class HomeController {
@@ -17,11 +21,6 @@ public class HomeController {
 
             // Busca todos os filmes
             model.addAttribute("filmes", filmeService.findAll());
-            
-            // TODO: Obter ID do usuário logado da sessão
-            Long usuarioId = 1L; // Substituir por lógica de sessão
-            model.addAttribute("usuarioId", usuarioId);
-
             // Abre home.html
             return "home";
         }

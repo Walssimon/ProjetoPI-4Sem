@@ -1,10 +1,18 @@
-package com.curso.boot.catalogoFilmes.web.controller;
 
+package com.curso.boot.catalogoFilmes.web.controller;
+import com.curso.boot.catalogoFilmes.dao.AtorDaoImpl;
+import com.curso.boot.catalogoFilmes.domain.Ator;
+import com.curso.boot.catalogoFilmes.domain.Filme;
+import com.curso.boot.catalogoFilmes.service.FilmeService;
+import com.curso.boot.catalogoFilmes.domain.Filme;
 import com.curso.boot.catalogoFilmes.service.GerarImagemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.ui.Model;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/cadastroAdm")
@@ -12,10 +20,17 @@ public class CadastroAdmController {
 
     @Autowired
     private GerarImagemService gerarImagem;
+    @Autowired
+    private FilmeService filmeService;
+
+    @Autowired
+    private AtorDaoImpl atorDao;
 
 
     @GetMapping("/index")
-    public String HomepageAdm(){ return "cadastroAdm/index";}
+    public String HomepageAdm(Model model){
+        model.addAttribute("filmes", filmeService.findAll());
+        return "cadastroAdm/index";}
 
     @GetMapping("/addActorPage")
     public String AddActorPage(){
@@ -27,10 +42,13 @@ public class CadastroAdmController {
         return "cadastroAdm/cadNewFilme";
     }
 
-    @GetMapping("/editFilme")
-    public String EditFilme(){
+    @GetMapping("/editFilme/{id}")
+    public String EditFilme(@PathVariable Long id, Model model){
+        Filme filme = filmeService.findById(id);
+        model.addAttribute("filme", filme);
         return "cadastroAdm/editFilme";
     }
+
 
 
     @PostMapping("/upload")
@@ -38,6 +56,12 @@ public class CadastroAdmController {
     public String uploadImagem(@RequestParam("imagem") MultipartFile imagem) throws Exception {
         gerarImagem.salvarImagem(imagem);
         return "redirect:/cadastroAdm/index";
+    }
+
+    @PostMapping("/addActor")
+    public String addActor(@ModelAttribute Ator ator) {
+        atorDao.save(ator);
+        return "redirect:/cadastroAdm/addActorPage";
     }
 
 }

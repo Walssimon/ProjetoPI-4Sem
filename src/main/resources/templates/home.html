@@ -19,7 +19,7 @@
 <header class="big_container flex-center" id="Destaques">
     <div class="container">
         <a href="./usuario/userPage" class="avatar_image flex-center">
-            <img src="./image/fotoUser2.png" alt="Avatar"/>
+            <img src="./image/fotoUser2.png" alt="Avatar" th:if="${session.usuarioLogado != null}"/>
         </a>
         <div class="container_carrossel">
             <div class="carousel">
