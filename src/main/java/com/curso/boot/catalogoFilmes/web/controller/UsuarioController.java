@@ -1,21 +1,21 @@
 package com.curso.boot.catalogoFilmes.web.controller;
 
-import com.curso.boot.catalogoFilmes.dao.UsuarioDaoImpl;
-import com.curso.boot.catalogoFilmes.domain.Usuario;
-import jakarta.servlet.http.HttpSession;
+import com.curso.boot.catalogoFilmes.domain.Favorito;
+import com.curso.boot.catalogoFilmes.service.FavoritoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioController {
 
     @Autowired
-    private UsuarioDaoImpl usuarioDao;
+    private FavoritoService favoritoService;
 
     @GetMapping("/userPage")
     public String UserPage(){
@@ -23,7 +23,14 @@ public class UsuarioController {
     }
 
     @GetMapping("/favorite")
-    public String FavoritePage(){
+    public String FavoritePage(Model model) {
+        // TODO: Obter ID do usuário logado da sessão
+        // Por enquanto, usar um ID fixo para testes (ex: 1L)
+        Long usuarioId = 1L; // Substituir por lógica de sessão
+        
+        List<Favorito> favoritos = favoritoService.buscarFavoritosPorUsuario(usuarioId);
+        model.addAttribute("favoritos", favoritos);
+        
         return "usuario/favorite";
     }
 
@@ -36,47 +43,43 @@ public class UsuarioController {
     public String Registrar(){
         return "usuario/registro";
     }
-
-    @PostMapping("/registro")
-    public String RegistrarUser(@ModelAttribute Usuario usuario, RedirectAttributes ra){
+    
+    // Endpoint para adicionar favorito (AJAX)
+    @PostMapping("/favoritar")
+    @ResponseBody
+    public ResponseEntity<String> favoritarFilme(
+            @RequestParam Long filmeId,
+            @RequestParam Long usuarioId) {
         try {
-            usuarioDao.save(usuario);
-            ra.addFlashAttribute("msgSucesso", "Usuário registrado com sucesso!");
-            return "redirect:/usuario/login";
-
-        } catch (DataIntegrityViolationException dive) {
-            // Erro comum: chave única, email duplicado, etc.
-            ra.addFlashAttribute("msgErro", "Já existe um usuário com esse email.");
-            return "redirect:/usuario/registro";
-
+            favoritoService.favoritarFilme(usuarioId, filmeId);
+            return ResponseEntity.ok("Filme adicionado aos favoritos");
         } catch (Exception e) {
-            // Qualquer outro erro do banco
-            ra.addFlashAttribute("msgErro", "Erro ao registrar usuário. Tente novamente.");
-            return "redirect:/usuario/registro";
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
-    @PostMapping("/login")
-    public String login(
-            @RequestParam String email,
-            @RequestParam String senha,
-            HttpSession session
-    ) {
-
-        Usuario usuario = usuarioDao.findByEmailAndSenha(email, senha);
-
-        if (usuario != null) {
-            session.setAttribute("usuarioLogado", usuario);
-            return "redirect:/home";
+    
+    // Endpoint para remover favorito (AJAX)
+    @PostMapping("/remover-favorito")
+    @ResponseBody
+    public ResponseEntity<String> removerFavorito(
+            @RequestParam Long filmeId,
+            @RequestParam Long usuarioId) {
+        try {
+            favoritoService.removerFavorito(usuarioId, filmeId);
+            return ResponseEntity.ok("Filme removido dos favoritos");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
-
-        return "redirect:/usuario/login";
     }
-
-    @PostMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/usuario/login";
+    
+    // Endpoint para verificar se está favoritado
+    @GetMapping("/verificar-favorito")
+    @ResponseBody
+    public ResponseEntity<Boolean> verificarFavorito(
+            @RequestParam Long filmeId,
+            @RequestParam Long usuarioId) {
+        boolean favoritado = favoritoService.isFavoritado(usuarioId, filmeId);
+        return ResponseEntity.ok(favoritado);
     }
 }
 

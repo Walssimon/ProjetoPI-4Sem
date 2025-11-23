@@ -31,8 +31,15 @@
                 </div>
                 <p>O filme destaca momentos decisivos na vida de Steve Jobs, desde o lançamento do primeiro Macintosh, em 1984, e a criação da NeXT Inc, até a introdução revolucionária do iMac. Fatos da vida pessoal de Jobs também são revelados, especialmente o conturbado relacionamento com sua primeira filha Lisa.</p>
                 <div class="buttons_container flex">
-                    <!-- <i class="fa-solid fa-bookmark"></i> esse é pra quando tiver clicado pra ser favorito -->
-                    <button class="favoritar input_style"><i class="fa-regular fa-bookmark"></i>Favoritar</button>
+                    <button 
+                        class="favoritar input_style" 
+                        th:classappend="${isFavoritado} ? 'favoritado' : ''"
+                        th:data-filme-id="${filme.id}"
+                        th:data-usuario-id="${usuarioId}"
+                        onclick="toggleFavorito(this)">
+                        <i th:class="${isFavoritado} ? 'fa-solid fa-bookmark' : 'fa-regular fa-bookmark'"></i>
+                        <span th:text="${isFavoritado} ? 'Favoritado' : 'Favoritar'"></span>
+                    </button>
                     <a href="#comentar_no_filme" class="comentar input_style">Comentar</a>
                 </div>
             </div>
@@ -164,5 +171,47 @@
         </div>
     </main>
     <script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
+    <script>
+    function toggleFavorito(button) {
+        const filmeId = button.getAttribute('data-filme-id');
+        const usuarioId = button.getAttribute('data-usuario-id');
+        const isFavoritado = button.classList.contains('favoritado');
+        
+        const url = isFavoritado 
+            ? '/usuario/remover-favorito' 
+            : '/usuario/favoritar';
+        
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `filmeId=${filmeId}&usuarioId=${usuarioId}`
+        })
+        .then(response => response.text())
+        .then(data => {
+            if (data.includes('adicionado') || data.includes('removido')) {
+                // Alternar estado visual
+                button.classList.toggle('favoritado');
+                const icon = button.querySelector('i');
+                const text = button.querySelector('span');
+                
+                if (button.classList.contains('favoritado')) {
+                    icon.className = 'fa-solid fa-bookmark';
+                    text.textContent = 'Favoritado';
+                } else {
+                    icon.className = 'fa-regular fa-bookmark';
+                    text.textContent = 'Favoritar';
+                }
+            } else {
+                alert('Erro ao favoritar filme: ' + data);
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro ao processar requisição');
+        });
+    }
+    </script>
 </body>
 </html>
