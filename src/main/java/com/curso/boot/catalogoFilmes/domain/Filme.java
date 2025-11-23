@@ -36,6 +36,7 @@ public class Filme extends AbstractEntity<Long> {
     @OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<GeneroFilme> generos;
 
+
     @Lob
     @Column(length = 16777215) // tamanho para armazenar blob médio (16MB)
     private byte[] dados;
@@ -48,6 +49,15 @@ public class Filme extends AbstractEntity<Long> {
     public String getImagemBase64() {
         try {
             return java.util.Base64.getEncoder().encodeToString(this.dados);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Transient
+    public String getImagemBanner64() {
+        try {
+            return java.util.Base64.getEncoder().encodeToString(this.dadosBanner);
         } catch (Exception e) {
             return null;
         }
@@ -92,6 +102,6 @@ public class Filme extends AbstractEntity<Long> {
     public List<FilmeAtor> getAtores() { return atores; }
     public void setAtores(List<FilmeAtor> atores) { this.atores = atores; }
 
-    public List<GeneroFilme> getGeneros() { return generos; }
+    public List<GeneroFilme> getGeneros() {return generos; }
     public void setGeneros(List<GeneroFilme> generos) { this.generos = generos; }
 }

@@ -8,6 +8,7 @@ import com.curso.boot.catalogoFilmes.dao.FilmeDao;
 import com.curso.boot.catalogoFilmes.domain.Genero;
 import com.curso.boot.catalogoFilmes.domain.GeneroFilme;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -473,4 +474,6 @@ public class DataInitializer {
             }
         };
     }
+
+
 }

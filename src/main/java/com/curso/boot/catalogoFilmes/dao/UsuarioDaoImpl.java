@@ -24,4 +24,15 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario, Long> implements Usuari
 
         return lista.isEmpty() ? null : lista.get(0);
     }
+
+
+    public Long getIdByemail(String email) {
+        String jpql = "SELECT u.id FROM Usuario u WHERE u.email = :email";
+
+        List<Long> lista = em.createQuery(jpql, Long.class)
+                .setParameter("email", email)
+                .getResultList();
+
+        return lista.isEmpty() ? null : lista.get(0);
+    }
 }
