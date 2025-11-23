@@ -1,5 +1,7 @@
 package com.curso.boot.catalogoFilmes.web.controller;
 
+import com.curso.boot.catalogoFilmes.dao.GeneroDao;
+import com.curso.boot.catalogoFilmes.dao.GeneroFilmeDao;
 import com.curso.boot.catalogoFilmes.domain.Avaliacao;
 import com.curso.boot.catalogoFilmes.domain.Comentario;
 import com.curso.boot.catalogoFilmes.domain.Filme;
@@ -9,6 +11,8 @@ import com.curso.boot.catalogoFilmes.service.ComentarioService;
 import com.curso.boot.catalogoFilmes.service.FilmeAtorService;
 import com.curso.boot.catalogoFilmes.service.FilmeService;
 import com.curso.boot.catalogoFilmes.service.FavoritoService;
+import com.curso.boot.catalogoFilmes.strategy.BuscarPorGeneroStrategy;
+import com.curso.boot.catalogoFilmes.strategy.FilmeSearchContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +40,13 @@ public class FilmeController {
 
     @Autowired
     private FilmeAtorService filmeAtorService;
+
+    @Autowired
+    private GeneroDao generoDao;
+
+    @Autowired
+    private GeneroFilmeDao generoFilmeDao;
+
 
     @GetMapping("/home")
     public String home(Model model) {
@@ -70,5 +81,21 @@ public class FilmeController {
 
 
         return "filme/details";
+    }
+
+    @GetMapping("/filmes/genero/{nome}")
+    public String buscarPorGenero(@PathVariable String nome, Model model) {
+
+        FilmeSearchContext context = new FilmeSearchContext();
+        context.setStrategy(
+                new BuscarPorGeneroStrategy(nome, generoDao, generoFilmeDao)
+        );
+
+        List<Filme> filmes = context.buscarFilmes();
+
+        model.addAttribute("filmes", filmes);
+        model.addAttribute("filtro", nome);
+
+        return "filmes-por-genero"; // ajuste para sua view
     }
 }

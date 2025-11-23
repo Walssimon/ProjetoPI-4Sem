@@ -23,11 +23,12 @@
         </a>
         <div class="container_carrossel">
             <div class="carousel">
-                <img src="./image/destaque_foto.png" alt="Foto destaque"/>
-                <img src="./image/destaque_foto.png" alt="Foto destaque"/>
-                <img src="./image/destaque_foto.png" alt="Foto destaque"/>
-                <img src="./image/destaque_foto.png" alt="Foto destaque"/>
-                <img src="./image/destaque_foto.png" alt="Foto destaque"/>
+
+                <img th:each="filme : ${filmesDestaque}"
+                     th:src="@{'data:image/jpeg;base64,' + ${filme.imagemBase64}}"
+                     th:alt="${'Capa do filme ' + filme.nomeFilme}"
+                     class="carousel-image"/>
+
             </div>
         </div>
     </div>
@@ -44,16 +45,29 @@
             <ul class="cockpit_item flex-center">
                 <li><span>Filtro de Categoria:</span></li>
                 <li>
-                    <select
-                            name="categorias"
-                            class="input_style filters_button"
-                            id="categoria"
-                            autocomplete="off"
-                    >
-                        <option value="Ação">Ação</option>
-                        <option value="Aventura">Aventura</option>
-                        <option value="Desenho">Desenho</option>
-                        <option value="Ficcao">Ficção</option>
+                    <select id="categoria" class="input_style" onchange="filtrarPorGenero()">
+                        <option value="" th:selected="${generoSelecionado == null or generoSelecionado == ''}">Todos os
+                            Gêneros
+                        </option>
+
+                        <option value="Acao" th:selected="${generoSelecionado == 'Acao'}">Ação</option>
+                        <option value="Aventura" th:selected="${generoSelecionado == 'Aventura'}">Aventura</option>
+                        <option value="Comedia" th:selected="${generoSelecionado == 'Comedia'}">Comédia</option>
+                        <option value="Drama" th:selected="${generoSelecionado == 'Drama'}">Drama</option>
+                        <option value="Terror" th:selected="${generoSelecionado == 'Terror'}">Terror</option>
+                        <option value="Ficcao Cientifica" th:selected="${generoSelecionado == 'Ficcao Cientifica'}">
+                            Ficção Científica
+                        </option>
+                        <option value="Romance" th:selected="${generoSelecionado == 'Romance'}">Romance</option>
+                        <option value="Fantasia" th:selected="${generoSelecionado == 'Fantasia'}">Fantasia</option>
+                        <option value="Suspense" th:selected="${generoSelecionado == 'Suspense'}">Suspense</option>
+                        <option value="Misterio" th:selected="${generoSelecionado == 'Misterio'}">Misterio</option>
+                        <option value="Animacao" th:selected="${generoSelecionado == 'Animacao'}">Animacao</option>
+                        <option value="Documentario" th:selected="${generoSelecionado == 'Documentario'}">Documentario
+                        </option>
+                        <option value="Musical" th:selected="${generoSelecionado == 'Musical'}">Musical</option>
+                        <option value="Historico" th:selected="${generoSelecionado == 'Historico'}">Historico</option>
+                        <option value="Familia" th:selected="${generoSelecionado == 'Familia'}">Familia</option>
                     </select>
                 </li>
             </ul>
@@ -67,47 +81,116 @@
 </main>
 
 <script>
-function toggleFavoritoCard(button, event) {
-    event.preventDefault();
-    event.stopPropagation();
-    
-    const filmeId = button.getAttribute('data-filme-id');
-    const usuarioId = button.getAttribute('data-usuario-id');
-    
-    // Verificar estado atual (pode adicionar lógica para verificar se já está favoritado)
-    const isFavoritado = button.classList.contains('favoritado');
-    const url = isFavoritado 
-        ? '/usuario/remover-favorito' 
-        : '/usuario/favoritar';
-    
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `filmeId=${filmeId}&usuarioId=${usuarioId}`
-    })
-    .then(response => response.text())
-    .then(data => {
-        if (data.includes('adicionado') || data.includes('removido')) {
-            button.classList.toggle('favoritado');
-            const svg = button.querySelector('svg path');
-            if (button.classList.contains('favoritado')) {
-                svg.setAttribute('fill', '#A411D4');
+    function toggleFavoritoCard(button, event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const filmeId = button.getAttribute('data-filme-id');
+        const usuarioId = button.getAttribute('data-usuario-id');
+
+        // Verificar estado atual (pode adicionar lógica para verificar se já está favoritado)
+        const isFavoritado = button.classList.contains('favoritado');
+        const url = isFavoritado
+            ? '/usuario/remover-favorito'
+            : '/usuario/favoritar';
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `filmeId=${filmeId}&usuarioId=${usuarioId}`
+        })
+        .then(response => response.text())
+        .then(data => {
+            if (data.includes('adicionado') || data.includes('removido')) {
+                button.classList.toggle('favoritado');
+                const svg = button.querySelector('svg path');
+                if (button.classList.contains('favoritado')) {
+                    svg.setAttribute('fill', '#A411D4');
+                } else {
+                    svg.setAttribute('fill', 'none');
+                }
             } else {
-                svg.setAttribute('fill', 'none');
+                alert('Erro ao favoritar filme');
             }
-        } else {
-            alert('Erro ao favoritar filme');
-        }
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-        alert('Erro ao processar requisição');
-    });
-}
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro ao processar requisição');
+        });
+    }
 </script>
 <script src="scriptGlobal.js"></script>
 <script src="carrossel.js"></script>
+<script>
+    function filtrarPorGenero() {
+           const genero = document.getElementById("categoria").value;
+
+           // Se o valor for vazio (seleção "Todos os Gêneros"), redireciona para a home sem o parâmetro
+           if (genero === "") {
+                window.location.href = "/home"; // ou simplesmente "/"
+           } else {
+                // Redireciona usando o parâmetro de requisição: /home?genero=Acao
+                window.location.href = "/home?genero=" + encodeURIComponent(genero);
+           }
+       }
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+     const carouselWrapper = document.querySelector('.container_carrossel');
+     const carousel = document.querySelector('.carousel');
+     const images = document.querySelectorAll('.carousel-image');
+
+     // Verifique se os elementos existem
+     if (!carousel || images.length === 0) return;
+
+     let currentIndex = 0;
+     const totalImages = images.length;
+
+     // Calcula a largura que cada slide deve ter (100% do wrapper)
+     const slideWidth = carouselWrapper.clientWidth;
+
+     // Função para mover o carrossel para a imagem atual
+     function moveCarousel() {
+         // Mover o contêiner interno (.carousel) horizontalmente
+         // Calcula o deslocamento (por exemplo, 100% para a segunda imagem, 200% para a terceira)
+         const offset = -currentIndex * slideWidth;
+
+         // Aplica o movimento, que será animado pelo CSS 'transition'
+         carousel.style.transform = `translateX(${offset}px)`;
+     }
+
+     // Função para avançar
+     function nextImage() {
+         // Incrementa o índice, voltando para 0 se atingir o final
+         currentIndex = (currentIndex + 1) % totalImages;
+         moveCarousel();
+     }
+
+     // Garante que o tamanho inicial do slide seja definido (importante para o cálculo inicial)
+     images.forEach(img => {
+         img.style.width = `${slideWidth}px`;
+     });
+
+     // Inicia o carrossel (avança a cada 5 segundos, por exemplo)
+     if (totalImages > 1) {
+         setInterval(nextImage, 5000); // Mude 5000 (ms) para a velocidade desejada
+     }
+
+     // Adiciona listener para reajustar o tamanho do slide ao redimensionar a janela
+     window.addEventListener('resize', () => {
+         // Recalcula a largura ao redimensionar
+         const newSlideWidth = carouselWrapper.clientWidth;
+
+         images.forEach(img => {
+             img.style.width = `${newSlideWidth}px`;
+         });
+
+         // Move para a posição correta com a nova largura
+         moveCarousel();
+     });
+ });
+</script>
 </body>
 </html>

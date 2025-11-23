@@ -38,7 +38,7 @@
             <!-- INFO PRINCIPAL -->
             <div class="info_details flex">
                 <!-- Gênero principal -->
-                <li th:each="g : ${filme.generos}" th:text="${g.nome}"></li>
+                <li th:each="g : ${filme.generos}" th:text="${g.genero.nomeGenero}"></li>
 
                 <!-- Avaliação -->
                 <span class="stars-details">
