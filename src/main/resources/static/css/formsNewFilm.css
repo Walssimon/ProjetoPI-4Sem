@@ -632,6 +632,19 @@
   justify-content: center;
   align-items: center;
 }
+.add_btn_Actor {
+  margin-top: 10px;
+  padding: 16px 24px;
+  background-color: #171317;
+  border: none;
+  color: #E7E7E7;
+  font-size: 18px;
+  text-align: center;
+   border-radius: 13px;
+   cursor: pointer;
+}
+
+
 .modal_add_ator .modal_content form .submit .add_btn i {
   font-size: 16px;
   margin-right: 8px;
@@ -699,4 +712,36 @@
 }
 .container_topArea .inputs_areas .input_div .input_capas > input[type=file]:focus-within {
   border: 10px solid #8501B0;
+}
+/* Caixa vertical para cadastro de ator */
+.input_capas_ator {
+  margin-top: 24px;     /* era pequeno — aumentei */
+  width: 220px;
+  height: 360px;
+  background-color: #171317;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+
+/* A imagem dentro do preview */
+.img_preview_actor {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none; /* começa escondida */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Arquivo invisível, clicável */
+.input_capas_ator input[type=file] {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
 }

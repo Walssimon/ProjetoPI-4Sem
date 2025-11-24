@@ -24,11 +24,11 @@
 <body class="body">
 <nav class="container-menu">
     <div class="buttonsAreaView">
-        <div class="buttonView active"><button><a href="cadNewFilme">
+        <div class="buttonView active"><button><a th:href="@{/cadastroAdm/cadNewFilme}">
             <i class="fa-solid fa-circle-plus"></i></a></button>
             <p>Adicionar Filme</p>
         </div>
-        <div class="buttonView"><button><a href="addActorPage"><i class="fa-solid fa-user-plus"></i></a></button>
+        <div class="buttonView"><button><a th:href="@{/cadastroAdm/addActorPage}"><i class="fa-solid fa-user-plus"></i></a></button>
             <p>Adicionar Atores</p>
         </div>
         <div class="buttonView"><button><a href=""><i class="fa-solid fa-right-from-bracket"></i></a></button>
@@ -151,37 +151,23 @@
                 </div>
                 <div class="input_div_grid desc_area">
                     <label>Descrição</label>
-                    <label class="input_capas"> <textarea name="descricao" th:text="${filme.descricao}" ></textarea></label>
+                    <label class="input_capas"> <textarea class="descr_input" name="descricao" th:text="${filme.descricao}" ></textarea></label>
                 </div>
             </div>
         </div>
+        <!-- ABRIR MODAL PARA SELECIONAR ATORES -->
+        <div class="add_atores">
+            <h3>Atores Principais</h3>
+        </div>
+        <button class="add_btn_Actor" type="button" onclick="openCloseModal('.modal_add_ator')">Adicionar Ator</button>
+        <div class="div_list_inputs actors">
+            <div th:replace="~{fragments/layoutAtores :: layout(${atoresDoFilme})}"></div>
+
+        </div>
 
         <!-- atores -->
-<!--        <div class="div_list_inputs actors">-->
+        <div class="div_list_inputs actors">
 
-<!--            &lt;!&ndash; ABRIR MODAL PARA SELECIONAR ATORES &ndash;&gt;-->
-<!--            <div class="add_atores">-->
-<!--                <h1>Lista de Atores</h1>-->
-
-<!--            </div>-->
-
-<!--            &lt;!&ndash; LISTAGEM DE ATORES &ndash;&gt;-->
-<!--            <div class="container_actores_list">-->
-<!--                <div class="actors_div_film">-->
-<!--                    <button class="btn_favoritar_filmes ">-->
-<!--                        <a>-->
-
-<!--                            <i class="fa-solid fa-trash"></i>-->
-<!--                        </a>-->
-<!--                    </button>-->
-<!--                    <img src="./../../../5teste.jpg" alt="Foto do ator">-->
-<!--                    <div class="content">-->
-<!--                        <p class="title_persona_name location">Nome do Personagem</p>-->
-<!--                        <p class="title_actor_name location">Nome do Ator</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
 
         <div class="footer">
             <div class="footer_container_area with_delete_button">
@@ -198,19 +184,176 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div>    </div>
+
     </form>
 
 </main>
 
 
 
+<div class="modal modal_add_ator hidden">
+    <div class="modal_header">
+        <p>Adicionar ator</p>
+        <button class="close" data-modal-close>X</button>
+    </div>
+
+    <div class="modal_content">
+        <form>
+
+            <label class="nome_ficticio_label">
+                <span>Nome fictício</span>
+                <input type="text" class="input_style" id="nome_ficticio" name="nome_ficticio" placeholder="Nome do personagem">
+            </label>
+
+            <div class="search">
+                <div class="action">
+                    <input type="text" class="input_style" id="filtro_ator" placeholder="Filtrar por nome">
+                </div>
+            </div>
+
+            <div class="container_actores_list">
+
+                <!-- LOOP DOS ATORES -->
+                <div class="actors_div_film"
+                     th:each="ator : ${listaAtores}"
+                     th:data-nome="${ator.nomeAtor}">
+
+                    <input type="radio"
+                           th:id="'ator_' + ${ator.id}"
+                           name="selected_actor"
+                           th:value="${ator.id}"
+                           required>
+
+                    <label class="label_input_radio"
+                           th:for="'ator_' + ${ator.id}">
+
+                        <img th:src="${ator.fotoBase64}" alt="Foto do ator">
+
+                        <div class="content">
+
+                            <!-- Nome real do ator -->
+                            <p class="title_actor_name location"
+                               th:text="${ator.nomeAtor}">
+                                Nome do Ator
+                            </p>
+                        </div>
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="submit">
+                <button class="add_btn_Actor " type="button" onclick="addAtorFilme()">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                    Adicionar
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
 
 
 
 
 <script src="../scriptGlobal.js"></script>
 <script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
+<script>
+    function openCloseModal(selector) {
+        const modal = document.querySelector(selector);
+        if (!modal) {
+            console.error("Modal não encontrado:", selector);
+            return;
+        }
+        modal.classList.toggle("hidden");
+    }
+</script>
+<script>
+    document.addEventListener("click", function(e){
+        if (e.target.hasAttribute("data-modal-close")) {
+            openCloseModal(".modal_add_ator");
+        }
+    });
+</script>
+
+
+<script>
+
+    const form = document.getElementById('formUpload');
+    const fileInput = document.getElementById('file-input');
+
+ fileInput.addEventListener('change', async () => {
+     const formData = new FormData(form);
+
+     try {
+         const response = await fetch(form.action, {
+             method: 'POST',
+             body: formData
+         })
+
+         if (response.ok) {
+             console.log('Imagem enviada com sucesso!');
+         } else {
+             console.error('Erro ao enviar imagem');
+         }
+     } catch (err) {
+         console.error('Erro na requisição:', err);
+     }
+ })
+</script>
+<script>
+    async function addAtorFilme() {
+
+        const papel = document.getElementById("nome_ficticio").value;
+        const atorRadio = document.querySelector("input[name='selected_actor']:checked");
+
+        if (!atorRadio) {
+            alert("Selecione um ator.");
+            return;
+        }
+
+        const atorId = atorRadio.value;
+        const filmeId = /* Thymeleaf injeta o ID aqui */ [[${filme.id}]];
+
+        const formData = new URLSearchParams();
+        formData.append("filmeId", filmeId);
+        formData.append("atorId", atorId);
+        formData.append("papel", papel);
+
+        const response = await fetch("/cadastroAdm/addAtorFilme", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: formData
+        });
+
+        if (response.ok) {
+            alert("Ator adicionado com sucesso!");
+
+            // Fechar modal
+            openCloseModal('.modal_add_ator');
+
+            // Atualizar lista de atores na tela sem reload
+            loadAtoresDoFilme(filmeId);
+
+        } else {
+            alert("Erro ao adicionar ator.");
+        }
+    }
+</script>
+<script>
+    async function loadAtoresDoFilme(filmeId) {
+
+        const response = await fetch(`/cadastroAdm/listaAtoresFilme/${filmeId}`);
+        const html = await response.text();
+
+        document.querySelector(".actors .container_actores_list")
+                .innerHTML = html;
+    }
+</script>
+
 
 </body>
 </html>
+

@@ -126,26 +126,7 @@
             </div>
         </div>
 
-        <!-- atores -->
-        <div class="div_list_inputs actors">
 
-            <!-- ABRIR MODAL PARA SELECIONAR ATORES -->
-            <div class="add_atores">
-                <label>Atores Principais</label>
-                <button type="button" onclick="openCloseModal('.modal_add_ator')">Adicionar Ator</button>
-            </div>
-
-            <!-- LISTAGEM DE ATORES -->
-            <div class="container_actores_list">
-                <div class="actors_div_film">
-                    <img src="./../../../5teste.jpg" alt="Foto do ator">
-                    <div class="content">
-                        <p class="title_persona_name location">Nome do Personagem</p>
-                        <p class="title_actor_name location">Nome do Ator</p>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="footer">
             <div class="footer_container_area">
@@ -162,76 +143,6 @@
     </form>
 
 </main>
-
-<div class="modal modal_add_ator hidden">
-    <div class="modal_header">
-        <p>Adicionar ator</p>
-        <button class="close" data-modal-close>X</button>
-    </div>
-    <div class="modal_content">
-        <form>
-            <label class="nome_ficticio_label">
-                <span>Nome fictício</span>
-                <input type="text" class="input_style" id="nome_ficticio" name="nome_ficticio" placeholder="Nome do personagem">
-            </label>
-            <div class="search">
-                <div class="action">
-                    <input type="text" class="input_style" placeholder="Filtrar por nome">
-                </div>
-            </div>
-            <div class="container_actores_list">
-                <!-- Listagem dos atores -->
-                <div class="actors_div_film">
-                    <input type="radio" id="ator_1" name="selected_actor" value="ator_1" required>
-                    <label class="label_input_radio" for="ator_1">
-                        <img src="./../../../5teste.jpg" alt="Foto do ator">
-                        <div class="content">
-                            <p class="title_persona_name location">Nome do Personagem</p>
-                            <p class="title_actor_name location">Nome do Ator</p>
-                        </div>
-                    </label>
-                </div>
-                <div class="actors_div_film">
-                    <input type="radio" id="ator_2" name="selected_actor" value="ator_2" required>
-                    <label class="label_input_radio" for="ator_2">
-                        <img src="./../../../5teste.jpg" alt="Foto do ator">
-                        <div class="content">
-                            <p class="title_persona_name location">Nome do Personagem</p>
-                            <p class="title_actor_name location">Nome do Ator</p>
-                        </div>
-                    </label>
-                </div>
-                <div class="actors_div_film">
-                    <input type="radio" id="ator_3" name="selected_actor" value="ator_3" required>
-                    <label class="label_input_radio" for="ator_3">
-                        <img src="./../../../5teste.jpg" alt="Foto do ator">
-                        <div class="content">
-                            <p class="title_persona_name location">Nome do Personagem</p>
-                            <p class="title_actor_name location">Nome do Ator</p>
-                        </div>
-                    </label>
-                </div>
-                <div class="actors_div_film">
-                    <input type="radio" id="ator_4" name="selected_actor" value="ator_4" required>
-                    <label class="label_input_radio" for="ator_4">
-                        <img src="./../../../5teste.jpg" alt="Foto do ator">
-                        <div class="content">
-                            <p class="title_persona_name location">Nome do Personagem</p>
-                            <p class="title_actor_name location">Nome do Ator</p>
-                        </div>
-                    </label>
-                </div>
-            </div>
-
-            <div class="submit">
-                <button class="add_btn" type="submit">
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i>
-                    Adicionar
-                </button>
-            </div>
-        </form>
-    </div>
-</div>
 
 
 <div id="modal_blur" class="hidden">

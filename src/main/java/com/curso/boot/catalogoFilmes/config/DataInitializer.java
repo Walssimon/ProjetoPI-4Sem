@@ -26,6 +26,7 @@ import com.curso.boot.catalogoFilmes.dao.AtorDao;
 import com.curso.boot.catalogoFilmes.dao.FilmeAtorDao;
 import com.curso.boot.catalogoFilmes.domain.Ator;
 import com.curso.boot.catalogoFilmes.domain.FilmeAtor;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -41,7 +42,7 @@ public class DataInitializer {
     @Bean
     @Transactional
     CommandLineRunner initDatabase(FilmeDaoImpl filmeDao, GeneroDao generoDao, GeneroFilmeDao generoFilmeDao,
-                                   DataSource dataSource,UsuarioDao usuarioDao,
+                                   DataSource dataSource, UsuarioDao usuarioDao,
                                    AtorDao atorDao,
                                    FilmeAtorDao filmeAtorDao) {
         return args -> {
@@ -56,27 +57,43 @@ public class DataInitializer {
             } catch (Exception e) {
                 // Caso o MySQL não permita (host remoto/shared hosting)
                 System.err.println("Não foi possível configurar max_allowed_packet automaticamente: "
-                        + e.getMessage());}
+                        + e.getMessage());
+            }
 
             criarUsuarioAdmin(usuarioDao);
 
             //Criar gêneros apenas se não existirem
             if (generoDao.findAll().isEmpty()) {
-                Genero acao = new Genero(); acao.setNomeGenero("Acao");
-                Genero aventura = new Genero(); aventura.setNomeGenero("Aventura");
-                Genero comedia = new Genero(); comedia.setNomeGenero("Comedia");
-                Genero drama = new Genero(); drama.setNomeGenero("Drama");
-                Genero terror = new Genero(); terror.setNomeGenero("Terror");
-                Genero ficcao = new Genero(); ficcao.setNomeGenero("Ficcao Cientifica");
-                Genero romance = new Genero(); romance.setNomeGenero("Romance");
-                Genero fantasia = new Genero(); fantasia.setNomeGenero("Fantasia");
-                Genero suspense = new Genero(); suspense.setNomeGenero("Suspense");
-                Genero misterio = new Genero(); misterio.setNomeGenero("Misterio");
-                Genero animacao = new Genero(); animacao.setNomeGenero("Animacao");
-                Genero documentario = new Genero(); documentario.setNomeGenero("Documentario");
-                Genero musical = new Genero(); musical.setNomeGenero("Musical");
-                Genero historico = new Genero(); historico.setNomeGenero("Historico");
-                Genero familia = new Genero(); familia.setNomeGenero("Familia");
+                Genero acao = new Genero();
+                acao.setNomeGenero("Acao");
+                Genero aventura = new Genero();
+                aventura.setNomeGenero("Aventura");
+                Genero comedia = new Genero();
+                comedia.setNomeGenero("Comedia");
+                Genero drama = new Genero();
+                drama.setNomeGenero("Drama");
+                Genero terror = new Genero();
+                terror.setNomeGenero("Terror");
+                Genero ficcao = new Genero();
+                ficcao.setNomeGenero("Ficcao Cientifica");
+                Genero romance = new Genero();
+                romance.setNomeGenero("Romance");
+                Genero fantasia = new Genero();
+                fantasia.setNomeGenero("Fantasia");
+                Genero suspense = new Genero();
+                suspense.setNomeGenero("Suspense");
+                Genero misterio = new Genero();
+                misterio.setNomeGenero("Misterio");
+                Genero animacao = new Genero();
+                animacao.setNomeGenero("Animacao");
+                Genero documentario = new Genero();
+                documentario.setNomeGenero("Documentario");
+                Genero musical = new Genero();
+                musical.setNomeGenero("Musical");
+                Genero historico = new Genero();
+                historico.setNomeGenero("Historico");
+                Genero familia = new Genero();
+                familia.setNomeGenero("Familia");
 
                 generoDao.save(acao);
                 generoDao.save(aventura);
@@ -97,7 +114,6 @@ public class DataInitializer {
             }
 
 
-
             // Evita duplicar dados a cada start
             if (filmeDao.findAll().isEmpty()) {
 
@@ -105,29 +121,39 @@ public class DataInitializer {
                 byte[] img = Files.readAllBytes(Paths.get("src/main/resources/static/image/1.png"));
                 byte[] imgBanner = Files.readAllBytes(Paths.get("src/main/resources/static/image/1b.png"));
 
+                byte[] atorFoto = Files.readAllBytes(Paths.get("src/main/resources/static/image/atores/1.png"));
                 // 1. CADASTRO DOS ATORES (TB_ATOR)
                 System.out.println("🎭 Cadastrando atores iniciais...");
-                Ator viggo = createAndSaveAtor("Viggo Mortensen", 1958, atorDao);
-                Ator zoe = createAndSaveAtor("Zoe Saldana", 1978, atorDao);
-                Ator christian = createAndSaveAtor("Christian Bale", 1974, atorDao);
-                Ator rdj = createAndSaveAtor("Robert Downey Jr.", 1965, atorDao);
-                Ator russell = createAndSaveAtor("Russell Crowe", 1964, atorDao);
-                Ator keanu = createAndSaveAtor("Keanu Reeves", 1964, atorDao);
-                Ator leo = createAndSaveAtor("Leonardo DiCaprio", 1974, atorDao);
-                Ator matthew = createAndSaveAtor("Matthew McConaughey", 1969, atorDao);
-                Ator tom = createAndSaveAtor("Tom Hanks", 1956, atorDao); // Exemplo para Toy Story
-
-                // Outros atores necessários
-                Ator hugh = createAndSaveAtor("Hugh Jackman", 1968, atorDao);
-                Ator tobey = createAndSaveAtor("Tobey Maguire", 1975, atorDao);
-                Ator amy = createAndSaveAtor("Amy Poehler", 1971, atorDao);
+                Ator viggo = createAndSaveAtor("Viggo Mortensen", 1958, atorFoto, atorDao);
+                atorFoto = Files.readAllBytes(Paths.get("src/main/resources/static/image/atores/2.png"));
+                Ator zoe = createAndSaveAtor("Zoe Saldana", 1978,atorFoto,  atorDao);
+                atorFoto = Files.readAllBytes(Paths.get("src/main/resources/static/image/atores/3.png"));
+                Ator christian = createAndSaveAtor("Christian Bale", 1974,atorFoto,  atorDao);
+                atorFoto = Files.readAllBytes(Paths.get("src/main/resources/static/image/atores/4.png"));
+                Ator rdj = createAndSaveAtor("Robert Downey Jr.", 1965,atorFoto,  atorDao);
+                atorFoto = Files.readAllBytes(Paths.get("src/main/resources/static/image/atores/5.png"));
+                Ator russell = createAndSaveAtor("Russell Crowe", 1964,atorFoto,  atorDao);
+                atorFoto = Files.readAllBytes(Paths.get("src/main/resources/static/image/atores/6.png"));
+                Ator keanu = createAndSaveAtor("Keanu Reeves", 1964,atorFoto,  atorDao);
+                atorFoto = Files.readAllBytes(Paths.get("src/main/resources/static/image/atores/7.png"));
+                Ator leo = createAndSaveAtor("Leonardo DiCaprio", 1974,atorFoto,  atorDao);
+                atorFoto = Files.readAllBytes(Paths.get("src/main/resources/static/image/atores/8.png"));
+                Ator matthew = createAndSaveAtor("Matthew McConaughey", 1969,atorFoto,  atorDao);
+                atorFoto = Files.readAllBytes(Paths.get("src/main/resources/static/image/atores/9.png"));
+                Ator tom = createAndSaveAtor("Tom Hanks", 1956,atorFoto,  atorDao);
+                atorFoto = Files.readAllBytes(Paths.get("src/main/resources/static/image/atores/10.png"));
+                Ator hugh = createAndSaveAtor("Hugh Jackman", 1968,atorFoto,  atorDao);
+                atorFoto = Files.readAllBytes(Paths.get("src/main/resources/static/image/atores/11.png"));
+                Ator tobey = createAndSaveAtor("Tobey Maguire", 1975,atorFoto,  atorDao);
+                atorFoto = Files.readAllBytes(Paths.get("src/main/resources/static/image/atores/12.png"));
+                Ator amy = createAndSaveAtor("Amy Poehler", 1971,atorFoto,  atorDao);
 
                 System.out.println("🎭 Atores cadastrados.");
 
                 Filme filme = new Filme();
                 filme.setNomeFilme("O Senhor dos Anéis: A Sociedade do Anel");
                 filme.setDescricao("Um grupo parte em uma jornada para destruir um anel maligno.");
-                filme.setDuracao(2);
+                filme.setDuracao(120);
                 filme.setDataLancamento(LocalDate.of(2001, 12, 19));
                 filme.setAvaliacao(9.0);
                 filme.setDados(img);
@@ -573,10 +599,11 @@ public class DataInitializer {
     }
 // --- Novos Métodos Auxiliares ---
 
-    private Ator createAndSaveAtor(String nome, int anoNascimento, AtorDao atorDao) {
+    private Ator createAndSaveAtor(String nome, int anoNascimento, byte[] foto, AtorDao atorDao) {
         Ator ator = new Ator();
         ator.setNomeAtor(nome);
         ator.setDataNascimento(LocalDate.of(anoNascimento, 1, 1));
+        ator.setDados(foto);
         atorDao.save(ator);
         return ator;
     }

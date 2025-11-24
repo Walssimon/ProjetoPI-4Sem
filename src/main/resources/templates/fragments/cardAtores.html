@@ -1,0 +1,19 @@
+<!-- fragments/cardAtor.html -->
+<div th:fragment="card(fa)" xmlns:th="http://www.w3.org/1999/xhtml">
+  <div class="actors_div_film">
+
+    <!-- FOTO: se tiver campo foto no ator -->
+    <img th:src="${fa.ator.fotoBase64}">
+    <div class="content">
+
+      <!-- PAPEL (personagem no filme) -->
+      <p class="title_persona_name location"
+         th:text="${fa.papel}">Nome do Personagem</p>
+
+      <!-- NOME DO ATOR -->
+      <p class="title_actor_name location"
+         th:text="${fa.ator.nomeAtor}">Nome do Ator</p>
+
+    </div>
+  </div>
+</div>

@@ -1,14 +1,13 @@
 
 package com.curso.boot.catalogoFilmes.web.controller;
+
 import com.curso.boot.catalogoFilmes.dao.AtorDaoImpl;
 import com.curso.boot.catalogoFilmes.domain.*;
-import com.curso.boot.catalogoFilmes.service.FilmeService;
+import com.curso.boot.catalogoFilmes.service.*;
 import com.curso.boot.catalogoFilmes.domain.Filme;
-import com.curso.boot.catalogoFilmes.service.GeneroFilmeService;
-import com.curso.boot.catalogoFilmes.service.GeneroService;
-import com.curso.boot.catalogoFilmes.service.GerarImagemService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,10 +33,15 @@ public class CadastroAdmController {
     @Autowired
     private AtorDaoImpl atorDao;
 
+    @Autowired
+    private FilmeAtorService filmeAtorService;
+    @Autowired
+    private AtorService atorService;
+
 
     @GetMapping("/index")
-    public String HomepageAdm(  Model model,
-                                HttpSession session) {
+    public String HomepageAdm(Model model,
+                              HttpSession session) {
 
         // Verifica login
         Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
@@ -45,18 +49,48 @@ public class CadastroAdmController {
             return "redirect:/usuario/login";
         }
         model.addAttribute("filmes", filmeService.findAll());
-        return "cadastroAdm/index";}
+        return "cadastroAdm/index";
+    }
 
-    @GetMapping("/addActorPage")
-    public String AddActorPage(Model model,
-                                 HttpSession session) {
+    @PostMapping("/addActor")
+    public String addActor(
+            @RequestParam("nomeAtor") String nomeAtor,
+            @RequestParam("dataNascimento") String dataNascimento,
+            @RequestParam("imagem") MultipartFile imagem,
+            HttpSession session) {
 
-        // Verifica login
         Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
         if (usuarioLogado == null) {
             return "redirect:/usuario/login";
         }
-        return "cadastroAdm/AddActorPage";
+
+        Ator ator = new Ator();
+        ator.setNomeAtor(nomeAtor);
+        ator.setDataNascimento(LocalDate.parse(dataNascimento));
+
+        try {
+            if (!imagem.isEmpty()) {
+                ator.setDados(imagem.getBytes());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        atorDao.save(ator);
+
+        return "redirect:/cadastroAdm/addActorPage";
+    }
+
+    @GetMapping("/addActorPage")
+    public String AddActorPage(Model model, HttpSession session) {
+
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null) {
+            return "redirect:/usuario/login";
+        }
+
+        model.addAttribute("listaAtores", atorDao.findAll());
+        return "cadastroAdm/addActorPage";
     }
 
     @GetMapping("/cadNewFilme")
@@ -73,8 +107,9 @@ public class CadastroAdmController {
     }
 
     @GetMapping("/editFilme/{id}")
-    public String EditFilme(@PathVariable Long id,   Model model,
+    public String EditFilme(@PathVariable Long id, Model model,
                             HttpSession session) {
+
 
         // Verifica login
         Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
@@ -83,7 +118,7 @@ public class CadastroAdmController {
         }
         Filme filme = filmeService.findById(id);
         model.addAttribute("filme", filme);
-
+        List<Ator> listaAtores = atorService.findAll();
         System.out.println("===== GENEROS DO FILME =====");
         if (filme.getGeneros() == null) {
             System.out.println("filme.generos é NULL");
@@ -96,6 +131,28 @@ public class CadastroAdmController {
             });
         }
         System.out.println("============================");
+        List<FilmeAtor> atoresDoFilme = filmeAtorService.findByFilmeId(id);
+
+        System.out.println("===== ATORES DO FILME =====");
+        if (atoresDoFilme == null) {
+            System.out.println("RETORNOU NULL");
+        } else if (atoresDoFilme.isEmpty()) {
+            System.out.println("LISTA VAZIA");
+        } else {
+            atoresDoFilme.forEach(a -> {
+                System.out.println(
+                        "Ator: " + a.getAtor().getNomeAtor() +
+                                " | Papel: " + a.getPapel()
+                );
+            });
+        }
+        System.out.println("============================");
+
+        model.addAttribute("atoresDoFilme", atoresDoFilme);
+        model.addAttribute("filme", filme);
+        model.addAttribute("atores", atorDao.findAll());
+        model.addAttribute("atoresDoFilme", filmeAtorService.findByFilmeId(id));
+        model.addAttribute("listaAtores", listaAtores);
 
         return "cadastroAdm/editFilme";
     }
@@ -111,12 +168,21 @@ public class CadastroAdmController {
             @RequestParam("avaliacao") Double avaliacao,
             @RequestParam("classificacaoIndicativa") Integer classificacaoIndicativa,
             @RequestParam(value = "dados", required = false) MultipartFile dados,
-            @RequestParam(value = "dados_banner", required = false) MultipartFile dados_banner
+            @RequestParam(value = "dados_banner", required = false) MultipartFile dados_banner,
+            Model model,
+            HttpSession session
     ) {
         Filme filme = filmeService.findById(id);
 
+
+
+
         if (filme == null) {
             return "redirect:/cadastroAdm/index";
+        }
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null) {
+            return "redirect:/usuario/login";
         }
 
         filme.setNomeFilme(nomeFilme);
@@ -150,6 +216,42 @@ public class CadastroAdmController {
         return "redirect:/cadastroAdm/index";
     }
 
+    @PostMapping("/addAtorFilme")
+    @ResponseBody
+    public ResponseEntity<?> addAtorFilme(
+            @RequestParam Long filmeId,
+            @RequestParam Long atorId,
+            @RequestParam String papel
+    ) {
+        try {
+            FilmeAtor fa = new FilmeAtor();
+            fa.setFilme(filmeService.findById(filmeId));
+            fa.setAtor(atorService.findById(atorId));
+            fa.setPapel(papel);
+
+            filmeAtorService.save(fa);
+
+            return ResponseEntity.ok("Ator adicionado com sucesso!");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Erro: " + e.getMessage());
+        }
+    }
+
+
+    @GetMapping("/listaAtoresFilme/{id}")
+    public String listaAtoresFilme(@PathVariable Long id, Model model) {
+        List<FilmeAtor> atoresDoFilme = filmeAtorService.findByFilmeId(id);
+        model.addAttribute("atoresDoFilme", atoresDoFilme);
+        return "fragments/layoutAtores :: layout";
+    }
+    @GetMapping("/listAtores")
+    public String listarAtores(Model model) {
+        model.addAttribute("listaAtores", atorService.findAll());
+        return "cadastroAdm/listaAtores";
+    }
+
+
+
 
     @PostMapping("/upload")
     @ResponseBody
@@ -158,18 +260,6 @@ public class CadastroAdmController {
         return "redirect:/cadastroAdm/index";
     }
 
-    @PostMapping("/addActor")
-    public String addActor(@ModelAttribute Ator ator,  Model model,
-                           HttpSession session) {
-
-        // Verifica login
-        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
-        if (usuarioLogado == null) {
-            return "redirect:/usuario/login";
-        }
-        atorDao.save(ator);
-        return "redirect:/cadastroAdm/addActorPage";
-    }
 
     @PostMapping("/cadNewFilme")
     public String salvarFilme(@RequestParam String nomeFilme,

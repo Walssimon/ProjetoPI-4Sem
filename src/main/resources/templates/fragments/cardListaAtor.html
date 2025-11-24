@@ -1,0 +1,21 @@
+<div th:fragment="card(ator)" xmlns:th="http://www.w3.org/1999/xhtml">
+  <div class="actors_div_film">
+
+    <!-- FOTO -->
+    <img th:src="${ator.fotoBase64}" alt="Foto do ator">
+
+    <div class="content">
+
+      <!-- NOME DO ATOR -->
+      <p class="title_actor_name location"
+         th:text="${ator.nomeAtor}">Nome do Ator</p>
+
+      <!-- DATA DE NASCIMENTO (opcional) -->
+      <p class="title_persona_name location"
+         th:text="${#temporals.format(ator.dataNascimento, 'dd/MM/yyyy')}">
+        Data nascimento
+      </p>
+
+    </div>
+  </div>
+</div>

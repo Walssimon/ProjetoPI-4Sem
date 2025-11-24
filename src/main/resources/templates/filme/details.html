@@ -21,7 +21,7 @@
 <!-- ==================== BANNER DINÂMICO ==================== -->
 <div class="big_container flex-center" id="banner_details"
      th:href="@{/filme/detalhes/{id}(id=${filme.id})}"
-     th:style="'background-image: url(data:image/png;base64,' + ${filme.imagemBase64} + ');'">
+     th:style="'background-image: url(data:image/png;base64,' + ${filme.imagemBanner64} + ');'">
 <div class="gradient"></div>
 
     <div class="container">
@@ -84,12 +84,12 @@
 
                 <div class="ator" th:each="fa : ${atores}">
 
-                    <img th:src="'data:image/png;base64,' + ${fa.ator.imagemBase64}"
+                    <img th:src="${fa.ator.fotoBase64}"
                          alt="Foto do ator">
 
                     <div class="details_in_hover flex">
                         <span th:text="${fa.papel}">Personagem</span>
-                        <h3 th:text="${fa.ator.nome}">Nome do ator</h3>
+                        <h3 th:text="${fa.ator.nomeAtor}">Nome do ator</h3>
                     </div>
 
                 </div>

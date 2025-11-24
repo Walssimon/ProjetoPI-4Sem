@@ -1,0 +1,11 @@
+<section id="lista_atores"
+         th:fragment="layout(listaAtores)"
+         xmlns:th="http://www.w3.org/1999/xhtml">
+
+  <div class="container_actores_list">
+    <div th:each="ator : ${listaAtores}">
+      <div th:replace="~{fragments/cardAtorSimples :: card(${ator})}"></div>
+    </div>
+  </div>
+
+</section>
