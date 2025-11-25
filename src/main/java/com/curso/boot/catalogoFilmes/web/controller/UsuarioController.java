@@ -6,11 +6,15 @@ import com.curso.boot.catalogoFilmes.domain.Usuario;
 import com.curso.boot.catalogoFilmes.service.FavoritoService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -47,10 +51,23 @@ public class UsuarioController {
     }
 
     @PostMapping("/registro")
-    public String RegistrarUser(@ModelAttribute Usuario usuario, @RequestParam("rpsenha") String repetirSenha){
-        usuarioDao.save(usuario);
-        return "redirect:/usuario/login";
+    public String RegistrarUser(@ModelAttribute Usuario usuario, RedirectAttributes ra){
+        try {
+            usuarioDao.save(usuario);
+            return "redirect:/usuario/login";
+
+        } catch (DataIntegrityViolationException dive) {
+            // Erro comum: chave única, email duplicado, etc.
+            ra.addFlashAttribute("msgErro", "Já existe um usuário com esse email.");
+            return "redirect:/usuario/registro";
+
+        } catch (Exception e) {
+            // Qualquer outro erro do banco
+            ra.addFlashAttribute("msgErro", "Erro ao registrar usuário. Tente novamente.");
+            return "redirect:/usuario/registro";
+        }
     }
+
     @GetMapping("/registro")
     public String mostrarRegistro() {
         return "usuario/registro";
@@ -78,14 +95,67 @@ public class UsuarioController {
 
         if (usuario != null) {
             session.setAttribute("usuarioLogado", usuario);
-//            Usuario usuarioteste = (Usuario) session.getAttribute("usuarioLogado");
-//            String nome = usuarioteste.getNome();
-//
-//            System.out.println("Nome do usuário logado: " + nome);
+
             return "redirect:/home";
         }
 
         return "redirect:/usuario/login";
+    }
+
+    @PostMapping("/editUserImage/{id}")
+    public String editIImage(
+            @PathVariable Long id,
+            @RequestParam(value = "dados", required = false) MultipartFile dados,
+            HttpSession session
+    ) {
+
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+
+        if (usuarioLogado != null) {
+
+            Usuario editedUser = usuarioDao.findById(id);
+
+            try{
+                if (dados != null && !dados.isEmpty()) {
+                    editedUser.setDados(dados.getBytes());
+                }
+            } catch (Exception e) {
+               e.printStackTrace();
+            }
+
+            usuarioDao.save(editedUser);
+
+            session.setAttribute("usuarioLogado", editedUser);
+
+            return "redirect:/usuario/userPage";
+        }
+
+        return "redirect:/usuario/userPage";
+    }
+
+    @PostMapping("/editUserName/{id}")
+    public String editName(
+            @PathVariable Long id,
+            @RequestParam String nome,
+            HttpSession session
+    ) {
+
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+
+        if (usuarioLogado != null) {
+
+            Usuario editedUser = usuarioDao.findById(id);
+
+            editedUser.setNome(nome);
+
+            usuarioDao.save(editedUser);
+
+            session.setAttribute("usuarioLogado", editedUser);
+
+            return "redirect:/usuario/userPage";
+        }
+
+        return "redirect:/usuario/userPage";
     }
     
     // Endpoint para adicionar favorito (AJAX)

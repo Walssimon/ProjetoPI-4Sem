@@ -14,7 +14,7 @@
 
             <div class="avatar_user_page">
                 <div class="avatar_container flex-center">
-                    <img src="">
+                    <img th:src="'data:image/jpeg;base64,' + ${session.usuarioLogado?.getImagemBase64()}">
                 </div>
                 <span class="flex-center edit_icon" onclick="openCloseModal('.modal_edit_user_img')">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"/></svg>
@@ -52,16 +52,19 @@
             <button class="close" data-modal-close>X</button>
         </div>
         <div class="modal_content">
-            <form class="flex">  
+            <form class="flex"
+                  th:action="@{/usuario/editUserImage/{id}(id=${session.usuarioLogado?.id})}"
+                  method="post"
+                  enctype="multipart/form-data">
                 <div class="avatar flex-center">
                     <div class="avatar_img flex-center">
-                        <img src="" alt="Avatar">
+                        <img th:src="'data:image/jpeg;base64,' + ${session.usuarioLogado?.getImagemBase64()}" alt="Avatar">
                     </div>
                     <label class="avatar_input">
-                        <input type="file" class="input_style">
+                        <input type="file" name="dados" class="input_style"  accept="image/*">
                     </label>
                 </div>
-                <input type="submit" value="Atualizar" class="input_style update_button">
+                <input type="submit"  class="input_style update_button">
             </form>
         </div>
     </div>
@@ -72,20 +75,41 @@
             <button class="close" data-modal-close>X</button>
         </div>
         <div class="modal_content">
-            <form class="flex">  
+            <form class="flex"
+                  th:action="@{/usuario/editUserName/{id}(id=${session.usuarioLogado?.id})}"
+                  method="post"
+                  >
                     <label class="new_name_label">
                         <span>Novo nome:</span>
-                        <input type="text" name="" id="" class="input_style">
+                        <input type="text" name="nome" id="" class="input_style">
                     </label>
                 
-                <input type="submit" value="Atualizar" class="input_style update_button">
+                <input type="submit"  class="input_style update_button">
             </form>
         </div>
     </div>
 
-    <div id="modal_blur" class="hidden">
     </div>
 
     <script src="scriptGlobal.js"></script>
+    <script>
+        function openCloseModal(selector) {
+        const modal = document.querySelector(selector);
+        if (!modal) {
+            console.error("Modal não encontrado:", selector);
+            return;
+        }
+        modal.classList.toggle("hidden");
+    }
+    </script>
+
+    <script>
+        document.addEventListener("click", function(e){
+             if (e.target.hasAttribute("data-modal-close")) {
+                const modal = e.target.closest(".modal"); // pega a modal certa
+                if (modal) modal.classList.toggle("hidden");
+                }
+        });
+    </script>>
 </body>
 </html>

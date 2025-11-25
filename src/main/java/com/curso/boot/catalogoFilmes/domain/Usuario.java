@@ -16,6 +16,20 @@ private String nome;
     @Column(name = "DS_SENHA", length = 200, nullable = false)
     private String senha;
 
+    @Lob
+    @Column(length = 16777215) // tamanho para armazenar blob médio (16MB)
+    private byte[] dados;
+
+    @Transient
+    public String getImagemBase64() {
+        try {
+            return java.util.Base64.getEncoder().encodeToString(this.dados);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
     @OneToMany(mappedBy = "usuario")
     private List<Comentario> comentarios;
 
@@ -31,4 +45,10 @@ private String nome;
     public void setEmail(String email) { this.email = email; }
     public String getSenha() { return senha; }
     public void setSenha(String senha) { this.senha = senha; }
+    public byte[] getDados() {
+        return dados;
+    }
+    public void setDados(byte[] dados) {
+        this.dados = dados;
+    }
 }
