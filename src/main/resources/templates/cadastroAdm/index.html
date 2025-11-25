@@ -48,7 +48,7 @@
                 </label>
 
                 <a href="../usuario/userPage">
-                    <div class="perfil_user"><img src="../Assets/SenacBusterLogo.svg" alt=""></div>
+                    <div class="perfil_user"><img th:src="'data:image/jpeg;base64,' + ${session.usuarioLogado?.getImagemBase64()}"></div>
                 </a>
 
             </div>

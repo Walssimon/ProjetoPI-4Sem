@@ -32,9 +32,24 @@ public class FilmeAtorServiceImpl implements FilmeAtorService {
     @Transactional(readOnly = true)
     public List<FilmeAtor> findAll() { return dao.findAll(); }
 
+
+
+
     @Override
     @Transactional(readOnly = true)
     public List<FilmeAtor> findByFilmeId(Long filmeId) {
         return dao.findByFilmeId(filmeId);
     }
+
+    @Override
+    public List<FilmeAtor> deleteByFilmeId(Long id) {
+        dao.deleteAllByFilmeId(id);
+        return null;
+    }
+
+    @Override
+    public void deleteAllByFilmeId(Long filmeId) {
+        dao.deleteAllByFilmeId(filmeId);
+    }
+
 }

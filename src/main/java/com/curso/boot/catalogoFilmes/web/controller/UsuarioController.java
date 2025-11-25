@@ -28,7 +28,11 @@ public class UsuarioController {
     private FavoritoService favoritoService;
 
     @GetMapping("/userPage")
-    public String UserPage(){
+    public String UserPage(Model model,  HttpSession session){
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null) {
+            return "redirect:/usuario/login";
+        }
         return "usuario/userPage";
     }
 

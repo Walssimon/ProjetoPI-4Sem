@@ -8,6 +8,12 @@ import java.util.List;
 @Repository
 public class FilmeAtorDaoImpl extends AbstractDao<FilmeAtor, Long> implements FilmeAtorDao {
 
+
+    @Override
+    public void deleteAllByFilmeId(Long filmeId) {
+        executeUpdate("delete from FilmeAtor fa where fa.filme.id = ?1", filmeId);
+    }
+
     @Override
     public List<FilmeAtor> findByFilmeId(Long filmeId) {
         return createQuerry(
@@ -15,5 +21,9 @@ public class FilmeAtorDaoImpl extends AbstractDao<FilmeAtor, Long> implements Fi
                 filmeId
         );
     }
+
+
+
+
 }
 

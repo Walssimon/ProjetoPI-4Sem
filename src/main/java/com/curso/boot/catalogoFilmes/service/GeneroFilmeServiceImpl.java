@@ -41,4 +41,14 @@ public class GeneroFilmeServiceImpl implements GeneroFilmeService {
     public List<GeneroFilme> findAll() {
         return dao.findAll();
     }
+
+
+    public List<GeneroFilme> findByFilmeId(Long filmeId) {
+        return dao.findByFilmeId(filmeId);
+    }
+
+    public void deleteByFilmeId(Long filmeId) {
+        dao.deleteByFilmeId(filmeId);
+    }
+
 }

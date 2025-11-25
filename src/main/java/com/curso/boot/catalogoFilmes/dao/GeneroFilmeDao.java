@@ -15,4 +15,8 @@ public interface GeneroFilmeDao {
     List<GeneroFilme> findAll();
 
     List<GeneroFilme> findByGeneroId(Long generoId);
+
+    List<GeneroFilme> findByFilmeId(Long filmeId);
+
+    void deleteByFilmeId(Long id);
 }

@@ -41,4 +41,5 @@ public class GeneroServiceImpl implements GeneroService {
     public List<Genero> findAll() {
         return dao.findAll();
     }
+
 }

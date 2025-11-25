@@ -14,6 +14,8 @@ public interface FilmeAtorDao {
 
     List<FilmeAtor> findAll();
 
+    void deleteAllByFilmeId(Long filmeId);;
+
     List<FilmeAtor> findByFilmeId(Long filmeId);
 
 }

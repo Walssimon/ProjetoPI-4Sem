@@ -171,9 +171,10 @@
 
         <div class="footer">
             <div class="footer_container_area with_delete_button">
-                <button class="delete_btn" type="reset">
+                <button class="delete_btn" type="button" onclick="deletarFilme()">
                     Excluir
                 </button>
+
                 <div class="others">
                     <button class="cancel_btn" type="button" onclick="history.back()">
                         Cancelar
@@ -187,6 +188,7 @@
         </div>    </div>
 
     </form>
+    <div id="filme" th:data-id="${filme.id}"></div>
 
 </main>
 
@@ -352,7 +354,25 @@
                 .innerHTML = html;
     }
 </script>
+<script>
+    async function deletarFilme() {
 
+     const id = document.getElementById("filme").dataset.id;
+
+     if (!confirm("Tem certeza?")) return;
+
+     const resp = await fetch(`/cadastroAdm/deleteFilme/${id}`, {
+         method: "POST"
+     });
+
+     if (resp.ok) {
+         window.location.href = "/cadastroAdm/index";
+     } else {
+         alert("Erro ao excluir!");
+     }
+ }
+
+</script>
 
 </body>
 </html>

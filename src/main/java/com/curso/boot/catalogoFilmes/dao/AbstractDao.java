@@ -2,6 +2,7 @@ package com.curso.boot.catalogoFilmes.dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
@@ -56,6 +57,16 @@ public class AbstractDao <T , PK extends Serializable> {
         }
         return query.getResultList();
     }
+
+    @Transactional
+    public int executeUpdate(String jpql, Object... params) {
+        Query query = getEntityManager().createQuery(jpql);
+        for (int i = 0; i < params.length; i++) {
+            query.setParameter(i + 1, params[i]);
+        }
+        return query.executeUpdate();
+    }
+
 
 
 

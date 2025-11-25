@@ -14,4 +14,6 @@ public interface GeneroFilmeService {
     GeneroFilme findById(Long id);
 
     List<GeneroFilme> findAll();
+    void deleteByFilmeId(Long id);
+
 }

@@ -1,7 +1,5 @@
 package com.curso.boot.catalogoFilmes.service;
 
-import com.curso.boot.catalogoFilmes.domain.Avaliacao;
-import com.curso.boot.catalogoFilmes.domain.Filme;
 import com.curso.boot.catalogoFilmes.domain.FilmeAtor;
 import java.util.List;
 
@@ -19,4 +17,6 @@ public interface FilmeAtorService {
 
     List<FilmeAtor> findByFilmeId(Long filmeId);
 
+    List<FilmeAtor> deleteByFilmeId(Long id);
+    void deleteAllByFilmeId(Long filmeId);
 }

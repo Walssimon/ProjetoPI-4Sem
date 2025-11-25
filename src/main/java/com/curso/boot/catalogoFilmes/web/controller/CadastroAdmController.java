@@ -93,6 +93,19 @@ public class CadastroAdmController {
         return "cadastroAdm/addActorPage";
     }
 
+    @PostMapping("/deleteFilme/{id}")
+    public String deleteFilme(@PathVariable Long id) {
+
+        filmeAtorService.deleteByFilmeId(id);
+        generoFilmeService.deleteByFilmeId(id);
+        filmeService.delete(id);
+
+        return "redirect:/cadastroAdm/index";
+    }
+
+
+
+
     @GetMapping("/cadNewFilme")
     public String CadNewFilme(Model model,
                               HttpSession session) {
