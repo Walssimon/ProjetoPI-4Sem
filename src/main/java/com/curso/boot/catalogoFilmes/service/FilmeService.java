@@ -19,5 +19,7 @@ public interface FilmeService {
 
     List<Filme> findAll();
 
+    List<Filme> buscarPorNome(String nome);
 
+    List<Filme> buscarAleatorios(int quantidade);
 }

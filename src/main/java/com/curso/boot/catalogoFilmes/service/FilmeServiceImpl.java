@@ -3,6 +3,7 @@ package com.curso.boot.catalogoFilmes.service;
 import com.curso.boot.catalogoFilmes.dao.FilmeDao;
 import com.curso.boot.catalogoFilmes.domain.Filme;
 import com.curso.boot.catalogoFilmes.domain.Imagem;
+import jakarta.persistence.Cacheable;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,16 @@ public class FilmeServiceImpl implements FilmeService {
         } else {
             dao.update(filme);
         }
+    }
+
+    @Override
+    public List<Filme> buscarPorNome(String nome) {
+        return dao.buscarPorNome(nome);
+    }
+
+    @Override
+    public List<Filme> buscarAleatorios(int quantidade) {
+        return dao.buscarAleatorios(quantidade);
     }
 
 }

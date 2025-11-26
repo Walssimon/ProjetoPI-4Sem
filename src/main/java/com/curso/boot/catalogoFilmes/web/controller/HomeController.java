@@ -39,6 +39,7 @@ public class HomeController {
     @GetMapping({"/", "/home"})
     public String home(
             @RequestParam(required = false) String genero,
+            @RequestParam(required = false) String nome,
             Model model,
             HttpSession session) {
 
@@ -54,16 +55,22 @@ public class HomeController {
         model.addAttribute("favoritosIds", favoritosIds);
 
 
-        // Lógica para obter filmes de destaque para o carrossel
-        // Exemplo: pegar os 5 primeiros filmes
+        // 🔥 Sempre carregar filmes de destaque
+        List<Filme> filmesDestaque = filmeService.buscarAleatorios(5);
+        model.addAttribute("filmesDestaque", filmesDestaque);
+
+        // 🔎 Busca por nome
+        if (nome != null && !nome.isEmpty()) {
+            model.addAttribute("filmes", filmeService.buscarPorNome(nome));
+            model.addAttribute("nomeBuscado", nome);
+            return "home";
+        }
+
+
+        // Lógica original de listagem
         List<Filme> todosOsFilmes = filmeService.findAll();
-        List<Filme> filmesDestaque = todosOsFilmes.stream()
-                .limit(5) // Pega os 5 primeiros
-                .collect(Collectors.toList());
-        model.addAttribute("filmesDestaque", filmesDestaque); // Adiciona ao modelo
 
-
-        // Lógica de busca por gênero (já existente)
+        // 🔎 Busca por gênero
         if (genero != null && !genero.isEmpty()) {
             BuscarPorGeneroStrategy estrategia = new BuscarPorGeneroStrategy(
                     genero,
@@ -76,30 +83,12 @@ public class HomeController {
             model.addAttribute("filmes", filmes);
             model.addAttribute("generoSelecionado", genero);
         } else {
-            // Sem filtro → lista todos
-            model.addAttribute("filmes", todosOsFilmes); // Usar a lista completa se não houver filtro
+            model.addAttribute("filmes", todosOsFilmes);
         }
 
         return "home";
     }
 
-    @GetMapping("/toggle-favorito/{filmeId}")
-    public String toggleFavorito(
-            @PathVariable Long filmeId,
-            HttpSession session) {
-
-        Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
-        Long usuarioId = usuario.getId();
-
-
-        if (favoritoService.isFavoritado(usuarioId, filmeId)) {
-            favoritoService.removerFavorito(usuarioId, filmeId);
-        } else {
-            favoritoService.favoritarFilme(usuarioId, filmeId);
-        }
-
-        return "redirect:/home"; // volta pro home
-    }
 
 
 }
