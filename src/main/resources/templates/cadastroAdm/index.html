@@ -41,14 +41,15 @@
             <h1>Catálogo</h1>
 
             <div class="cockpit_item_adm flex-center">
-                <label class="search_input">
 
-                    <span><i class="fa-solid fa-magnifying-glass"></i></span>
-                    <input type="text" placeholder="Pesquisar">
-                </label>
+<!--                <form th:action="@{/index}" method="get" class="search_input">-->
+<!--                    <input type="text" name="nome" placeholder="Pesquisar" th:value="${nomeBuscado}">-->
+<!--                </form>-->
 
                 <a href="../usuario/userPage">
-                    <div class="perfil_user"><img th:src="'data:image/jpeg;base64,' + ${session.usuarioLogado?.getImagemBase64()}"></div>
+                    <div class="perfil_user">
+                        <img th:src="'data:image/jpeg;base64,' + ${session.usuarioLogado?.getImagemBase64()}">
+                    </div>
                 </a>
 
             </div>
