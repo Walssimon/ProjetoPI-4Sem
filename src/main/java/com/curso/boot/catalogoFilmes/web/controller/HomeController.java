@@ -88,7 +88,23 @@ public class HomeController {
 
         return "home";
     }
+    @GetMapping("/toggle-favorito/{filmeId}")
+    public String toggleFavorito(
+            @PathVariable Long filmeId,
+            HttpSession session) {
 
+        Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+        Long usuarioId = usuario.getId();
+
+
+        if (favoritoService.isFavoritado(usuarioId, filmeId)) {
+            favoritoService.removerFavorito(usuarioId, filmeId);
+        } else {
+            favoritoService.favoritarFilme(usuarioId, filmeId);
+        }
+
+        return "redirect:/home"; // volta pro home
+}
 
 
 }
