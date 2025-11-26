@@ -121,8 +121,8 @@
                     <label>Restrição de idade</label>
                     <label class="input_capas">
                         <select id="rest" name="classificacaoIndicativa" class="principal">
-                            <option value=""
-                                    th:selected="${filme.classificacaoIndicativa == null}">
+                            <option value="0"
+                                    th:selected="${filme.classificacaoIndicativa == 0}">
                                 Livre
                             </option>
 

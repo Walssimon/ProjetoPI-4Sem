@@ -57,7 +57,7 @@
                 <label class="input_capas">
                     <img src="" alt="Clique para selecionar uma imagem" id="imagePreview2" class="img_preview">
                     <!-- Campo de input de arquivo escondido -->
-                    <input type="file" class="banners" id="file-input2"  accept="image/*" onchange="handleFileChange(event, 'imagePreview2')">
+                    <input type="file" class="banners" id="file-input2" name="banner"  accept="image/*" onchange="handleFileChange(event, 'imagePreview2')">
                 </label>
 
             </div>
@@ -69,48 +69,48 @@
             <div class="div_list_inputs">
                 <div class="input_div_grid">
                     <label>Nome</label>
-                    <label class="input_capas"> <input type="text" class="principal"></label>
+                    <label class="input_capas"> <input type="text" name="nomeFilme" class="principal"></label>
                 </div>
                 <div class="input_div_grid">
                     <label>Categoria</label>
                     <label class="input_capas">
-                        <select id="cate" name="categoria" class="principal">
-                            <option value="acao">Ação</option>
-                            <option value="aventura">Aventura</option>
-                            <option value="comedia">Comédia</option>
-                            <option value="drama">Drama</option>
-                            <option value="terror">Terror</option>
-                            <option value="ficcao-cientifica">Ficção Científica</option>
-                            <option value="romance">Romance</option>
-                            <option value="fantasia">Fantasia</option>
-                            <option value="suspense">Suspense</option>
-                            <option value="misterio">Mistério</option>
-                            <option value="animacao">Animação</option>
-                            <option value="documentario">Documentário</option>
-                            <option value="musical">Musical</option>
-                            <option value="historico">Histórico</option>
-                            <option value="familia">Família</option>
+                        <select id="cate" name="generoId" class="principal">
+                            <option value="1">Ação</option>
+                            <option value="2">Aventura</option>
+                            <option value="3">Comédia</option>
+                            <option value="4">Drama</option>
+                            <option value="5">Terror</option>
+                            <option value="6">Ficção Científica</option>
+                            <option value="7">Romance</option>
+                            <option value="8">Fantasia</option>
+                            <option value="9">Suspense</option>
+                            <option value="10">Mistério</option>
+                            <option value="11">Animação</option>
+                            <option value="12">Documentário</option>
+                            <option value="13">Musical</option>
+                            <option value="14">Histórico</option>
+                            <option value="15">Família</option>
                         </select>
                     </label>
                 </div>
                 <div class="input_div_grid">
                     <label>Ano de Lançamento</label>
-                    <label class="input_capas"> <input type="date" class="principal"></label>
+                    <label class="input_capas"> <input type="date" name="dataLancamento" class="principal"></label>
                 </div>
                 <div class="input_div_grid">
                     <label>Avaliações</label>
-                    <label class="input_capas"> <input type="text" class="principal"></label>
+                    <label class="input_capas"> <input type="text" name="avaliacao" class="principal"></label>
                 </div>
                 <div class="input_div_grid">
                     <label>Tempo de duração <span style="font-size: 0.7rem;color: #cccccc65;">(exemplo: 120
                                 min)</span></label>
-                    <label class="input_capas"> <input type="text" class="principal"></label>
+                    <label class="input_capas"> <input type="text" name="duracao" class="principal"></label>
                 </div>
                 <div class="input_div_grid">
                     <label>Restrição de idade</label>
                     <label class="input_capas">
-                        <select id="rest" class="principal">
-                            <option value="livre">Livre</option>
+                        <select id="rest" name="classificacaoIndicativa" class="principal">
+                            <option value="0">Livre</option>
                             <option value="12">+12</option>
                             <option value="14">+14</option>
                             <option value="16">+16</option>
@@ -121,7 +121,7 @@
                 </div>
                 <div class="input_div_grid desc_area">
                     <label>Descrição</label>
-                    <label class="input_capas"> <textarea class="descr_input" ></textarea></label>
+                    <label class="input_capas"> <textarea name = "descricao" class="descr_input" ></textarea></label>
                 </div>
             </div>
         </div>
